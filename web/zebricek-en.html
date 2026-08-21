@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    EU public debt ranking | PublicDebt.eu
+  </title>
+
+  <meta
+    name="description"
+    content="Comparison of all 27 European Union countries by public debt-to-GDP ratio, total debt, population and debt per capita."
+  >
+
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large"
+  >
+
+  <meta
+    name="theme-color"
+    content="#171717"
+  >
+
+  <link
+    rel="canonical"
+    href="https://publicdebt.eu/en/ranking/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="cs"
+    href="https://publicdebt.eu/cs/zebricek/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://publicdebt.eu/en/ranking/"
+  >
+
+  <link
+    rel="icon"
+    href="/favicon.svg"
+    type="image/svg+xml"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="en_US"
+  >
+
+  <meta
+    property="og:site_name"
+    content="PublicDebt.eu"
+  >
+
+  <meta
+    property="og:title"
+    content="EU public debt ranking"
+  >
+
+  <meta
+    property="og:description"
+    content="Comparison of all 27 European Union countries by public debt-to-GDP ratio, total debt, population and debt per capita."
+  >
+
+  <meta
+    property="og:url"
+    content="https://publicdebt.eu/en/ranking/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="EU public debt ranking"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="EU public debt ranking"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Comparison of all 27 European Union countries by public debt-to-GDP ratio, total debt, population and debt per capita."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+<link
+    rel="stylesheet"
+    href="/style.css"
+  >
+
+</head>
+
+<body data-language="en">
+
+  <main class="container">
+
+    <nav class="site-nav">
+
+      <a
+        class="site-nav-brand"
+        href="/en/"
+      >
+        PUBLICDEBT.EU
+      </a>
+
+      <div class="site-nav-links">
+
+        <a
+          class="site-nav-link"
+          href="/en/"
+        >
+          Home
+        </a>
+
+        <a
+          class="site-nav-link is-active"
+          href="/en/ranking/"
+        >
+          EU ranking
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="#countries"
+        >
+          Countries
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/compare/"
+        >
+          Compare
+        </a>
+
+        <a
+        class="site-nav-link"
+        href="/cs/zebricek/"
+        hreflang="cs"
+        >
+        CS
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <header class="header ranking-header">
+
+      <p class="eyebrow">
+        EUROPEAN UNION
+      </p>
+
+      <h1>
+        Public debt ranking
+      </h1>
+
+      <p class="intro">
+        Comparison of all 27 European Union countries
+        using harmonised Eurostat data.
+      </p>
+
+    </header>
+
+
+    <section class="ranking-controls">
+
+      <button
+        class="ranking-control is-active"
+        data-ranking="gdp"
+        type="button"
+      >
+        Debt / GDP
+      </button>
+
+      <button
+        class="ranking-control"
+        data-ranking="total"
+        type="button"
+      >
+        Total debt
+      </button>
+
+      <button
+        class="ranking-control"
+        data-ranking="population"
+        type="button"
+      >
+        Population
+      </button>
+
+      <button
+        class="ranking-control"
+        data-ranking="per-capita"
+        type="button"
+      >
+        Debt per capita
+      </button>
+
+    </section>
+
+
+    <section class="ranking-summary">
+
+      <p id="ranking-description">
+        —
+      </p>
+
+      <p id="ranking-period">
+        —
+      </p>
+
+    </section>
+
+
+    <section
+      class="ranking-table"
+      id="ranking-table"
+    >
+
+      <p class="loading">
+        Loading data…
+      </p>
+
+    </section>
+
+
+    <section class="ranking-note">
+
+      <p>
+        Debt per capita is a statistical calculation
+        of total public debt divided by the population.
+        It is not a personal liability of an individual.
+      </p>
+
+    </section>
+
+
+    <section
+      class="section countries-directory"
+      id="countries"
+    >
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          27 COUNTRIES
+        </p>
+
+        <h2>
+          Detailed statistics for EU countries
+        </h2>
+
+        <p>
+          Each country has its own page with current
+          data, EU rankings and historical development.
+        </p>
+
+      </div>
+
+
+      <div
+        class="countries-directory-grid"
+        id="countries-directory"
+      >
+      </div>
+
+    </section>
+
+
+    <footer class="site-footer">
+
+      <div class="site-footer-main">
+
+        <p>
+          PublicDebt.eu · Eurostat data.
+        </p>
+
+        <p id="ranking-updated">
+          —
+        </p>
+
+      </div>
+
+      <div class="site-footer-links">
+
+        <a href="/en/about/">
+          About
+        </a>
+
+        <a href="mailto:contact@publicdebt.eu">
+          Contact
+        </a>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <script src="/ranking.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+{
+  "country": {
+    "code": "CZ",
+    "name": "Czechia"
+  },
+  "dataset": {
+    "id": "MFCR-Makroekonomicka-predikce-duben-2026",
+    "title": "Makroekonomická predikce České republiky — duben 2026",
+    "source": "Ministerstvo financí České republiky",
+    "source_file": "MFCR-Makroekonomicka-predikce-duben-2026.xlsx",
+    "table": "T 1.3.1",
+    "unit": "% HDP",
+    "retrieved_at": "2026-08-21T20:36:22.086Z"
+  },
+  "forecast": {
+    "year": 2026,
+    "balance_percent_gdp": -2.6,
+    "debt_percent_gdp": 45.6
+  },
+  "history": {
+    "balance_percent_gdp": [
+      {
+        "year": 2017,
+        "value": 1.5
+      },
+      {
+        "year": 2018,
+        "value": 0.9
+      },
+      {
+        "year": 2019,
+        "value": 0.3
+      },
+      {
+        "year": 2020,
+        "value": -5.6
+      },
+      {
+        "year": 2021,
+        "value": -5
+      },
+      {
+        "year": 2022,
+        "value": -3.1
+      },
+      {
+        "year": 2023,
+        "value": -3.7
+      },
+      {
+        "year": 2024,
+        "value": -2
+      },
+      {
+        "year": 2025,
+        "value": -2.1
+      }
+    ],
+    "debt_percent_gdp": [
+      {
+        "year": 2017,
+        "value": 33.8
+      },
+      {
+        "year": 2018,
+        "value": 31.7
+      },
+      {
+        "year": 2019,
+        "value": 29.6
+      },
+      {
+        "year": 2020,
+        "value": 36.9
+      },
+      {
+        "year": 2021,
+        "value": 40.7
+      },
+      {
+        "year": 2022,
+        "value": 42.5
+      },
+      {
+        "year": 2023,
+        "value": 42.2
+      },
+      {
+        "year": 2024,
+        "value": 43.3
+      },
+      {
+        "year": 2025,
+        "value": 44.3
+      }
+    ]
+  }
+}

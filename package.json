@@ -1,0 +1,45 @@
+{
+  "name": "publicdebt",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Open-data platform for exploring public debt across the European Union.",
+  "type": "module",
+  "scripts": {
+    "fetch:eurostat": "node src/fetch/eurostat.js",
+    "fetch:mfcr": "node src/fetch/mfcr.js",
+    "fetch:forecast": "node src/fetch/mfcr-forecast.js",
+    "fetch:population": "node src/fetch/population.js",
+    "transform:eurostat": "node src/transform/debt.js",
+    "transform:mfcr": "node src/transform/mfcr.js",
+    "transform:forecast": "node src/transform/mfcr-forecast.js",
+    "transform:population": "node src/transform/population.js",
+    "transform:eu": "node src/transform/eu.js",
+    "transform:overview": "node src/transform/overview.js",
+    "validate": "node src/validate/overview.js",
+    "validate:countries": "node src/validate/countries.js",
+    "validate:all": "npm run validate && npm run validate:countries",
+    "audit:countries": "node src/validate/audit-countries.js",
+    "validate:build": "SITE_ENV=production node src/validate/build.js",
+    "validate:build:stage": "SITE_ENV=stage node src/validate/build.js",
+    "validate:links": "node src/validate/links.js",
+    "fetch": "npm run fetch:eurostat && npm run fetch:mfcr && npm run fetch:forecast && npm run fetch:population",
+    "transform": "npm run transform:eurostat && npm run transform:mfcr && npm run transform:forecast && npm run transform:population && npm run transform:eu && npm run transform:overview",
+    "start": "node src/server/index.js",
+    "update": "npm run fetch && npm run transform && npm run validate:all",
+    "build": "SITE_ENV=production node src/build.js",
+    "build:stage": "SITE_ENV=stage node src/build.js",
+    "release": "npm run update && npm run build && npm run validate:build && npm run validate:links",
+    "release:stage": "npm run update && npm run build:stage && npm run validate:build:stage && npm run validate:links"
+  },
+  "homepage": "https://publicdebt.eu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getpods/publicdebt.eu.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "read-excel-file": "^9.3.10"
+  }
+}

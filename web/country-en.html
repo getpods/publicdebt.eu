@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Public debt – __COUNTRY_NAME__ | PublicDebt.eu
+  </title>
+
+  <meta
+    name="description"
+    content="Current public debt of __COUNTRY_NAME__, debt-to-GDP ratio, debt per capita and historical development."
+  >
+
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large"
+  >
+
+  <meta
+    name="theme-color"
+    content="#171717"
+  >
+
+  <link
+    rel="canonical"
+    href="__CANONICAL__"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="cs"
+    href="__ALTERNATE_CS__"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="__CANONICAL__"
+  >
+
+  <link
+    rel="icon"
+    href="/favicon.svg"
+    type="image/svg+xml"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="en_US"
+  >
+
+  <meta
+    property="og:site_name"
+    content="PublicDebt.eu"
+  >
+
+  <meta
+    property="og:title"
+    content="Public debt – __COUNTRY_NAME__"
+  >
+
+  <meta
+    property="og:description"
+    content="Current public debt of __COUNTRY_NAME__, debt-to-GDP ratio, debt per capita and historical development."
+  >
+
+  <meta
+    property="og:url"
+    content="__CANONICAL__"
+  >
+
+  <meta
+    property="og:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Public debt – __COUNTRY_NAME__"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Public debt – __COUNTRY_NAME__"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Current public debt of __COUNTRY_NAME__, debt-to-GDP ratio, debt per capita and historical development."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+<link
+    rel="stylesheet"
+    href="/style.css"
+  >
+
+</head>
+
+<body
+  data-country-code="__COUNTRY_CODE__"
+  data-language="en"
+>
+
+  <main class="container">
+
+    <nav class="site-nav">
+
+      <a
+        class="site-nav-brand"
+        href="/en/"
+      >
+        PUBLICDEBT.EU
+      </a>
+
+      <div class="site-nav-links">
+
+        <a
+          class="site-nav-link"
+          href="/en/"
+        >
+          Home
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/ranking/"
+        >
+          EU ranking
+        </a>
+
+        <a
+          class="site-nav-link is-active"
+          href="/en/ranking/#countries"
+        >
+          Countries
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/compare/"
+        >
+          Compare
+        </a>
+
+        <a
+        class="site-nav-link"
+        href="__ALTERNATE_CS__"
+        hreflang="cs"
+        >
+        CS
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <header class="header country-header">
+
+      <p class="eyebrow">
+        PUBLIC DEBT · EU
+      </p>
+
+      <h1 id="country-title">
+        __COUNTRY_NAME__
+      </h1>
+
+      <p
+        class="intro"
+        id="country-intro"
+      >
+        Current public debt data.
+      </p>
+
+    </header>
+
+
+    <section class="debt-clock country-debt-clock">
+
+      <p class="debt-clock-label">
+        Estimated change in public debt
+      </p>
+
+      <div class="debt-clock-rate">
+
+        <strong id="country-debt-clock-rate">
+          —
+        </strong>
+
+        <span id="country-debt-clock-rate-unit">
+          —
+        </span>
+
+      </div>
+
+      <p
+        class="debt-clock-trend"
+        id="country-debt-clock-trend"
+      >
+        —
+      </p>
+
+      <div class="debt-clock-live">
+
+        <strong id="country-debt-clock-value">
+          0
+        </strong>
+
+        <span id="country-debt-clock-value-unit">
+          —
+        </span>
+
+      </div>
+
+      <p class="debt-clock-note">
+        Since you opened this page
+      </p>
+
+      <p
+        class="debt-clock-method"
+        id="country-debt-clock-method"
+      >
+        Approximate calculation of the year-on-year change in public debt.
+      </p>
+
+    </section>
+
+
+    <section class="country-embed">
+
+      <button
+        class="country-embed-toggle"
+        id="country-embed-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="country-embed-panel"
+      >
+
+        <span>
+          Embed this debt clock on your website
+        </span>
+
+        <strong aria-hidden="true">
+          +
+        </strong>
+
+      </button>
+
+
+      <div
+        class="country-embed-panel"
+        id="country-embed-panel"
+        hidden
+      >
+
+        <div class="country-embed-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              EMBED
+            </p>
+
+            <h2>
+              Add the debt clock to your website
+            </h2>
+
+            <p>
+              Choose a theme and width.
+              Data will load directly from PublicDebt.eu.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="country-embed-controls">
+
+          <label class="country-embed-control">
+
+            <span>
+              Theme
+            </span>
+
+            <select id="country-embed-theme">
+
+              <option value="dark">
+                Dark
+              </option>
+
+              <option value="light">
+                Light
+              </option>
+
+              <option value="auto">
+                Match device
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label class="country-embed-control">
+
+            <span>
+              Width
+            </span>
+
+            <select id="country-embed-width">
+
+              <option value="responsive">
+                100% – responsive
+              </option>
+
+              <option value="600">
+                600 px
+              </option>
+
+              <option value="480">
+                480 px
+              </option>
+
+              <option value="360">
+                360 px
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <div class="country-embed-preview-area">
+
+          <p class="country-embed-caption">
+            Preview
+          </p>
+
+          <div
+            class="country-embed-preview"
+            id="country-embed-preview-wrapper"
+          >
+
+            <iframe
+              id="country-embed-preview"
+              title="Public debt clock preview"
+              loading="lazy"
+            ></iframe>
+
+          </div>
+
+        </div>
+
+
+        <div class="country-embed-code-area">
+
+          <label
+            class="country-embed-caption"
+            for="country-embed-code"
+          >
+            Embed code
+          </label>
+
+          <textarea
+            id="country-embed-code"
+            class="country-embed-code"
+            readonly
+            rows="5"
+            spellcheck="false"
+          ></textarea>
+
+          <div class="country-embed-code-footer">
+
+            <p>
+              You can change the width in the code at any time.
+            </p>
+
+            <button
+              class="country-embed-copy"
+              id="country-embed-copy"
+              type="button"
+            >
+              Copy code
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="country-hero">
+
+      <div class="country-hero-card">
+
+        <p class="label">
+          Total public debt
+        </p>
+
+        <strong
+          class="country-hero-value"
+          id="country-total-debt"
+        >
+          —
+        </strong>
+
+        <span
+          class="country-hero-unit"
+          id="country-total-debt-unit"
+        >
+          —
+        </span>
+
+        <p class="period">
+          general government gross debt
+        </p>
+
+      </div>
+
+
+      <div class="country-hero-card">
+
+        <p class="label">
+          Debt-to-GDP ratio
+        </p>
+
+        <strong
+          class="country-hero-value"
+          id="country-debt-gdp"
+        >
+          —
+        </strong>
+
+        <span class="country-hero-unit">
+          % of GDP
+        </span>
+
+        <p
+          class="period"
+          id="country-period"
+        >
+          —
+        </p>
+
+      </div>
+
+
+      <div class="country-hero-card country-hero-rank">
+
+        <p class="label">
+          EU ranking
+        </p>
+
+        <strong
+          class="country-hero-value"
+          id="country-rank"
+        >
+          —
+        </strong>
+
+        <span class="country-hero-unit">
+          of 27 countries
+        </span>
+
+        <p class="period">
+          by debt-to-GDP ratio
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="secondary-stats country-secondary-stats">
+
+      <div class="secondary-stat-card">
+
+        <p class="secondary-stat-label">
+          Population
+        </p>
+
+        <strong
+          class="secondary-stat-value"
+          id="country-population"
+        >
+          —
+        </strong>
+
+        <p
+          class="secondary-stat-note"
+          id="country-population-date"
+        >
+          —
+        </p>
+
+      </div>
+
+
+      <div class="secondary-stat-card">
+
+        <p class="secondary-stat-label">
+          Debt per capita
+        </p>
+
+        <strong
+          class="secondary-stat-value"
+          id="country-debt-per-capita"
+        >
+          —
+        </strong>
+
+        <p class="secondary-stat-note">
+          EUR · statistical amount per resident
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          HISTORICAL DEVELOPMENT
+        </p>
+
+        <h2>
+          Debt-to-GDP ratio
+        </h2>
+
+        <p id="country-chart-description">
+          Historical development of public debt relative to GDP.
+        </p>
+
+      </div>
+
+
+      <div class="chart-card">
+
+        <div
+          class="chart"
+          id="country-chart"
+        >
+
+          <p class="loading">
+            Loading data…
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          EU COMPARISON
+        </p>
+
+        <h2>
+          Position in the European Union
+        </h2>
+
+      </div>
+
+
+      <div class="country-rank-grid">
+
+        <div class="info-card">
+
+          <span>
+            Debt / GDP
+          </span>
+
+          <strong id="rank-gdp">
+            —
+          </strong>
+
+          <small>
+            rank of 27
+          </small>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>
+            Total debt
+          </span>
+
+          <strong id="rank-total">
+            —
+          </strong>
+
+          <small>
+            rank of 27
+          </small>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>
+            Debt per capita
+          </span>
+
+          <strong id="rank-per-capita">
+            —
+          </strong>
+
+          <small>
+            rank of 27
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="country-ranking-link"
+        href="/en/ranking/"
+      >
+        View the full EU ranking
+
+        <span aria-hidden="true">
+          →
+        </span>
+
+      </a>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          MORE COUNTRIES
+        </p>
+
+        <h2>
+          Explore the European Union
+        </h2>
+
+        <p>
+          Go to the ranking and explore any
+          of the 27 European Union countries.
+        </p>
+
+      </div>
+
+
+      <div class="country-navigation-cards">
+
+        <a
+          href="/en/ranking/#countries"
+          class="country-navigation-card"
+        >
+
+          <span>
+            All EU countries
+          </span>
+
+          <strong>
+            27 countries →
+          </strong>
+
+        </a>
+
+
+        <a
+          href="/en/ranking/"
+          class="country-navigation-card"
+        >
+
+          <span>
+            European comparison
+          </span>
+
+          <strong>
+            Ranking →
+          </strong>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="section sources-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          DATA
+        </p>
+
+        <h2>
+          Sources and methodology
+        </h2>
+
+        <p>
+          Harmonised Eurostat data are used
+          for comparisons between EU countries.
+        </p>
+
+      </div>
+
+
+      <div class="sources-list">
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Eurostat
+            </strong>
+
+            <p>
+              Quarterly general government debt
+              and the debt-to-GDP ratio.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              gov_10q_ggdebt
+            </span>
+
+            <span id="country-source-period">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Eurostat
+            </strong>
+
+            <p>
+              Population on 1 January.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              demo_gind / JAN
+            </span>
+
+            <span id="country-source-population">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer class="site-footer">
+
+      <div class="site-footer-main">
+
+        <p>
+          PublicDebt.eu · Eurostat data.
+        </p>
+
+        <p id="country-updated">
+          —
+        </p>
+
+      </div>
+
+
+      <div class="site-footer-links">
+
+        <a href="/en/about/">
+          About
+        </a>
+
+        <a href="mailto:contact@publicdebt.eu">
+          Contact
+        </a>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <script src="/country.js"></script>
+
+</body>
+
+</html>

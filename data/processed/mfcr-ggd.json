@@ -1,0 +1,646 @@
+{
+  "country": {
+    "code": "CZ",
+    "name": "Czechia"
+  },
+  "dataset": {
+    "id": "SDDS-Plus_GGD",
+    "title": "Hrubý dluh sektoru vládních institucí - čtvrtletní",
+    "source": "Ministerstvo financí České republiky",
+    "unit": "mld. Kč",
+    "source_file": "SDDS-Plus_GGD.xlsx",
+    "retrieved_at": "2026-08-21T20:36:21.709Z"
+  },
+  "latest": {
+    "period": "2026-Q1",
+    "year": 2026,
+    "quarter": 1,
+    "debt_czk_billion": 3827.885,
+    "debt_czk": 3827885000000
+  },
+  "history": [
+    {
+      "period": "2004-Q1",
+      "year": 2004,
+      "quarter": 1,
+      "debt_czk_billion": 855.269,
+      "debt_czk": 855269000000
+    },
+    {
+      "period": "2004-Q2",
+      "year": 2004,
+      "quarter": 2,
+      "debt_czk_billion": 897.217,
+      "debt_czk": 897217000000
+    },
+    {
+      "period": "2004-Q3",
+      "year": 2004,
+      "quarter": 3,
+      "debt_czk_billion": 890.021,
+      "debt_czk": 890021000000
+    },
+    {
+      "period": "2004-Q4",
+      "year": 2004,
+      "quarter": 4,
+      "debt_czk_billion": 873.493,
+      "debt_czk": 873493000000
+    },
+    {
+      "period": "2005-Q1",
+      "year": 2005,
+      "quarter": 1,
+      "debt_czk_billion": 889.827,
+      "debt_czk": 889827000000
+    },
+    {
+      "period": "2005-Q2",
+      "year": 2005,
+      "quarter": 2,
+      "debt_czk_billion": 893.29,
+      "debt_czk": 893290000000
+    },
+    {
+      "period": "2005-Q3",
+      "year": 2005,
+      "quarter": 3,
+      "debt_czk_billion": 896.782,
+      "debt_czk": 896782000000
+    },
+    {
+      "period": "2005-Q4",
+      "year": 2005,
+      "quarter": 4,
+      "debt_czk_billion": 910.183,
+      "debt_czk": 910183000000
+    },
+    {
+      "period": "2006-Q1",
+      "year": 2006,
+      "quarter": 1,
+      "debt_czk_billion": 925.265,
+      "debt_czk": 925265000000
+    },
+    {
+      "period": "2006-Q2",
+      "year": 2006,
+      "quarter": 2,
+      "debt_czk_billion": 941.678,
+      "debt_czk": 941678000000
+    },
+    {
+      "period": "2006-Q3",
+      "year": 2006,
+      "quarter": 3,
+      "debt_czk_billion": 951.943,
+      "debt_czk": 951943000000
+    },
+    {
+      "period": "2006-Q4",
+      "year": 2006,
+      "quarter": 4,
+      "debt_czk_billion": 973.107,
+      "debt_czk": 973107000000
+    },
+    {
+      "period": "2007-Q1",
+      "year": 2007,
+      "quarter": 1,
+      "debt_czk_billion": 981.971,
+      "debt_czk": 981971000000
+    },
+    {
+      "period": "2007-Q2",
+      "year": 2007,
+      "quarter": 2,
+      "debt_czk_billion": 1023.622,
+      "debt_czk": 1023622000000
+    },
+    {
+      "period": "2007-Q3",
+      "year": 2007,
+      "quarter": 3,
+      "debt_czk_billion": 1003.559,
+      "debt_czk": 1003559000000
+    },
+    {
+      "period": "2007-Q4",
+      "year": 2007,
+      "quarter": 4,
+      "debt_czk_billion": 1054.633,
+      "debt_czk": 1054633000000
+    },
+    {
+      "period": "2008-Q1",
+      "year": 2008,
+      "quarter": 1,
+      "debt_czk_billion": 1016.468,
+      "debt_czk": 1016468000000
+    },
+    {
+      "period": "2008-Q2",
+      "year": 2008,
+      "quarter": 2,
+      "debt_czk_billion": 1080.267,
+      "debt_czk": 1080267000000
+    },
+    {
+      "period": "2008-Q3",
+      "year": 2008,
+      "quarter": 3,
+      "debt_czk_billion": 1086.104,
+      "debt_czk": 1086104000000
+    },
+    {
+      "period": "2008-Q4",
+      "year": 2008,
+      "quarter": 4,
+      "debt_czk_billion": 1136.774,
+      "debt_czk": 1136774000000
+    },
+    {
+      "period": "2009-Q1",
+      "year": 2009,
+      "quarter": 1,
+      "debt_czk_billion": 1146.395,
+      "debt_czk": 1146395000000
+    },
+    {
+      "period": "2009-Q2",
+      "year": 2009,
+      "quarter": 2,
+      "debt_czk_billion": 1271.637,
+      "debt_czk": 1271637000000
+    },
+    {
+      "period": "2009-Q3",
+      "year": 2009,
+      "quarter": 3,
+      "debt_czk_billion": 1300.731,
+      "debt_czk": 1300731000000
+    },
+    {
+      "period": "2009-Q4",
+      "year": 2009,
+      "quarter": 4,
+      "debt_czk_billion": 1319.002,
+      "debt_czk": 1319002000000
+    },
+    {
+      "period": "2010-Q1",
+      "year": 2010,
+      "quarter": 1,
+      "debt_czk_billion": 1353.408,
+      "debt_czk": 1353408000000
+    },
+    {
+      "period": "2010-Q2",
+      "year": 2010,
+      "quarter": 2,
+      "debt_czk_billion": 1380.654,
+      "debt_czk": 1380654000000
+    },
+    {
+      "period": "2010-Q3",
+      "year": 2010,
+      "quarter": 3,
+      "debt_czk_billion": 1510.922,
+      "debt_czk": 1510922000000
+    },
+    {
+      "period": "2010-Q4",
+      "year": 2010,
+      "quarter": 4,
+      "debt_czk_billion": 1480.097,
+      "debt_czk": 1480097000000
+    },
+    {
+      "period": "2011-Q1",
+      "year": 2011,
+      "quarter": 1,
+      "debt_czk_billion": 1512.954,
+      "debt_czk": 1512954000000
+    },
+    {
+      "period": "2011-Q2",
+      "year": 2011,
+      "quarter": 2,
+      "debt_czk_billion": 1522.434,
+      "debt_czk": 1522434000000
+    },
+    {
+      "period": "2011-Q3",
+      "year": 2011,
+      "quarter": 3,
+      "debt_czk_billion": 1566.715,
+      "debt_czk": 1566715000000
+    },
+    {
+      "period": "2011-Q4",
+      "year": 2011,
+      "quarter": 4,
+      "debt_czk_billion": 1613.65,
+      "debt_czk": 1613650000000
+    },
+    {
+      "period": "2012-Q1",
+      "year": 2012,
+      "quarter": 1,
+      "debt_czk_billion": 1716.204,
+      "debt_czk": 1716204000000
+    },
+    {
+      "period": "2012-Q2",
+      "year": 2012,
+      "quarter": 2,
+      "debt_czk_billion": 1741.311,
+      "debt_czk": 1741311000000
+    },
+    {
+      "period": "2012-Q3",
+      "year": 2012,
+      "quarter": 3,
+      "debt_czk_billion": 1799.427,
+      "debt_czk": 1799427000000
+    },
+    {
+      "period": "2012-Q4",
+      "year": 2012,
+      "quarter": 4,
+      "debt_czk_billion": 1805.307,
+      "debt_czk": 1805307000000
+    },
+    {
+      "period": "2013-Q1",
+      "year": 2013,
+      "quarter": 1,
+      "debt_czk_billion": 1846.559,
+      "debt_czk": 1846559000000
+    },
+    {
+      "period": "2013-Q2",
+      "year": 2013,
+      "quarter": 2,
+      "debt_czk_billion": 1813.822,
+      "debt_czk": 1813822000000
+    },
+    {
+      "period": "2013-Q3",
+      "year": 2013,
+      "quarter": 3,
+      "debt_czk_billion": 1792.178,
+      "debt_czk": 1792178000000
+    },
+    {
+      "period": "2013-Q4",
+      "year": 2013,
+      "quarter": 4,
+      "debt_czk_billion": 1840.247,
+      "debt_czk": 1840247000000
+    },
+    {
+      "period": "2014-Q1",
+      "year": 2014,
+      "quarter": 1,
+      "debt_czk_billion": 1838.037,
+      "debt_czk": 1838037000000
+    },
+    {
+      "period": "2014-Q2",
+      "year": 2014,
+      "quarter": 2,
+      "debt_czk_billion": 1817.985,
+      "debt_czk": 1817985000000
+    },
+    {
+      "period": "2014-Q3",
+      "year": 2014,
+      "quarter": 3,
+      "debt_czk_billion": 1825.03,
+      "debt_czk": 1825030000000
+    },
+    {
+      "period": "2014-Q4",
+      "year": 2014,
+      "quarter": 4,
+      "debt_czk_billion": 1818.888,
+      "debt_czk": 1818888000000
+    },
+    {
+      "period": "2015-Q1",
+      "year": 2015,
+      "quarter": 1,
+      "debt_czk_billion": 1833.739,
+      "debt_czk": 1833739000000
+    },
+    {
+      "period": "2015-Q2",
+      "year": 2015,
+      "quarter": 2,
+      "debt_czk_billion": 1827.335,
+      "debt_czk": 1827335000000
+    },
+    {
+      "period": "2015-Q3",
+      "year": 2015,
+      "quarter": 3,
+      "debt_czk_billion": 1827.747,
+      "debt_czk": 1827747000000
+    },
+    {
+      "period": "2015-Q4",
+      "year": 2015,
+      "quarter": 4,
+      "debt_czk_billion": 1836.047,
+      "debt_czk": 1836047000000
+    },
+    {
+      "period": "2016-Q1",
+      "year": 2016,
+      "quarter": 1,
+      "debt_czk_billion": 1857.285,
+      "debt_czk": 1857285000000
+    },
+    {
+      "period": "2016-Q2",
+      "year": 2016,
+      "quarter": 2,
+      "debt_czk_billion": 1850.404,
+      "debt_czk": 1850404000000
+    },
+    {
+      "period": "2016-Q3",
+      "year": 2016,
+      "quarter": 3,
+      "debt_czk_billion": 1811.968,
+      "debt_czk": 1811968000000
+    },
+    {
+      "period": "2016-Q4",
+      "year": 2016,
+      "quarter": 4,
+      "debt_czk_billion": 1754.737,
+      "debt_czk": 1754737000000
+    },
+    {
+      "period": "2017-Q1",
+      "year": 2017,
+      "quarter": 1,
+      "debt_czk_billion": 1924.121,
+      "debt_czk": 1924121000000
+    },
+    {
+      "period": "2017-Q2",
+      "year": 2017,
+      "quarter": 2,
+      "debt_czk_billion": 1923.637,
+      "debt_czk": 1923637000000
+    },
+    {
+      "period": "2017-Q3",
+      "year": 2017,
+      "quarter": 3,
+      "debt_czk_billion": 1739.428,
+      "debt_czk": 1739428000000
+    },
+    {
+      "period": "2017-Q4",
+      "year": 2017,
+      "quarter": 4,
+      "debt_czk_billion": 1749.677,
+      "debt_czk": 1749677000000
+    },
+    {
+      "period": "2018-Q1",
+      "year": 2018,
+      "quarter": 1,
+      "debt_czk_billion": 1833.227,
+      "debt_czk": 1833227000000
+    },
+    {
+      "period": "2018-Q2",
+      "year": 2018,
+      "quarter": 2,
+      "debt_czk_billion": 1829.498,
+      "debt_czk": 1829498000000
+    },
+    {
+      "period": "2018-Q3",
+      "year": 2018,
+      "quarter": 3,
+      "debt_czk_billion": 1778.581,
+      "debt_czk": 1778581000000
+    },
+    {
+      "period": "2018-Q4",
+      "year": 2018,
+      "quarter": 4,
+      "debt_czk_billion": 1734.602,
+      "debt_czk": 1734602000000
+    },
+    {
+      "period": "2019-Q1",
+      "year": 2019,
+      "quarter": 1,
+      "debt_czk_billion": 1835.655,
+      "debt_czk": 1835655000000
+    },
+    {
+      "period": "2019-Q2",
+      "year": 2019,
+      "quarter": 2,
+      "debt_czk_billion": 1816.617,
+      "debt_czk": 1816617000000
+    },
+    {
+      "period": "2019-Q3",
+      "year": 2019,
+      "quarter": 3,
+      "debt_czk_billion": 1784.633,
+      "debt_czk": 1784633000000
+    },
+    {
+      "period": "2019-Q4",
+      "year": 2019,
+      "quarter": 4,
+      "debt_czk_billion": 1740.263,
+      "debt_czk": 1740263000000
+    },
+    {
+      "period": "2020-Q1",
+      "year": 2020,
+      "quarter": 1,
+      "debt_czk_billion": 1889.221,
+      "debt_czk": 1889221000000
+    },
+    {
+      "period": "2020-Q2",
+      "year": 2020,
+      "quarter": 2,
+      "debt_czk_billion": 2265.056,
+      "debt_czk": 2265056000000
+    },
+    {
+      "period": "2020-Q3",
+      "year": 2020,
+      "quarter": 3,
+      "debt_czk_billion": 2173.144,
+      "debt_czk": 2173143999999.9998
+    },
+    {
+      "period": "2020-Q4",
+      "year": 2020,
+      "quarter": 4,
+      "debt_czk_billion": 2149.655,
+      "debt_czk": 2149655000000.0002
+    },
+    {
+      "period": "2021-Q1",
+      "year": 2021,
+      "quarter": 1,
+      "debt_czk_billion": 2512.533,
+      "debt_czk": 2512533000000
+    },
+    {
+      "period": "2021-Q2",
+      "year": 2021,
+      "quarter": 2,
+      "debt_czk_billion": 2516.927,
+      "debt_czk": 2516927000000
+    },
+    {
+      "period": "2021-Q3",
+      "year": 2021,
+      "quarter": 3,
+      "debt_czk_billion": 2433.296,
+      "debt_czk": 2433296000000
+    },
+    {
+      "period": "2021-Q4",
+      "year": 2021,
+      "quarter": 4,
+      "debt_czk_billion": 2566.752,
+      "debt_czk": 2566752000000
+    },
+    {
+      "period": "2022-Q1",
+      "year": 2022,
+      "quarter": 1,
+      "debt_czk_billion": 2684.15,
+      "debt_czk": 2684150000000
+    },
+    {
+      "period": "2022-Q2",
+      "year": 2022,
+      "quarter": 2,
+      "debt_czk_billion": 2793.661,
+      "debt_czk": 2793661000000
+    },
+    {
+      "period": "2022-Q3",
+      "year": 2022,
+      "quarter": 3,
+      "debt_czk_billion": 2983.299,
+      "debt_czk": 2983299000000
+    },
+    {
+      "period": "2022-Q4",
+      "year": 2022,
+      "quarter": 4,
+      "debt_czk_billion": 2997.632,
+      "debt_czk": 2997632000000
+    },
+    {
+      "period": "2023-Q1",
+      "year": 2023,
+      "quarter": 1,
+      "debt_czk_billion": 3099.459,
+      "debt_czk": 3099459000000
+    },
+    {
+      "period": "2023-Q2",
+      "year": 2023,
+      "quarter": 2,
+      "debt_czk_billion": 3150.74,
+      "debt_czk": 3150740000000
+    },
+    {
+      "period": "2023-Q3",
+      "year": 2023,
+      "quarter": 3,
+      "debt_czk_billion": 3216.483,
+      "debt_czk": 3216483000000
+    },
+    {
+      "period": "2023-Q4",
+      "year": 2023,
+      "quarter": 4,
+      "debt_czk_billion": 3234.102,
+      "debt_czk": 3234102000000
+    },
+    {
+      "period": "2024-Q1",
+      "year": 2024,
+      "quarter": 1,
+      "debt_czk_billion": 3337.007,
+      "debt_czk": 3337007000000
+    },
+    {
+      "period": "2024-Q2",
+      "year": 2024,
+      "quarter": 2,
+      "debt_czk_billion": 3320.798,
+      "debt_czk": 3320798000000
+    },
+    {
+      "period": "2024-Q3",
+      "year": 2024,
+      "quarter": 3,
+      "debt_czk_billion": 3449.352,
+      "debt_czk": 3449352000000
+    },
+    {
+      "period": "2024-Q4",
+      "year": 2024,
+      "quarter": 4,
+      "debt_czk_billion": 3488.5,
+      "debt_czk": 3488500000000
+    },
+    {
+      "period": "2025-Q1",
+      "year": 2025,
+      "quarter": 1,
+      "debt_czk_billion": 3535.25,
+      "debt_czk": 3535250000000
+    },
+    {
+      "period": "2025-Q2",
+      "year": 2025,
+      "quarter": 2,
+      "debt_czk_billion": 3627.252,
+      "debt_czk": 3627252000000
+    },
+    {
+      "period": "2025-Q3",
+      "year": 2025,
+      "quarter": 3,
+      "debt_czk_billion": 3623.391,
+      "debt_czk": 3623391000000
+    },
+    {
+      "period": "2025-Q4",
+      "year": 2025,
+      "quarter": 4,
+      "debt_czk_billion": 3786.25,
+      "debt_czk": 3786250000000
+    },
+    {
+      "period": "2026-Q1",
+      "year": 2026,
+      "quarter": 1,
+      "debt_czk_billion": 3827.885,
+      "debt_czk": 3827885000000
+    }
+  ]
+}

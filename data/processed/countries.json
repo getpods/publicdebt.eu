@@ -1,0 +1,715 @@
+{
+  "dataset": {
+    "id": "gov_10q_ggdebt",
+    "source": "Eurostat",
+    "retrieved_at": "2026-08-21T20:36:21.301Z"
+  },
+  "count": 27,
+  "latest_periods": [
+    "2026-Q1"
+  ],
+  "countries": [
+    {
+      "code": "EL",
+      "name": "Greece",
+      "name_cs": "Řecko",
+      "slug": "recko",
+      "slug_en": "greece",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 143.5,
+      "debt_euro_million": 360106,
+      "debt_national_currency_million": 360106,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 366312,
+        "value_to_million": 360106,
+        "change": -6206000000,
+        "amount_per_second": -197
+      }
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "name_cs": "Itálie",
+      "slug": "italie",
+      "slug_en": "italy",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 138.9,
+      "debt_euro_million": 3158190.6,
+      "debt_national_currency_million": 3158190.6,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 3033574.7,
+        "value_to_million": 3158190.6,
+        "change": 124615900000,
+        "amount_per_second": 3949
+      }
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "name_cs": "Francie",
+      "slug": "francie",
+      "slug_en": "france",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 117.6,
+      "debt_euro_million": 3536067.7,
+      "debt_national_currency_million": 3536067.7,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 3346280.8,
+        "value_to_million": 3536067.7,
+        "change": 189786900000,
+        "amount_per_second": 6014
+      }
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "name_cs": "Belgie",
+      "slug": "belgie",
+      "slug_en": "belgium",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 109.1,
+      "debt_euro_million": 706581,
+      "debt_national_currency_million": 706581,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 662922,
+        "value_to_million": 706581,
+        "change": 43659000000,
+        "amount_per_second": 1383
+      }
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "name_cs": "Španělsko",
+      "slug": "spanelsko",
+      "slug_en": "spain",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 101.6,
+      "debt_euro_million": 1739501,
+      "debt_national_currency_million": 1739501,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 1667376,
+        "value_to_million": 1739501,
+        "change": 72125000000,
+        "amount_per_second": 2286
+      }
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "name_cs": "Portugalsko",
+      "slug": "portugalsko",
+      "slug_en": "portugal",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 91,
+      "debt_euro_million": 283106.5,
+      "debt_national_currency_million": 283106.5,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 278244.4,
+        "value_to_million": 283106.5,
+        "change": 4862100000,
+        "amount_per_second": 154
+      }
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "name_cs": "Finsko",
+      "slug": "finsko",
+      "slug_en": "finland",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 89.7,
+      "debt_euro_million": 255139,
+      "debt_national_currency_million": 255139,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 233545,
+        "value_to_million": 255139,
+        "change": 21594000000,
+        "amount_per_second": 684
+      }
+    },
+    {
+      "code": "AT",
+      "name": "Austria",
+      "name_cs": "Rakousko",
+      "slug": "rakousko",
+      "slug_en": "austria",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 83.3,
+      "debt_euro_million": 431411.3,
+      "debt_national_currency_million": 431411.3,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 413272.9,
+        "value_to_million": 431411.3,
+        "change": 18138400000,
+        "amount_per_second": 575
+      }
+    },
+    {
+      "code": "HU",
+      "name": "Hungary",
+      "name_cs": "Maďarsko",
+      "slug": "madarsko",
+      "slug_en": "hungary",
+      "currency": {
+        "code": "HUF",
+        "label": "HUF"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 77.7,
+      "debt_euro_million": 179198.7,
+      "debt_national_currency_million": 68969989,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "HUF",
+        "currency_label": "HUF",
+        "source_unit": "MIO_NAC",
+        "value_from_million": 62374294,
+        "value_to_million": 68969989,
+        "change": 6595695000000,
+        "amount_per_second": 209009
+      }
+    },
+    {
+      "code": "SI",
+      "name": "Slovenia",
+      "name_cs": "Slovinsko",
+      "slug": "slovinsko",
+      "slug_en": "slovenia",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 64.8,
+      "debt_euro_million": 46314.9,
+      "debt_national_currency_million": 46314.9,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 47221.2,
+        "value_to_million": 46314.9,
+        "change": -906300000,
+        "amount_per_second": -29
+      }
+    },
+    {
+      "code": "DE",
+      "name": "Germany",
+      "name_cs": "Německo",
+      "slug": "nemecko",
+      "slug_en": "germany",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 64.4,
+      "debt_euro_million": 2902035.3,
+      "debt_national_currency_million": 2902035.3,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 2701606.5,
+        "value_to_million": 2902035.3,
+        "change": 200428800000,
+        "amount_per_second": 6351
+      }
+    },
+    {
+      "code": "SK",
+      "name": "Slovakia",
+      "name_cs": "Slovensko",
+      "slug": "slovensko",
+      "slug_en": "slovakia",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 62.5,
+      "debt_euro_million": 86802.6,
+      "debt_national_currency_million": 86802.6,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 82900.6,
+        "value_to_million": 86802.6,
+        "change": 3902000000,
+        "amount_per_second": 124
+      }
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "name_cs": "Polsko",
+      "slug": "polsko",
+      "slug_en": "poland",
+      "currency": {
+        "code": "PLN",
+        "label": "PLN"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 61.6,
+      "debt_euro_million": 569889.5,
+      "debt_national_currency_million": 2444256,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "PLN",
+        "currency_label": "PLN",
+        "source_unit": "MIO_NAC",
+        "value_from_million": 2123880,
+        "value_to_million": 2444256,
+        "change": 320376000000,
+        "amount_per_second": 10152
+      }
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "name_cs": "Rumunsko",
+      "slug": "rumunsko",
+      "slug_en": "romania",
+      "currency": {
+        "code": "RON",
+        "label": "RON"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 60.1,
+      "debt_euro_million": 229426.7,
+      "debt_national_currency_million": 1169869.5,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "RON",
+        "currency_label": "RON",
+        "source_unit": "MIO_NAC",
+        "value_from_million": 998186.4,
+        "value_to_million": 1169869.5,
+        "change": 171683100000,
+        "amount_per_second": 5440
+      }
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "name_cs": "Chorvatsko",
+      "slug": "chorvatsko",
+      "slug_en": "croatia",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 58.4,
+      "debt_euro_million": 55216.1,
+      "debt_national_currency_million": 55216.1,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 50628.4,
+        "value_to_million": 55216.1,
+        "change": 4587700000,
+        "amount_per_second": 145
+      }
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "name_cs": "Kypr",
+      "slug": "kypr",
+      "slug_en": "cyprus",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 54.6,
+      "debt_euro_million": 20088.7,
+      "debt_national_currency_million": 20088.7,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 21789.7,
+        "value_to_million": 20088.7,
+        "change": -1701000000,
+        "amount_per_second": -54
+      }
+    },
+    {
+      "code": "LV",
+      "name": "Latvia",
+      "name_cs": "Lotyšsko",
+      "slug": "lotyssko",
+      "slug_en": "latvia",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 46.9,
+      "debt_euro_million": 20435.8,
+      "debt_national_currency_million": 20435.8,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 18493.4,
+        "value_to_million": 20435.8,
+        "change": 1942400000,
+        "amount_per_second": 62
+      }
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "name_cs": "Malta",
+      "slug": "malta",
+      "slug_en": "malta",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 45.9,
+      "debt_euro_million": 11457.6,
+      "debt_national_currency_million": 11457.6,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 10908.2,
+        "value_to_million": 11457.6,
+        "change": 549400000,
+        "amount_per_second": 17
+      }
+    },
+    {
+      "code": "CZ",
+      "name": "Czechia",
+      "name_cs": "Česko",
+      "slug": "cesko",
+      "slug_en": "czechia",
+      "currency": {
+        "code": "CZK",
+        "label": "Kč"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 44.1,
+      "debt_euro_million": 156151,
+      "debt_national_currency_million": 3827885,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "CZK",
+        "currency_label": "Kč",
+        "source_unit": "MIO_NAC",
+        "value_from_million": 3535250,
+        "value_to_million": 3827885,
+        "change": 292635000000,
+        "amount_per_second": 9273
+      }
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "name_cs": "Nizozemsko",
+      "slug": "nizozemsko",
+      "slug_en": "netherlands",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 43.8,
+      "debt_euro_million": 517377,
+      "debt_national_currency_million": 517377,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 490551,
+        "value_to_million": 517377,
+        "change": 26826000000,
+        "amount_per_second": 850
+      }
+    },
+    {
+      "code": "LT",
+      "name": "Lithuania",
+      "name_cs": "Litva",
+      "slug": "litva",
+      "slug_en": "lithuania",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 42.3,
+      "debt_euro_million": 36259.5,
+      "debt_national_currency_million": 36259.5,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 32405.3,
+        "value_to_million": 36259.5,
+        "change": 3854200000,
+        "amount_per_second": 122
+      }
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "name_cs": "Irsko",
+      "slug": "irsko",
+      "slug_en": "ireland",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 37,
+      "debt_euro_million": 215411.2,
+      "debt_national_currency_million": 215411.2,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 206202.8,
+        "value_to_million": 215411.2,
+        "change": 9208400000,
+        "amount_per_second": 292
+      }
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "name_cs": "Švédsko",
+      "slug": "svedsko",
+      "slug_en": "sweden",
+      "currency": {
+        "code": "SEK",
+        "label": "SEK"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 34.9,
+      "debt_euro_million": 213930.9,
+      "debt_national_currency_million": 2341046,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "SEK",
+        "currency_label": "SEK",
+        "source_unit": "MIO_NAC",
+        "value_from_million": 2164694.2,
+        "value_to_million": 2341046,
+        "change": 176351800000,
+        "amount_per_second": 5588
+      }
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "name_cs": "Lucembursko",
+      "slug": "lucembursko",
+      "slug_en": "luxembourg",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 29.2,
+      "debt_euro_million": 26402.1,
+      "debt_national_currency_million": 26402.1,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 22637.3,
+        "value_to_million": 26402.1,
+        "change": 3764800000,
+        "amount_per_second": 119
+      }
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "name_cs": "Bulharsko",
+      "slug": "bulharsko",
+      "slug_en": "bulgaria",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 28.5,
+      "debt_euro_million": 34232.8,
+      "debt_national_currency_million": 34232.8,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 25046,
+        "value_to_million": 34232.8,
+        "change": 9186800000,
+        "amount_per_second": 291
+      }
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "name_cs": "Dánsko",
+      "slug": "dansko",
+      "slug_en": "denmark",
+      "currency": {
+        "code": "DKK",
+        "label": "DKK"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 26.8,
+      "debt_euro_million": 112460.6,
+      "debt_national_currency_million": 840418,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "DKK",
+        "currency_label": "DKK",
+        "source_unit": "MIO_NAC",
+        "value_from_million": 890401,
+        "value_to_million": 840418,
+        "change": -49983000000,
+        "amount_per_second": -1584
+      }
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "name_cs": "Estonsko",
+      "slug": "estonsko",
+      "slug_en": "estonia",
+      "currency": {
+        "code": "EUR",
+        "label": "€"
+      },
+      "period": "2026-Q1",
+      "debt_percent_gdp": 25.2,
+      "debt_euro_million": 10645.8,
+      "debt_national_currency_million": 10645.8,
+      "debt_clock": {
+        "period_from": "2025-Q1",
+        "period_to": "2026-Q1",
+        "currency": "EUR",
+        "currency_label": "€",
+        "source_unit": "MIO_EUR",
+        "value_from_million": 9629.8,
+        "value_to_million": 10645.8,
+        "change": 1016000000,
+        "amount_per_second": 32
+      }
+    }
+  ]
+}

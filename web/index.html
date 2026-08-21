@@ -1,0 +1,1269 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Veřejný dluh ČR – aktuální dluh, vývoj a dluh vůči HDP
+  </title>
+
+  <meta
+    name="description"
+    content="Aktuální veřejný dluh České republiky, jeho vývoj, podíl na HDP, dluh na obyvatele, evropské srovnání a predikce Ministerstva financí."
+  >
+
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large"
+  >
+
+  <meta
+    name="theme-color"
+    content="#171717"
+  >
+
+  <link
+    rel="canonical"
+    href="https://publicdebt.eu/cs/"
+  >
+
+  <link
+    rel="icon"
+    href="/favicon.svg"
+    type="image/svg+xml"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="cs_CZ"
+  >
+
+  <meta
+    property="og:site_name"
+    content="PublicDebt.eu"
+  >
+
+  <meta
+    property="og:title"
+    content="Veřejný dluh České republiky"
+  >
+
+  <meta
+    property="og:description"
+    content="Aktuální veřejný dluh ČR, dluh vůči HDP, dluh na obyvatele, historický vývoj a srovnání zemí EU."
+  >
+
+  <meta
+    property="og:url"
+    content="https://publicdebt.eu/cs/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Veřejný dluh České republiky – PublicDebt.eu"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Veřejný dluh České republiky"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Aktuální veřejný dluh ČR a srovnání všech 27 zemí Evropské unie."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PublicDebt.eu",
+    "url": "https://publicdebt.eu/cs/",
+    "inLanguage": "cs"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Veřejný dluh České republiky",
+    "description": "Čtvrtletní vývoj hrubého dluhu sektoru vládních institucí České republiky, podíl dluhu na HDP a související údaje.",
+    "url": "https://publicdebt.eu/cs/",
+    "inLanguage": "cs",
+    "spatialCoverage": {
+      "@type": "Country",
+      "name": "Česká republika"
+    }
+  }
+  </script>
+
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+</head>
+
+<body>
+
+  <main class="container">
+
+    <nav class="site-nav">
+
+      <a
+        class="site-nav-brand"
+        href="/cs/"
+      >
+        PUBLICDEBT.EU
+      </a>
+
+      <div class="site-nav-links">
+
+        <a
+          class="site-nav-link is-active"
+          href="/cs/"
+        >
+          Domů
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/cs/zebricek/"
+        >
+          Žebříček EU
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/cs/zebricek/#zeme"
+        >
+          Země
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/cs/porovnani/"
+        >
+          Porovnání
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/"
+          hreflang="en"
+        >
+          EN
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <header class="header">
+
+      <p class="eyebrow">
+        ČESKÁ REPUBLIKA
+      </p>
+
+      <h1>
+        Veřejný dluh České republiky
+      </h1>
+
+      <p class="intro">
+        Aktuální data o hrubém dluhu sektoru
+        vládních institucí a jeho vývoji v čase.
+      </p>
+
+    </header>
+
+
+    <section class="debt-clock">
+
+      <p class="debt-clock-label">
+        Odhadovaná změna veřejného dluhu
+      </p>
+
+      <div class="debt-clock-rate">
+
+        <strong id="debt-clock-rate">
+          —
+        </strong>
+
+        <span>
+          Kč / sekundu
+        </span>
+
+      </div>
+
+      <div class="debt-clock-live">
+
+        <strong id="debt-clock-value">
+          0
+        </strong>
+
+        <span>
+          Kč
+        </span>
+
+      </div>
+
+      <p class="debt-clock-note">
+        Od chvíle, kdy jste přišli na tuto stránku
+      </p>
+
+      <p class="debt-clock-method">
+        Orientační odhad podle meziroční změny
+        veřejného dluhu mezi stejnými kvartály.
+      </p>
+
+    </section>
+
+
+    <section class="country-embed">
+
+      <button
+        class="country-embed-toggle"
+        id="homepage-embed-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="homepage-embed-panel"
+      >
+        <span>
+          Vložit počítadlo na svůj web
+        </span>
+
+        <strong aria-hidden="true">
+          +
+        </strong>
+      </button>
+
+
+      <div
+        class="country-embed-panel"
+        id="homepage-embed-panel"
+        hidden
+      >
+
+        <div class="country-embed-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              EMBED
+            </p>
+
+            <h2>
+              Vložte debt clock na svůj web
+            </h2>
+
+            <p>
+              Vyberte vzhled a šířku. Data se budou
+              načítat přímo z PublicDebt.eu.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="country-embed-controls">
+
+          <label class="country-embed-control">
+
+            <span>
+              Vzhled
+            </span>
+
+            <select id="homepage-embed-theme">
+
+              <option value="dark">
+                Tmavý
+              </option>
+
+              <option value="light">
+                Světlý
+              </option>
+
+              <option value="auto">
+                Podle zařízení
+              </option>
+
+            </select>
+
+          </label>
+
+
+          <label class="country-embed-control">
+
+            <span>
+              Šířka
+            </span>
+
+            <select id="homepage-embed-width">
+
+              <option value="responsive">
+                100 % – responzivní
+              </option>
+
+              <option value="600">
+                600 px
+              </option>
+
+              <option value="480">
+                480 px
+              </option>
+
+              <option value="360">
+                360 px
+              </option>
+
+            </select>
+
+          </label>
+
+        </div>
+
+
+        <div class="country-embed-preview-area">
+
+          <p class="country-embed-caption">
+            Náhled
+          </p>
+
+          <div
+            class="country-embed-preview"
+            id="homepage-embed-preview-wrapper"
+          >
+
+            <iframe
+              id="homepage-embed-preview"
+              title="Náhled počítadla veřejného dluhu Česka"
+              loading="lazy"
+            ></iframe>
+
+          </div>
+
+        </div>
+
+
+        <div class="country-embed-code-area">
+
+          <label
+            class="country-embed-caption"
+            for="homepage-embed-code"
+          >
+            Kód pro vložení
+          </label>
+
+          <textarea
+            id="homepage-embed-code"
+            class="country-embed-code"
+            readonly
+            rows="5"
+            spellcheck="false"
+          ></textarea>
+
+          <div class="country-embed-code-footer">
+
+            <p>
+              Šířku můžete v kódu kdykoli upravit.
+            </p>
+
+            <button
+              class="country-embed-copy"
+              id="homepage-embed-copy"
+              type="button"
+            >
+              Kopírovat kód
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="hero">
+
+      <div class="hero-card">
+
+        <p class="label">
+          Aktuální veřejný dluh
+        </p>
+
+        <div
+          class="value"
+          id="debt"
+        >
+          —
+        </div>
+
+        <div class="unit">
+          mld. Kč
+        </div>
+
+        <p
+          class="period"
+          id="period"
+        >
+          —
+        </p>
+
+      </div>
+
+
+      <div class="hero-card">
+
+        <p class="label">
+          Dluh vůči HDP
+        </p>
+
+        <div
+          class="value"
+          id="debt-gdp"
+        >
+          —
+        </div>
+
+        <div class="unit">
+          % HDP
+        </div>
+
+        <p
+          class="period"
+          id="period-gdp"
+        >
+          —
+        </p>
+
+      </div>
+
+
+      <div class="hero-card forecast">
+
+        <p class="label">
+          Predikce MF ČR
+        </p>
+
+        <div
+          class="value"
+          id="forecast"
+        >
+          —
+        </div>
+
+        <div class="unit">
+          % HDP
+        </div>
+
+        <p
+          class="period"
+          id="forecast-year"
+        >
+          —
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <section class="secondary-stats">
+
+      <div class="secondary-stat-card">
+
+        <p class="secondary-stat-label">
+          Počet obyvatel
+        </p>
+
+        <strong
+          class="secondary-stat-value"
+          id="population"
+        >
+          —
+        </strong>
+
+        <p
+          class="secondary-stat-note"
+          id="population-date"
+        >
+          —
+        </p>
+
+      </div>
+
+
+      <div class="secondary-stat-card">
+
+        <p class="secondary-stat-label">
+          Dluh na obyvatele
+        </p>
+
+        <strong
+          class="secondary-stat-value"
+          id="debt-per-capita"
+        >
+          —
+        </strong>
+
+        <p class="secondary-stat-note">
+          statisticky na jednoho obyvatele
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <p class="secondary-stats-explanation">
+      Dluh na obyvatele je statistický přepočet
+      celkového veřejného dluhu na počet obyvatel.
+      Nejde o osobní závazek jednotlivce.
+    </p>
+
+
+    <section class="section eu-discovery">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          EVROPSKÁ UNIE
+        </p>
+
+        <h2>
+          Data pro všech 27 zemí EU
+        </h2>
+
+        <p>
+          Porovnejte veřejný dluh České republiky
+          s ostatními státy Evropské unie.
+        </p>
+
+      </div>
+
+
+      <div class="eu-discovery-grid">
+
+        <a
+          class="eu-discovery-card eu-discovery-primary"
+          href="/cs/zebricek/"
+        >
+
+          <span class="eu-discovery-kicker">
+            ŽEBŘÍČEK
+          </span>
+
+          <strong>
+            Srovnání všech zemí EU
+          </strong>
+
+          <p>
+            Dluh vůči HDP, celkový dluh,
+            počet obyvatel a dluh na obyvatele.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+
+        <a
+          class="eu-discovery-card"
+          href="/cs/zeme/nemecko/"
+        >
+
+          <span class="eu-discovery-kicker">
+            ZEMĚ
+          </span>
+
+          <strong>
+            Německo
+          </strong>
+
+          <p>
+            Aktuální údaje a historický vývoj.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+
+        <a
+          class="eu-discovery-card"
+          href="/cs/zeme/francie/"
+        >
+
+          <span class="eu-discovery-kicker">
+            ZEMĚ
+          </span>
+
+          <strong>
+            Francie
+          </strong>
+
+          <p>
+            Aktuální údaje a historický vývoj.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+
+        <a
+          class="eu-discovery-card"
+          href="/cs/zeme/polsko/"
+        >
+
+          <span class="eu-discovery-kicker">
+            ZEMĚ
+          </span>
+
+          <strong>
+            Polsko
+          </strong>
+
+          <p>
+            Aktuální údaje a historický vývoj.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="section eu-position-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          ČESKO V EU
+        </p>
+
+        <h2>
+          Jak si stojí Česko
+        </h2>
+
+        <p>
+          Srovnání veřejného dluhu České republiky
+          s ostatními státy Evropské unie.
+        </p>
+
+      </div>
+
+
+      <div class="eu-position-card">
+
+        <div class="eu-position-main">
+
+          <p class="eu-position-label">
+            Pořadí podle dluhu vůči HDP
+          </p>
+
+          <div class="eu-position-rank">
+
+            <strong id="eu-rank">
+              —
+            </strong>
+
+            <span>
+              z 27
+            </span>
+
+          </div>
+
+          <p class="eu-position-value">
+
+            <strong id="eu-debt-gdp">
+              —
+            </strong>
+
+            <span>
+              % HDP
+            </span>
+
+          </p>
+
+        </div>
+
+
+        <div class="eu-position-context">
+
+          <p>
+            Čím vyšší pořadí, tím vyšší je veřejný
+            dluh země vůči velikosti její ekonomiky.
+          </p>
+
+          <p id="eu-position-text">
+            Načítám evropské srovnání…
+          </p>
+
+          <a
+            class="eu-ranking-link"
+            href="/cs/zebricek/"
+          >
+            Zobrazit žebříček všech zemí EU
+
+            <span aria-hidden="true">
+              →
+            </span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          VÝVOJ
+        </p>
+
+        <h2>
+          Hrubý veřejný dluh
+        </h2>
+
+        <p>
+          Vývoj dluhu sektoru vládních institucí
+          podle údajů Ministerstva financí ČR.
+        </p>
+
+      </div>
+
+
+      <div class="chart-card">
+
+        <div
+          class="chart"
+          id="debt-chart"
+        >
+          <p class="loading">
+            Načítám data…
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          DLUH / HDP
+        </p>
+
+        <h2>
+          Dluh vůči HDP
+        </h2>
+
+        <p>
+          Podíl hrubého dluhu sektoru vládních
+          institucí na hrubém domácím produktu.
+        </p>
+
+      </div>
+
+
+      <div class="chart-card">
+
+        <div
+          class="chart"
+          id="debt-gdp-chart"
+        >
+          <p class="loading">
+            Načítám data…
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          PREDIKCE
+        </p>
+
+        <h2>
+          Co čeká veřejné finance
+        </h2>
+
+        <p>
+          Aktuální makroekonomická predikce
+          Ministerstva financí ČR.
+        </p>
+
+      </div>
+
+
+      <div class="forecast-grid">
+
+        <div class="info-card">
+
+          <span>
+            Dluh
+          </span>
+
+          <strong id="forecast-debt">
+            —
+          </strong>
+
+          <small>
+            % HDP
+          </small>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>
+            Saldo vládních institucí
+          </span>
+
+          <strong id="forecast-balance">
+            —
+          </strong>
+
+          <small>
+            % HDP
+          </small>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>
+            Rozdíl oproti aktuálnímu údaji
+          </span>
+
+          <strong id="forecast-difference">
+            —
+          </strong>
+
+          <small>
+            procentních bodů
+          </small>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section methodology">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          METODIKA A DATA
+        </p>
+
+        <h2>
+          Co čísla znamenají
+        </h2>
+
+        <p>
+          Web používá oficiální data Ministerstva
+          financí ČR a Eurostatu a sjednocuje je
+          do přehledné podoby.
+        </p>
+
+      </div>
+
+
+      <div class="methodology-grid">
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            01
+          </span>
+
+          <h3>
+            Veřejný dluh
+          </h3>
+
+          <p>
+            Zobrazujeme hrubý konsolidovaný dluh
+            sektoru vládních institucí. Jde o údaj
+            používaný v evropských statistikách
+            veřejných financí.
+          </p>
+
+          <p>
+            Nejde pouze o státní dluh centrální vlády,
+            ale o dluh celého sektoru vládních institucí
+            podle harmonizované evropské metodiky.
+          </p>
+
+        </article>
+
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            02
+          </span>
+
+          <h3>
+            Dluh vůči HDP
+          </h3>
+
+          <p>
+            Podíl dluhu na HDP ukazuje velikost
+            veřejného dluhu vzhledem k výkonu ekonomiky
+            a umožňuje porovnávat jednotlivé země.
+          </p>
+
+          <p class="methodology-note">
+            Absolutní dluh může růst, zatímco jeho
+            poměr k HDP může klesat.
+          </p>
+
+        </article>
+
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            03
+          </span>
+
+          <h3>
+            Dluhové počítadlo
+          </h3>
+
+          <p>
+            Hodnota v korunách za sekundu je
+            orientační přepočet meziroční změny
+            veřejného dluhu mezi obdobími
+            <strong id="clock-period-from">—</strong>
+            a
+            <strong id="clock-period-to">—</strong>.
+          </p>
+
+          <p>
+            Rozdíl rozpočítáváme na průměr
+            za jednu sekundu.
+          </p>
+
+          <p class="methodology-note">
+            Nejde o živé měření státního účetnictví
+            ani o předpověď budoucího dluhu.
+          </p>
+
+        </article>
+
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            04
+          </span>
+
+          <h3>
+            Dluh na obyvatele
+          </h3>
+
+          <p>
+            Dluh na obyvatele počítáme jako aktuální
+            veřejný dluh dělený posledním dostupným
+            počtem obyvatel.
+          </p>
+
+          <p>
+            Pro populaci používáme údaj Eurostatu
+            o počtu obyvatel k 1. lednu.
+          </p>
+
+          <p class="methodology-note">
+            Jde o statistický přepočet, nikoli osobní
+            závazek jednotlivce.
+          </p>
+
+        </article>
+
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            05
+          </span>
+
+          <h3>
+            Predikce
+          </h3>
+
+          <p>
+            Predikce dluhu a salda vychází
+            z makroekonomické predikce Ministerstva
+            financí ČR.
+          </p>
+
+          <p>
+            Predikované hodnoty oddělujeme od posledních
+            dostupných skutečných údajů.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section class="section sources-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          ZDROJE
+        </p>
+
+        <h2>
+          Odkud data pocházejí
+        </h2>
+
+        <p>
+          Zdrojová data se automaticky stahují,
+          transformují a kontrolují před vytvořením
+          výsledného datasetu.
+        </p>
+
+      </div>
+
+
+      <div class="sources-list">
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Ministerstvo financí ČR
+            </strong>
+
+            <p>
+              Hrubý dluh sektoru vládních institucí
+              v miliardách korun.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              SDDS-Plus_GGD
+            </span>
+
+            <span id="source-mfcr-period">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Eurostat
+            </strong>
+
+            <p>
+              Harmonizovaná čtvrtletní data o veřejném
+              dluhu a podílu dluhu na HDP.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              gov_10q_ggdebt
+            </span>
+
+            <span id="source-eurostat-period">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Eurostat
+            </strong>
+
+            <p>
+              Počet obyvatel k 1. lednu.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              demo_gind / JAN
+            </span>
+
+            <span id="source-population-year">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Ministerstvo financí ČR
+            </strong>
+
+            <p>
+              Makroekonomická predikce České republiky.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              Predikce
+            </span>
+
+            <span id="source-forecast-year">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p
+        class="sources-update"
+        id="sources-updated"
+      >
+        —
+      </p>
+
+    </section>
+
+
+    <footer class="site-footer">
+
+      <div class="site-footer-main">
+
+        <p>
+          PublicDebt.eu zpracovává veřejně dostupná
+          data Ministerstva financí ČR a Eurostatu.
+        </p>
+
+        <p id="updated">
+          —
+        </p>
+
+      </div>
+
+      <div class="site-footer-links">
+
+        <a href="/cs/o-projektu/">
+          O projektu
+        </a>
+
+        <a href="mailto:contact@publicdebt.eu">
+          Kontakt
+        </a>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+  <script src="/app.js"></script>
+
+</body>
+</html>

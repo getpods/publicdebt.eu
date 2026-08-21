@@ -1,0 +1,258 @@
+{
+  "dataset": {
+    "id": "demo_gind",
+    "source": "Eurostat",
+    "indicator": "JAN",
+    "indicator_label": "Population on 1 January - total",
+    "retrieved_at": "2026-08-21T20:36:22.427Z"
+  },
+  "count": 27,
+  "latest_years": [
+    2026
+  ],
+  "countries": [
+    {
+      "code": "DE",
+      "name": "Germany",
+      "name_cs": "Německo",
+      "slug": "nemecko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 83467117
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "name_cs": "Francie",
+      "slug": "francie",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 69112309
+    },
+    {
+      "code": "IT",
+      "name": "Italy",
+      "name_cs": "Itálie",
+      "slug": "italie",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 58942828
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "name_cs": "Španělsko",
+      "slug": "spanelsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 49590099
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "name_cs": "Polsko",
+      "slug": "polsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 36332765
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "name_cs": "Rumunsko",
+      "slug": "rumunsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 19041322
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "name_cs": "Nizozemsko",
+      "slug": "nizozemsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 18130208
+    },
+    {
+      "code": "BE",
+      "name": "Belgium",
+      "name_cs": "Belgie",
+      "slug": "belgie",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 11955308
+    },
+    {
+      "code": "PT",
+      "name": "Portugal",
+      "name_cs": "Portugalsko",
+      "slug": "portugalsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 11424031
+    },
+    {
+      "code": "CZ",
+      "name": "Czechia",
+      "name_cs": "Česko",
+      "slug": "cesko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 10915839
+    },
+    {
+      "code": "SE",
+      "name": "Sweden",
+      "name_cs": "Švédsko",
+      "slug": "svedsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 10605529
+    },
+    {
+      "code": "EL",
+      "name": "Greece",
+      "name_cs": "Řecko",
+      "slug": "recko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 10366586
+    },
+    {
+      "code": "HU",
+      "name": "Hungary",
+      "name_cs": "Maďarsko",
+      "slug": "madarsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 9488428
+    },
+    {
+      "code": "AT",
+      "name": "Austria",
+      "name_cs": "Rakousko",
+      "slug": "rakousko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 9215956
+    },
+    {
+      "code": "BG",
+      "name": "Bulgaria",
+      "name_cs": "Bulharsko",
+      "slug": "bulharsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 6423207
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "name_cs": "Dánsko",
+      "slug": "dansko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 6025603
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "name_cs": "Finsko",
+      "slug": "finsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 5652881
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "name_cs": "Irsko",
+      "slug": "irsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 5510565
+    },
+    {
+      "code": "SK",
+      "name": "Slovakia",
+      "name_cs": "Slovensko",
+      "slug": "slovensko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 5409407
+    },
+    {
+      "code": "HR",
+      "name": "Croatia",
+      "name_cs": "Chorvatsko",
+      "slug": "chorvatsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 3876002
+    },
+    {
+      "code": "LT",
+      "name": "Lithuania",
+      "name_cs": "Litva",
+      "slug": "litva",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 2887592
+    },
+    {
+      "code": "SI",
+      "name": "Slovenia",
+      "name_cs": "Slovinsko",
+      "slug": "slovinsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 2135107
+    },
+    {
+      "code": "LV",
+      "name": "Latvia",
+      "name_cs": "Lotyšsko",
+      "slug": "lotyssko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 1845096
+    },
+    {
+      "code": "EE",
+      "name": "Estonia",
+      "name_cs": "Estonsko",
+      "slug": "estonsko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 1360745
+    },
+    {
+      "code": "CY",
+      "name": "Cyprus",
+      "name_cs": "Kypr",
+      "slug": "kypr",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 996571
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "name_cs": "Lucembursko",
+      "slug": "lucembursko",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 690959
+    },
+    {
+      "code": "MT",
+      "name": "Malta",
+      "name_cs": "Malta",
+      "slug": "malta",
+      "year": 2026,
+      "date": "2026-01-01",
+      "population": 588254
+    }
+  ]
+}

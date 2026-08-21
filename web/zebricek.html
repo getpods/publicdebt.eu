@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Žebříček veřejného dluhu zemí EU | PublicDebt.eu
+  </title>
+
+  <meta
+    name="description"
+    content="Srovnání všech 27 států Evropské unie podle veřejného dluhu vůči HDP, celkového dluhu, počtu obyvatel a dluhu na obyvatele."
+  >
+
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large"
+  >
+
+  <meta
+    name="theme-color"
+    content="#171717"
+  >
+
+  <link
+    rel="canonical"
+    href="https://publicdebt.eu/cs/zebricek/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="cs"
+    href="https://publicdebt.eu/cs/zebricek/"
+  >
+
+  <link
+    rel="alternate"
+    hreflang="en"
+    href="https://publicdebt.eu/en/ranking/"
+  >
+
+  <link
+    rel="icon"
+    href="/favicon.svg"
+    type="image/svg+xml"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="cs_CZ"
+  >
+
+  <meta
+    property="og:site_name"
+    content="PublicDebt.eu"
+  >
+
+  <meta
+    property="og:title"
+    content="Žebříček veřejného dluhu zemí EU"
+  >
+
+  <meta
+    property="og:description"
+    content="Srovnání všech 27 států Evropské unie podle veřejného dluhu vůči HDP, celkového dluhu, počtu obyvatel a dluhu na obyvatele."
+  >
+
+  <meta
+    property="og:url"
+    content="https://publicdebt.eu/cs/zebricek/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Žebříček veřejného dluhu zemí EU"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Žebříček veřejného dluhu zemí EU"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Srovnání všech 27 států Evropské unie podle veřejného dluhu vůči HDP, celkového dluhu, počtu obyvatel a dluhu na obyvatele."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+<link
+    rel="stylesheet"
+    href="/style.css"
+  >
+</head>
+
+<body>
+
+  <main class="container">
+
+    <nav class="site-nav">
+
+      <a
+        class="site-nav-brand"
+        href="/cs/"
+      >
+        PUBLICDEBT.EU
+      </a>
+
+      <div class="site-nav-links">
+
+        <a
+          class="site-nav-link"
+          href="/cs/"
+        >
+          Domů
+        </a>
+
+        <a
+          class="site-nav-link is-active"
+          href="/cs/zebricek/"
+        >
+          Žebříček EU
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="#zeme"
+        >
+          Země
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/cs/porovnani/"
+        >
+          Porovnání
+        </a>
+
+        <a
+        class="site-nav-link"
+        href="/en/ranking/"
+        hreflang="en"
+        >
+        EN
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <header class="header ranking-header">
+
+      <p class="eyebrow">
+        EVROPSKÁ UNIE
+      </p>
+
+      <h1>
+        Žebříček veřejného dluhu
+      </h1>
+
+      <p class="intro">
+        Srovnání všech 27 států Evropské unie
+        podle harmonizovaných dat Eurostatu.
+      </p>
+
+    </header>
+
+
+    <section class="ranking-controls">
+
+      <button
+        class="ranking-control is-active"
+        data-ranking="gdp"
+        type="button"
+      >
+        Dluh / HDP
+      </button>
+
+      <button
+        class="ranking-control"
+        data-ranking="total"
+        type="button"
+      >
+        Celkový dluh
+      </button>
+
+      <button
+        class="ranking-control"
+        data-ranking="population"
+        type="button"
+      >
+        Počet obyvatel
+      </button>
+
+      <button
+        class="ranking-control"
+        data-ranking="per-capita"
+        type="button"
+      >
+        Dluh na obyvatele
+      </button>
+
+    </section>
+
+
+    <section class="ranking-summary">
+
+      <p id="ranking-description">
+        —
+      </p>
+
+      <p id="ranking-period">
+        —
+      </p>
+
+    </section>
+
+
+    <section
+      class="ranking-table"
+      id="ranking-table"
+    >
+      <p class="loading">
+        Načítám data…
+      </p>
+    </section>
+
+
+    <section class="ranking-note">
+
+      <p>
+        Dluh na obyvatele je statistický přepočet
+        celkového veřejného dluhu na počet obyvatel.
+        Nejde o osobní závazek jednotlivce.
+      </p>
+
+    </section>
+
+
+    <section
+      class="section countries-directory"
+      id="zeme"
+    >
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          27 ZEMÍ
+        </p>
+
+        <h2>
+          Detailní statistiky zemí EU
+        </h2>
+
+        <p>
+          Každá země má vlastní stránku s aktuálními
+          údaji, pořadím v EU a historickým grafem.
+        </p>
+
+      </div>
+
+
+      <div
+        class="countries-directory-grid"
+        id="countries-directory"
+      >
+      </div>
+
+    </section>
+
+
+    <footer class="site-footer">
+
+      <div class="site-footer-main">
+
+        <p>
+          PublicDebt.eu · data Eurostat.
+        </p>
+
+        <p id="ranking-updated">
+          —
+        </p>
+
+      </div>
+
+      <div class="site-footer-links">
+
+        <a href="/cs/o-projektu/">
+          O projektu
+        </a>
+
+        <a href="mailto:contact@publicdebt.eu">
+          Kontakt
+        </a>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+  <script src="/ranking.js"></script>
+
+</body>
+</html>

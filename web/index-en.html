@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    Public debt across the European Union | PublicDebt.eu
+  </title>
+
+  <meta
+    name="description"
+    content="Explore public debt across all 27 European Union countries. Compare debt-to-GDP ratios, total debt, debt per capita, historical trends and country rankings."
+  >
+
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large"
+  >
+
+  <meta
+    name="theme-color"
+    content="#171717"
+  >
+
+  <link
+    rel="canonical"
+    href="https://publicdebt.eu/en/"
+  >
+
+  <link
+    rel="icon"
+    href="/favicon.svg"
+    type="image/svg+xml"
+  >
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:locale"
+    content="en_US"
+  >
+
+  <meta
+    property="og:site_name"
+    content="PublicDebt.eu"
+  >
+
+  <meta
+    property="og:title"
+    content="Public debt across the European Union"
+  >
+
+  <meta
+    property="og:description"
+    content="Explore and compare public debt across all 27 EU countries."
+  >
+
+  <meta
+    property="og:url"
+    content="https://publicdebt.eu/en/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+  <meta
+    property="og:image:width"
+    content="1200"
+  >
+
+  <meta
+    property="og:image:height"
+    content="630"
+  >
+
+  <meta
+    property="og:image:alt"
+    content="Public debt across the European Union – PublicDebt.eu"
+  >
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Public debt across the European Union"
+  >
+
+  <meta
+    name="twitter:description"
+    content="Compare public debt across all 27 European Union countries."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://publicdebt.eu/og-image.png"
+  >
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PublicDebt.eu",
+    "url": "https://publicdebt.eu/en/",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Public debt across the European Union",
+    "description": "Quarterly public debt statistics for all 27 European Union countries, including debt-to-GDP ratios, total debt and debt per capita.",
+    "url": "https://publicdebt.eu/en/",
+    "inLanguage": "en",
+    "spatialCoverage": {
+      "@type": "Place",
+      "name": "European Union"
+    }
+  }
+  </script>
+
+  <link
+    rel="stylesheet"
+    href="/style.css"
+  >
+
+</head>
+
+
+<body data-language="en">
+
+  <main class="container">
+
+    <nav class="site-nav">
+
+      <a
+        class="site-nav-brand"
+        href="/en/"
+      >
+        PUBLICDEBT.EU
+      </a>
+
+      <div class="site-nav-links">
+
+        <a
+          class="site-nav-link is-active"
+          href="/en/"
+        >
+          Home
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/ranking/"
+        >
+          EU ranking
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/ranking/#countries"
+        >
+          Countries
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/en/compare/"
+        >
+          Compare
+        </a>
+
+        <a
+          class="site-nav-link"
+          href="/cs/"
+          hreflang="cs"
+        >
+          CS
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <header class="header eu-home-header">
+
+      <p class="eyebrow">
+        EUROPEAN UNION · 27 COUNTRIES
+      </p>
+
+      <h1>
+        Public debt across Europe
+      </h1>
+
+      <p class="intro">
+        Explore government debt across all 27 European
+        Union countries using harmonised Eurostat data.
+        Compare debt levels, rankings and historical trends.
+      </p>
+
+      <div class="eu-home-actions">
+
+        <a
+          class="eu-home-action-primary"
+          href="/en/ranking/"
+        >
+          Explore EU ranking
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <a
+          class="eu-home-action-secondary"
+          href="/en/compare/"
+        >
+          Compare countries
+          <span aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+    </header>
+
+
+    <section
+      class="eu-home-snapshot"
+      aria-label="European Union public debt snapshot"
+    >
+
+      <article class="eu-home-stat">
+
+        <p>
+          Highest debt / GDP
+        </p>
+
+        <strong id="eu-home-highest-value">
+          —
+        </strong>
+
+        <span id="eu-home-highest-country">
+          —
+        </span>
+
+      </article>
+
+
+      <article class="eu-home-stat">
+
+        <p>
+          Lowest debt / GDP
+        </p>
+
+        <strong id="eu-home-lowest-value">
+          —
+        </strong>
+
+        <span id="eu-home-lowest-country">
+          —
+        </span>
+
+      </article>
+
+
+      <article class="eu-home-stat">
+
+        <p>
+          Countries covered
+        </p>
+
+        <strong id="eu-home-country-count">
+          27
+        </strong>
+
+        <span>
+          European Union
+        </span>
+
+      </article>
+
+
+      <article class="eu-home-stat">
+
+        <p>
+          Latest debt data
+        </p>
+
+        <strong id="eu-home-period">
+          —
+        </strong>
+
+        <span>
+          quarterly Eurostat data
+        </span>
+
+      </article>
+
+    </section>
+
+
+    <section class="section eu-map-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          EXPLORE EUROPE
+        </p>
+
+        <h2>
+          Public debt map of the EU
+        </h2>
+
+        <p>
+          Countries are shaded by their current
+          debt-to-GDP ratio. Hover for details
+          or select a country to open its profile.
+        </p>
+
+      </div>
+
+
+      <div class="eu-map-layout">
+
+        <div class="eu-map-card">
+
+          <div
+            class="eu-map"
+            id="eu-debt-map"
+            aria-label="Interactive map of public debt in European Union countries"
+          >
+
+            <p class="loading">
+              Loading map…
+            </p>
+
+          </div>
+
+
+          <div
+            class="eu-map-tooltip"
+            id="eu-map-tooltip"
+            hidden
+          >
+
+            <strong id="eu-map-tooltip-country">
+              —
+            </strong>
+
+            <span id="eu-map-tooltip-debt">
+              —
+            </span>
+
+            <small id="eu-map-tooltip-rank">
+              —
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <aside class="eu-map-side">
+
+          <div class="eu-map-legend">
+
+            <p class="eu-map-side-title">
+              Debt / GDP
+            </p>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-1"></i>
+              <span>Below 40%</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-2"></i>
+              <span>40–60%</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-3"></i>
+              <span>60–80%</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-4"></i>
+              <span>80–100%</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-5"></i>
+              <span>Above 100%</span>
+            </div>
+
+          </div>
+
+
+          <div class="eu-map-selected">
+
+            <p class="eu-map-side-title">
+              Selected country
+            </p>
+
+            <strong id="eu-map-selected-country">
+              Hover over a country
+            </strong>
+
+            <p id="eu-map-selected-value">
+              Select any EU member state on the map.
+            </p>
+
+            <a
+              id="eu-map-selected-link"
+              href="/en/ranking/#countries"
+            >
+              Browse all countries
+              <span aria-hidden="true">→</span>
+            </a>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          EU RANKING
+        </p>
+
+        <h2>
+          Countries with the highest debt ratios
+        </h2>
+
+        <p>
+          Current general government gross debt
+          as a percentage of GDP.
+        </p>
+
+      </div>
+
+
+      <div
+        class="eu-home-ranking"
+        id="eu-home-ranking"
+      >
+
+        <p class="loading">
+          Loading ranking…
+        </p>
+
+      </div>
+
+
+      <a
+        class="country-ranking-link"
+        href="/en/ranking/"
+      >
+        View the full EU ranking
+        <span aria-hidden="true">→</span>
+      </a>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          COMPARE
+        </p>
+
+        <h2>
+          Put countries side by side
+        </h2>
+
+        <p>
+          Select two to four EU countries and compare
+          how their debt-to-GDP ratios have developed
+          over time.
+        </p>
+
+      </div>
+
+
+      <div class="eu-home-feature-grid">
+
+        <a
+          class="eu-discovery-card eu-discovery-primary"
+          href="/en/compare/"
+        >
+
+          <span class="eu-discovery-kicker">
+            COMPARISON
+          </span>
+
+          <strong>
+            Compare historical debt
+          </strong>
+
+          <p>
+            Follow several countries on one chart
+            and share the selected comparison.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+
+        <a
+          class="eu-discovery-card"
+          href="/en/ranking/"
+        >
+
+          <span class="eu-discovery-kicker">
+            RANKING
+          </span>
+
+          <strong>
+            Rank all 27 countries
+          </strong>
+
+          <p>
+            Compare debt / GDP, total debt,
+            population and debt per capita.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+
+        <a
+          class="eu-discovery-card"
+          href="/en/ranking/#countries"
+        >
+
+          <span class="eu-discovery-kicker">
+            COUNTRY PROFILES
+          </span>
+
+          <strong>
+            Explore individual countries
+          </strong>
+
+          <p>
+            Open debt history, EU ranking,
+            population and debt clock data.
+          </p>
+
+          <span class="eu-discovery-arrow">
+            →
+          </span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="section eu-home-clock-feature">
+
+      <div class="eu-home-clock-copy">
+
+        <p class="eyebrow">
+          DEBT CLOCKS
+        </p>
+
+        <h2>
+          A debt clock for every EU country
+        </h2>
+
+        <p>
+          Each country profile includes an indicative
+          debt clock based on the year-on-year change
+          between equivalent quarters.
+        </p>
+
+        <p>
+          The clock can also be embedded on another
+          website in light, dark or automatic mode.
+        </p>
+
+        <a
+          class="eu-ranking-link"
+          href="/en/ranking/#countries"
+        >
+          Choose a country
+          <span aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+
+      <div class="eu-home-clock-example">
+
+        <p class="eyebrow">
+          EXAMPLE
+        </p>
+
+        <strong>
+          Germany
+        </strong>
+
+        <p>
+          Open the country profile to see its current
+          debt clock, historical development and EU ranking.
+        </p>
+
+        <a href="/en/countries/germany/">
+          View Germany
+          <span aria-hidden="true">→</span>
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <section class="section methodology">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          DATA & METHODOLOGY
+        </p>
+
+        <h2>
+          Comparable data across Europe
+        </h2>
+
+        <p>
+          European comparisons use harmonised
+          Eurostat statistics for general government
+          gross debt.
+        </p>
+
+      </div>
+
+
+      <div class="methodology-grid">
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            01
+          </span>
+
+          <h3>
+            General government debt
+          </h3>
+
+          <p>
+            PublicDebt.eu uses consolidated general
+            government gross debt, the standard measure
+            used for European public finance comparisons.
+          </p>
+
+        </article>
+
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            02
+          </span>
+
+          <h3>
+            Debt-to-GDP ratio
+          </h3>
+
+          <p>
+            The ratio places debt in relation to the
+            size of each economy, making countries
+            of very different sizes easier to compare.
+          </p>
+
+        </article>
+
+
+        <article class="methodology-card">
+
+          <span class="methodology-number">
+            03
+          </span>
+
+          <h3>
+            Official data
+          </h3>
+
+          <p>
+            EU country comparisons are based on
+            harmonised Eurostat quarterly debt data.
+          </p>
+
+          <p class="methodology-note">
+            Dataset: gov_10q_ggdebt
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section class="section sources-section">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          DATA STATUS
+        </p>
+
+        <h2>
+          Latest available dataset
+        </h2>
+
+        <p>
+          Source data are downloaded, transformed
+          and validated before the website datasets
+          are generated.
+        </p>
+
+      </div>
+
+
+      <div class="sources-list">
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Eurostat
+            </strong>
+
+            <p>
+              Quarterly general government gross debt
+              and debt-to-GDP ratios.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              gov_10q_ggdebt
+            </span>
+
+            <span id="eu-home-source-period">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="source-row">
+
+          <div class="source-main">
+
+            <strong>
+              Eurostat
+            </strong>
+
+            <p>
+              Population figures used for debt
+              per capita calculations.
+            </p>
+
+          </div>
+
+          <div class="source-meta">
+
+            <span class="source-code">
+              demo_gind / JAN
+            </span>
+
+            <span id="eu-home-population-period">
+              —
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p
+        class="sources-update"
+        id="eu-home-updated"
+      >
+        —
+      </p>
+
+    </section>
+
+
+    <footer class="site-footer">
+
+      <div class="site-footer-main">
+
+        <p>
+          PublicDebt.eu processes publicly available
+          Eurostat data and official national data sources.
+        </p>
+
+        <p id="eu-home-footer-updated">
+          —
+        </p>
+
+      </div>
+
+
+      <div class="site-footer-links">
+
+        <a href="/en/about/">
+          About
+        </a>
+
+        <a href="mailto:contact@publicdebt.eu">
+          Contact
+        </a>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <script src="/home-en.js"></script>
+
+</body>
+
+</html>

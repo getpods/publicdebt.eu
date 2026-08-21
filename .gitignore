@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Raw downloaded data
+data/raw/*
+!data/raw/.gitkeep
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

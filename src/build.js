@@ -456,7 +456,7 @@ function createRootRedirect() {
 
 
   return `<!doctype html>
-<html lang="cs">
+<html lang="en">
 <head>
 
   <meta charset="utf-8">
@@ -473,12 +473,12 @@ function createRootRedirect() {
 
   <meta
     http-equiv="refresh"
-    content="0; url=/cs/"
+    content="0; url=/en/"
   >
 
   <link
     rel="canonical"
-    href="${siteUrl}/cs/"
+    href="${siteUrl}/en/"
   >
 
   <title>
@@ -486,7 +486,23 @@ function createRootRedirect() {
   </title>
 
   <script>
-    window.location.replace("/cs/");
+    (function () {
+      const language =
+        (
+          navigator.languages?.[0] ||
+          navigator.language ||
+          ""
+        ).toLowerCase();
+
+      const target =
+        language.startsWith("cs")
+          ? "/cs/"
+          : "/en/";
+
+      window.location.replace(
+        target
+      );
+    })();
   </script>
 
 </head>
@@ -494,8 +510,8 @@ function createRootRedirect() {
 <body>
 
   <p>
-    <a href="/cs/">
-      Pokračovat na českou verzi
+    <a href="/en/">
+      Continue to PublicDebt.eu
     </a>
   </p>
 
@@ -1505,7 +1521,7 @@ console.log(
 
 
 console.log(
-  "  dist/index.html → /cs/"
+  "  dist/index.html → language redirect"
 );
 
 

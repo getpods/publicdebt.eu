@@ -147,6 +147,7 @@ const requiredFiles = [
   "style.css",
   "embed.css",
   "favicon.svg",
+  "favicon.ico",
   "og-image.png",
 
   /* SYSTEM */

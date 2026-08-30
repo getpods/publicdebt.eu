@@ -1,0 +1,18 @@
+{
+  "layout": "ranking",
+  "platform": "reddit",
+  "eyebrow": "EUROPEAN UNION",
+  "title": "Public debt ranking",
+  "subtitle": "Public debt as % of GDP",
+  "metric": "debt_percent_gdp",
+  "period": "latest",
+  "ranking": {
+    "limit": 10,
+    "order": "desc"
+  },
+  "cta": {
+    "label": "Explore all 27 EU countries →",
+    "url": "PUBLICDEBT.EU"
+  },
+  "source": "Eurostat"
+}

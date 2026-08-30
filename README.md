@@ -26,6 +26,7 @@ The project combines official public data, a Node.js data pipeline and a statica
 - data, build and link validation
 - sitemap and SEO metadata generation
 - optional privacy-friendly Umami analytics
+- data-driven social media graphics
 
 ## Data sources
 
@@ -87,6 +88,8 @@ dist/
 
 The resulting site consists entirely of static files and can therefore be served by a standard web server or CDN without a Node.js application running in production.
 
+Social media graphics are generated separately from the same processed data using the tools in `src/social/`.
+
 ## Project structure
 
 ```text
@@ -98,6 +101,13 @@ The resulting site consists entirely of static files and can therefore be served
 ├── src/
 │   ├── fetch/
 │   ├── server/
+│   ├── social/
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── presets/
+│   │   ├── data.js
+│   │   ├── generate.js
+│   │   └── theme.js
 │   ├── transform/
 │   ├── validate/
 │   └── build.js
@@ -110,6 +120,8 @@ The resulting site consists entirely of static files and can therefore be served
 │   ├── style.css
 │   └── *.html
 │
+├── social-output/
+│
 ├── .env.example
 ├── .gitignore
 ├── LICENSE
@@ -117,6 +129,8 @@ The resulting site consists entirely of static files and can therefore be served
 ├── package-lock.json
 └── README.md
 ```
+
+`social-output/` contains generated social media images and is excluded from Git.
 
 ## Requirements
 
@@ -328,6 +342,88 @@ The project includes standalone debt-clock embeds:
 
 These can be embedded independently of the main website.
 
+## Social graphics
+
+The project includes a data-driven generator for creating consistent social media graphics directly from the processed datasets.
+
+The graphics use the same visual language as the website and are rendered deterministically from SVG to PNG. Statistical values, rankings and reporting periods are read from the processed data rather than entered manually.
+
+### Generate a graphic
+
+Social graphics are generated from presets stored in:
+
+```text
+src/social/presets/
+```
+
+For example, generate the Czechia-focused LinkedIn graphic with:
+
+```bash
+npm run social -- linkedin-czechia
+```
+
+The resulting PNG is written to:
+
+```text
+social-output/linkedin-czechia.png
+```
+
+A neutral EU ranking can be generated with:
+
+```bash
+npm run social -- reddit-ranking
+```
+
+which produces:
+
+```text
+social-output/reddit-ranking.png
+```
+
+### Presets
+
+Presets define what a graphic should show while the layout and components control how it is presented.
+
+A ranking preset can specify the metric, reporting period, number of countries, sort order and an optional highlighted country.
+
+For example:
+
+```json
+{
+  "layout": "ranking",
+  "platform": "linkedin",
+  "eyebrow": "EUROPEAN UNION",
+  "title": "Public debt ranking",
+  "subtitle": "Public debt as % of GDP",
+  "metric": "debt_percent_gdp",
+  "period": "latest",
+  "ranking": {
+    "limit": 10,
+    "order": "desc"
+  },
+  "highlight": {
+    "country": "CZ"
+  },
+  "cta": {
+    "label": "Explore all 27 EU countries →",
+    "url": "PUBLICDEBT.EU"
+  },
+  "source": "Eurostat"
+}
+```
+
+The generator automatically derives the current statistical values, country ranks, reporting period, ranking labels and the position of the highlighted country from the processed data.
+
+If the highlighted country is part of the displayed ranking, it is highlighted directly in the ranking. If it falls outside the displayed range, it is shown separately for context.
+
+To create another ranking graphic, add a new JSON preset to `src/social/presets/` and run:
+
+```bash
+npm run social -- <preset-name>
+```
+
+Generated graphics are written to `social-output/` and are intentionally excluded from Git.
+
 ## Technology
 
 The project intentionally uses a small technology stack:
@@ -338,6 +434,7 @@ The project intentionally uses a small technology stack:
 - CSS
 - JSON
 - `read-excel-file` for processing Excel source data
+- `sharp` for rendering generated social graphics
 
 There is no frontend framework and no production application server is required.
 
@@ -354,6 +451,8 @@ PublicDebt.eu is built around a few principles:
 - minimise runtime dependencies
 - make data processing reproducible
 - validate generated output before deployment
+- keep generated visual content consistent with the website
+- derive published statistical graphics from source data rather than manually entering values
 
 ## License
 

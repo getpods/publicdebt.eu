@@ -29,7 +29,8 @@
     "build": "SITE_ENV=production node src/build.js",
     "build:stage": "SITE_ENV=stage node src/build.js",
     "release": "npm run update && npm run build && npm run validate:build && npm run validate:links",
-    "release:stage": "npm run update && npm run build:stage && npm run validate:build:stage && npm run validate:links"
+    "release:stage": "npm run update && npm run build:stage && npm run validate:build:stage && npm run validate:links",
+    "social": "node src/social/generate.js"
   },
   "homepage": "https://publicdebt.eu",
   "repository": {
@@ -41,5 +42,8 @@
   },
   "dependencies": {
     "read-excel-file": "^9.3.10"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }

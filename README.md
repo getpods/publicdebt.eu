@@ -20,6 +20,7 @@ The project combines official public data, a Node.js data pipeline and a statica
 - debt per capita
 - detailed Czech public debt dashboard
 - Czech debt forecast
+- debt clocks for all 27 EU countries
 - embeddable debt clock
 - automated data fetching and transformation
 - production and staging builds
@@ -346,45 +347,47 @@ These can be embedded independently of the main website.
 
 The project includes a data-driven generator for creating consistent social media graphics directly from the processed datasets.
 
-The graphics use the same visual language as the website and are rendered deterministically from SVG to PNG. Statistical values, rankings and reporting periods are read from the processed data rather than entered manually.
+The graphics use the same visual language as the website and are rendered deterministically from SVG to PNG.
 
-### Generate a graphic
+Statistical values, rankings, reporting periods and debt-clock rates are read from processed data rather than entered manually.
 
-Social graphics are generated from presets stored in:
+Generated images are written to:
 
 ```text
-src/social/presets/
+social-output/
 ```
 
-For example, generate the Czechia-focused LinkedIn graphic with:
+This directory is intentionally excluded from Git.
+
+### Generate a ranking graphic
+
+The ranking preset generates a public-debt ranking based on the processed EU dataset:
 
 ```bash
-npm run social -- linkedin-czechia
+npm run social -- ranking
 ```
 
-The resulting PNG is written to:
+The output is written to:
 
 ```text
-social-output/linkedin-czechia.png
+social-output/ranking.png
 ```
 
-A neutral EU ranking can be generated with:
-
-```bash
-npm run social -- reddit-ranking
-```
-
-which produces:
+The preset is stored in:
 
 ```text
-social-output/reddit-ranking.png
+src/social/presets/ranking.json
 ```
 
-### Presets
+It can define:
 
-Presets define what a graphic should show while the layout and components control how it is presented.
-
-A ranking preset can specify the metric, reporting period, number of countries, sort order and an optional highlighted country.
+- metric
+- reporting period
+- number of displayed countries
+- ascending or descending order
+- optional highlighted country
+- platform
+- call to action
 
 For example:
 
@@ -412,17 +415,88 @@ For example:
 }
 ```
 
-The generator automatically derives the current statistical values, country ranks, reporting period, ranking labels and the position of the highlighted country from the processed data.
+The generator automatically derives ranking positions, values and the current reporting period from the processed data.
 
-If the highlighted country is part of the displayed ranking, it is highlighted directly in the ranking. If it falls outside the displayed range, it is shown separately for context.
+If the highlighted country is already part of the displayed ranking, it is highlighted directly in place.
 
-To create another ranking graphic, add a new JSON preset to `src/social/presets/` and run:
+If it falls outside the displayed range, it is shown separately for context.
+
+### Generate a debt-clock graphic
+
+The debt-clock preset creates a social graphic showing the estimated rate of change in public debt for a selected EU country.
+
+Generate it with:
 
 ```bash
-npm run social -- <preset-name>
+npm run social -- debt-clock
 ```
 
-Generated graphics are written to `social-output/` and are intentionally excluded from Git.
+The output is written to:
+
+```text
+social-output/debt-clock.png
+```
+
+The preset is stored in:
+
+```text
+src/social/presets/debt-clock.json
+```
+
+For example:
+
+```json
+{
+  "layout": "debt-clock",
+  "platform": "linkedin",
+  "country": "CZ",
+  "cta": {
+    "label": "Start the debt clock →",
+    "url": "PUBLICDEBT.EU"
+  },
+  "source": "Eurostat"
+}
+```
+
+To generate the same graphic for another country, change only the country code:
+
+```json
+{
+  "country": "IT"
+}
+```
+
+The debt-clock graphic uses the processed `debt_clock` data for the selected country.
+
+The per-second rate is based on the change in public debt between two reporting periods. The graphic also shows how much that rate represents over 60 seconds.
+
+Negative values are displayed with a minus sign when public debt decreased over the reference period.
+
+### Social graphics architecture
+
+Social graphics are assembled from reusable components and layouts:
+
+```text
+src/social/
+├── components/
+│   ├── bar-chart.js
+│   ├── cta.js
+│   ├── footer.js
+│   ├── header.js
+│   └── svg.js
+├── layouts/
+│   ├── debt-clock.js
+│   └── ranking.js
+├── presets/
+│   ├── debt-clock.json
+│   ├── ranking.json
+│   └── reddit-ranking.json
+├── data.js
+├── generate.js
+└── theme.js
+```
+
+The theme reads the main design variables directly from `web/style.css`, keeping generated graphics visually consistent with the website.
 
 ## Technology
 
@@ -452,7 +526,7 @@ PublicDebt.eu is built around a few principles:
 - make data processing reproducible
 - validate generated output before deployment
 - keep generated visual content consistent with the website
-- derive published statistical graphics from source data rather than manually entering values
+- derive published statistical graphics from processed source data rather than manually entering values
 
 ## License
 

@@ -1,4 +1,6 @@
-import { text } from "./svg.js";
+import {
+  text
+} from "./svg.js";
 
 export function renderCta({
   theme,
@@ -9,23 +11,32 @@ export function renderCta({
 }) {
   return `
     ${text({
-      x: width / 2,
+      x:
+        width / 2,
       y,
-      value: label,
-      size: 20,
+      value:
+        label,
+      size: 24,
       weight: 500,
-      fill: theme.colors.muted,
-      anchor: "middle"
+      fill:
+        theme.colors.muted,
+      anchor:
+        "middle"
     })}
 
     ${text({
-      x: width / 2,
-      y: y + 42,
-      value: url,
-      size: 27,
+      x:
+        width / 2,
+      y:
+        y + 48,
+      value:
+        url,
+      size: 34,
       weight: 700,
-      fill: theme.colors.text,
-      anchor: "middle",
+      fill:
+        theme.colors.text,
+      anchor:
+        "middle",
       letterSpacing: 0.4
     })}
   `;

@@ -1,0 +1,10 @@
+{
+  "layout": "debt-clock",
+  "platform": "linkedin",
+  "country": "CZ",
+  "cta": {
+    "label": "Start the debt clock →",
+    "url": "PUBLICDEBT.EU"
+  },
+  "source": "Eurostat"
+}

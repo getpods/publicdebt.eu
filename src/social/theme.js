@@ -23,18 +23,26 @@ function readCssVariable(css, name) {
 export function getTheme() {
   const css = fs.readFileSync(CSS_PATH, "utf8");
 
-  return {
-    colors: {
-      background: readCssVariable(css, "bg"),
-      card: readCssVariable(css, "card"),
-      text: readCssVariable(css, "text"),
-      muted: readCssVariable(css, "muted"),
-      line: readCssVariable(css, "line"),
+  const colors = {
+    background: readCssVariable(css, "bg"),
+    card: readCssVariable(css, "card"),
+    text: readCssVariable(css, "text"),
+    muted: readCssVariable(css, "muted"),
+    line: readCssVariable(css, "line"),
+    blue: readCssVariable(css, "pd-blue"),
+    blueDark: readCssVariable(css, "pd-blue-dark"),
+    blueSoft: readCssVariable(css, "pd-blue-soft"),
+    teal: readCssVariable(css, "pd-teal"),
+    tealDark: readCssVariable(css, "pd-teal-dark"),
+    gold: readCssVariable(css, "pd-gold"),
+    goldDark: readCssVariable(css, "pd-gold-dark"),
+    navy: readCssVariable(css, "pd-navy"),
+    grid: "#edf3fb",
+    axis: "#bfd0e8"
+  };
 
-      // Chart-specific values from the website.
-      grid: "#e6e6e1",
-      axis: "#bdbdb7"
-    },
+  return {
+    colors,
 
     radius: Number.parseFloat(
       readCssVariable(css, "radius")

@@ -195,45 +195,79 @@ const formatPopulationDate = value =>
    DATA
 --------------------------------------------------------- */
 
-async function loadOverview() {
-  const response =
-    await fetch(
-      "/api/overview",
-      {
-        cache: "no-store"
+async function loadJSON(
+  url
+) {
+  const attempts =
+    3;
+
+  let lastError =
+    null;
+
+
+  for (
+    let attempt = 1;
+    attempt <= attempts;
+    attempt += 1
+  ) {
+    try {
+      const response =
+        await fetch(
+          url,
+          {
+            cache:
+              "no-cache"
+          }
+        );
+
+
+      if (
+        !response.ok
+      ) {
+        throw new Error(
+          `Data error ${response.status}: ${url}`
+        );
       }
-    );
 
 
-  if (!response.ok) {
-    throw new Error(
-      `API error: ${response.status}`
-    );
+      return await response.json();
+    } catch (
+      error
+    ) {
+      lastError =
+        error;
+
+
+      if (
+        attempt < attempts
+      ) {
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              450 * attempt
+            )
+        );
+      }
+    }
   }
 
 
-  return response.json();
+  throw lastError;
 }
 
 
-async function loadEU() {
-  const response =
-    await fetch(
-      "/api/eu",
-      {
-        cache: "no-store"
-      }
-    );
+function loadOverview() {
+  return loadJSON(
+    "/data/overview.json"
+  );
+}
 
 
-  if (!response.ok) {
-    throw new Error(
-      `EU API error: ${response.status}`
-    );
-  }
-
-
-  return response.json();
+function loadEU() {
+  return loadJSON(
+    "/data/eu.json"
+  );
 }
 
 

@@ -1,31 +1,63 @@
 :root {
-  --embed-bg:
-    #171717;
+  --embed-bg: #171717;
+  --embed-text: #ffffff;
+  --embed-muted: #a5a5a0;
+  --embed-subtle: #777773;
+  --embed-line: rgba(255, 255, 255, 0.14);
+  --embed-shadow: rgba(0, 0, 0, 0.08);
+}
 
-  --embed-text:
-    #ffffff;
 
-  --embed-muted:
-    #a5a5a0;
+/* ---------------------------------------------------------
+   BLUE & GOLD
+--------------------------------------------------------- */
 
-  --embed-subtle:
-    #777773;
+body[data-theme="blue-gold"] {
+  --embed-bg: #ffffff;
+  --embed-text: #0b1739;
+  --embed-muted: #35476a;
+  --embed-subtle: #5f6f8d;
+  --embed-line: #b9cdf6;
+  --embed-shadow: rgba(21, 94, 239, 0.09);
+  --embed-blue: #155eef;
+  --embed-blue-dark: #0b46c8;
+  --embed-gold: #ffbd12;
+  --embed-gold-dark: #a86d00;
+}
 
-  --embed-line:
-    rgba(
-      255,
-      255,
-      255,
-      0.14
+body[data-theme="blue-gold"] .debt-clock-embed {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(255, 189, 18, 0.16),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      #f4f8ff 0%,
+      #ffffff 55%,
+      #fff9e8 100%
     );
 
-  --embed-shadow:
-    rgba(
-      0,
-      0,
-      0,
-      0.08
-    );
+  border-top:
+    4px solid var(--embed-gold);
+
+  box-shadow:
+    0 0 0 1px rgba(21, 94, 239, 0.05),
+    0 18px 42px var(--embed-shadow);
+}
+
+body[data-theme="blue-gold"] .debt-clock-embed-kicker,
+body[data-theme="blue-gold"] .debt-clock-embed-rate strong,
+body[data-theme="blue-gold"] .debt-clock-embed-footer a,
+body[data-theme="blue-gold"] .debt-clock-embed-error a {
+  color:
+    var(--embed-blue-dark);
+}
+
+body[data-theme="blue-gold"] .debt-clock-embed-live strong {
+  color:
+    var(--embed-gold-dark);
 }
 
 
@@ -34,25 +66,11 @@
 --------------------------------------------------------- */
 
 body[data-theme="dark"] {
-  --embed-bg:
-    #171717;
-
-  --embed-text:
-    #ffffff;
-
-  --embed-muted:
-    #a5a5a0;
-
-  --embed-subtle:
-    #777773;
-
-  --embed-line:
-    rgba(
-      255,
-      255,
-      255,
-      0.14
-    );
+  --embed-bg: #171717;
+  --embed-text: #ffffff;
+  --embed-muted: #a5a5a0;
+  --embed-subtle: #777773;
+  --embed-line: rgba(255, 255, 255, 0.14);
 }
 
 
@@ -61,69 +79,34 @@ body[data-theme="dark"] {
 --------------------------------------------------------- */
 
 body[data-theme="light"] {
-  --embed-bg:
-    #ffffff;
-
-  --embed-text:
-    #171717;
-
-  --embed-muted:
-    #6f6f6a;
-
-  --embed-subtle:
-    #8a8a84;
-
-  --embed-line:
-    #deded8;
+  --embed-bg: #ffffff;
+  --embed-text: #171717;
+  --embed-muted: #6f6f6a;
+  --embed-subtle: #8a8a84;
+  --embed-line: #deded8;
 }
 
 
 /* ---------------------------------------------------------
-   AUTO
+   AUTO — LEGACY COMPATIBILITY
 --------------------------------------------------------- */
 
 body[data-theme="auto"] {
-  --embed-bg:
-    #ffffff;
-
-  --embed-text:
-    #171717;
-
-  --embed-muted:
-    #6f6f6a;
-
-  --embed-subtle:
-    #8a8a84;
-
-  --embed-line:
-    #deded8;
+  --embed-bg: #ffffff;
+  --embed-text: #171717;
+  --embed-muted: #6f6f6a;
+  --embed-subtle: #8a8a84;
+  --embed-line: #deded8;
 }
 
-
-@media (
-  prefers-color-scheme: dark
-) {
+@media (prefers-color-scheme: dark) {
 
   body[data-theme="auto"] {
-    --embed-bg:
-      #171717;
-
-    --embed-text:
-      #ffffff;
-
-    --embed-muted:
-      #a5a5a0;
-
-    --embed-subtle:
-      #777773;
-
-    --embed-line:
-      rgba(
-        255,
-        255,
-        255,
-        0.14
-      );
+    --embed-bg: #171717;
+    --embed-text: #ffffff;
+    --embed-muted: #a5a5a0;
+    --embed-subtle: #777773;
+    --embed-line: rgba(255, 255, 255, 0.14);
   }
 }
 
@@ -137,20 +120,16 @@ body[data-theme="auto"] {
     border-box;
 }
 
-
 html,
 body {
   margin: 0;
-
   padding: 0;
 }
-
 
 html {
   background:
     transparent;
 }
-
 
 body {
   background:
@@ -165,7 +144,6 @@ body {
     "Segoe UI",
     sans-serif;
 }
-
 
 .embed-body {
   padding: 0;
@@ -192,15 +170,13 @@ body {
     var(--embed-text);
 
   border:
-    1px solid
-    var(--embed-line);
+    1px solid var(--embed-line);
 
   border-radius:
     16px;
 
   box-shadow:
-    0 4px 22px
-    var(--embed-shadow);
+    0 4px 22px var(--embed-shadow);
 
   display: flex;
 
@@ -229,7 +205,6 @@ body {
     20px;
 }
 
-
 .debt-clock-embed-kicker {
   margin: 0;
 
@@ -248,7 +223,6 @@ body {
   line-height:
     1.4;
 }
-
 
 .debt-clock-embed-country {
   flex-shrink:
@@ -285,7 +259,6 @@ body {
     28px;
 }
 
-
 .debt-clock-embed-rate span {
   color:
     var(--embed-muted);
@@ -294,14 +267,12 @@ body {
     12px;
 }
 
-
 .debt-clock-embed-rate-label {
   width: 100%;
 
   margin-bottom:
     3px;
 }
-
 
 .debt-clock-embed-rate strong {
   color:
@@ -348,10 +319,8 @@ body {
     20px;
 
   border-top:
-    1px solid
-    var(--embed-line);
+    1px solid var(--embed-line);
 }
-
 
 .debt-clock-embed-live strong {
   color:
@@ -373,7 +342,6 @@ body {
   letter-spacing:
     -0.055em;
 }
-
 
 .debt-clock-embed-live span {
   color:
@@ -407,7 +375,6 @@ body {
     20px;
 }
 
-
 .debt-clock-embed-footer p {
   max-width:
     470px;
@@ -423,7 +390,6 @@ body {
   line-height:
     1.5;
 }
-
 
 .debt-clock-embed-footer a {
   flex-shrink:
@@ -444,7 +410,6 @@ body {
   letter-spacing:
     0.04em;
 }
-
 
 .debt-clock-embed-footer a:hover {
   text-decoration:
@@ -470,14 +435,12 @@ body {
     center;
 }
 
-
 .debt-clock-embed-error p {
   margin: 0;
 
   color:
     var(--embed-muted);
 }
-
 
 .debt-clock-embed-error a {
   color:
@@ -495,9 +458,7 @@ body {
    MOBILE / NARROW EMBEDS
 --------------------------------------------------------- */
 
-@media (
-  max-width: 520px
-) {
+@media (max-width: 520px) {
 
   .debt-clock-embed {
     min-height:
@@ -506,7 +467,6 @@ body {
     padding:
       20px;
   }
-
 
   .debt-clock-embed-header {
     align-items:
@@ -519,12 +479,10 @@ body {
       6px;
   }
 
-
   .debt-clock-embed-rate {
     margin-top:
       24px;
   }
-
 
   .debt-clock-embed-live {
     align-items:
@@ -536,7 +494,6 @@ body {
     gap:
       8px;
   }
-
 
   .debt-clock-embed-footer {
     align-items:
@@ -551,15 +508,15 @@ body {
 
   .debt-clock-embed-trend {
     margin:
-        8px 0 0;
+      8px 0 0;
 
-    color:ß
-        var(--embed-muted);
+    color:
+      var(--embed-muted);
 
     font-size:
-        11px;
+      11px;
 
     line-height:
-        1.4;
+      1.4;
   }
 }

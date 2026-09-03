@@ -29,7 +29,7 @@ if (!presetName) {
   );
 
   console.error(
-    "Example: npm run social -- linkedin-czechia"
+    "Example: npm run social -- ranking"
   );
 
   process.exit(1);

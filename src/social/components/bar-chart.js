@@ -68,7 +68,7 @@ export function renderBarChart({
           width="${width + 36}"
           height="${rowHeight - 8}"
           rx="12"
-          fill="${theme.colors.background}"
+          fill="${theme.colors.blueSoft}"
         />
       `);
     }
@@ -115,7 +115,7 @@ export function renderBarChart({
         width="${renderedBarWidth}"
         height="22"
         rx="11"
-        fill="${theme.colors.text}"
+        fill="${isHighlighted ? theme.colors.gold : theme.colors.blue}"
       />
     `);
 

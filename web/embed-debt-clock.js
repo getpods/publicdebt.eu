@@ -145,25 +145,62 @@ function formatSignedInteger(
 async function loadJSON(
   url
 ) {
-  const response =
-    await fetch(
-      url,
-      {
-        cache: "no-store"
-      }
-    );
+  const attempts =
+    3;
+
+  let lastError =
+    null;
 
 
-  if (
-    !response.ok
+  for (
+    let attempt = 1;
+    attempt <= attempts;
+    attempt += 1
   ) {
-    throw new Error(
-      `Data error ${response.status}: ${url}`
-    );
+    try {
+      const response =
+        await fetch(
+          url,
+          {
+            cache:
+              "no-cache"
+          }
+        );
+
+
+      if (
+        !response.ok
+      ) {
+        throw new Error(
+          `Data error ${response.status}: ${url}`
+        );
+      }
+
+
+      return await response.json();
+    } catch (
+      error
+    ) {
+      lastError =
+        error;
+
+
+      if (
+        attempt < attempts
+      ) {
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              450 * attempt
+            )
+        );
+      }
+    }
   }
 
 
-  return response.json();
+  throw lastError;
 }
 
 
@@ -246,7 +283,7 @@ const requestedTheme =
     params.get(
       "theme"
     ) ??
-    "dark"
+    "blue-gold"
   )
     .trim()
     .toLowerCase();
@@ -254,6 +291,7 @@ const requestedTheme =
 
 const allowedThemes =
   new Set([
+    "blue-gold",
     "dark",
     "light",
     "auto"
@@ -265,7 +303,7 @@ const theme =
     requestedTheme
   )
     ? requestedTheme
-    : "dark";
+    : "blue-gold";
 
 
 document.body.dataset.theme =

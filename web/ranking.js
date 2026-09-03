@@ -198,27 +198,72 @@ const formatDate = value =>
   );
 
 
-async function loadEU() {
-  const response =
-    await fetch(
-      "/api/eu",
-      {
-        cache:
-          "no-store"
-      }
-    );
+async function loadJSON(
+  url
+) {
+  const attempts =
+    3;
+
+  let lastError =
+    null;
 
 
-  if (
-    !response.ok
+  for (
+    let attempt = 1;
+    attempt <= attempts;
+    attempt += 1
   ) {
-    throw new Error(
-      `Data error: ${response.status}`
-    );
+    try {
+      const response =
+        await fetch(
+          url,
+          {
+            cache:
+              "no-cache"
+          }
+        );
+
+
+      if (
+        !response.ok
+      ) {
+        throw new Error(
+          `Data error ${response.status}: ${url}`
+        );
+      }
+
+
+      return await response.json();
+    } catch (
+      error
+    ) {
+      lastError =
+        error;
+
+
+      if (
+        attempt < attempts
+      ) {
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              450 * attempt
+            )
+        );
+      }
+    }
   }
 
 
-  return response.json();
+  throw lastError;
+}
+
+
+function loadEU() {
+  return loadJSON(
+    "/data/eu.json"
+  );
 }
 
 

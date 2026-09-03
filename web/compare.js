@@ -187,26 +187,62 @@ const formatDate = value =>
 async function loadJSON(
   url
 ) {
-  const response =
-    await fetch(
-      url,
-      {
-        cache:
-          "no-store"
-      }
-    );
+  const attempts =
+    3;
+
+  let lastError =
+    null;
 
 
-  if (
-    !response.ok
+  for (
+    let attempt = 1;
+    attempt <= attempts;
+    attempt += 1
   ) {
-    throw new Error(
-      `Data error ${response.status}: ${url}`
-    );
+    try {
+      const response =
+        await fetch(
+          url,
+          {
+            cache:
+              "no-cache"
+          }
+        );
+
+
+      if (
+        !response.ok
+      ) {
+        throw new Error(
+          `Data error ${response.status}: ${url}`
+        );
+      }
+
+
+      return await response.json();
+    } catch (
+      error
+    ) {
+      lastError =
+        error;
+
+
+      if (
+        attempt < attempts
+      ) {
+        await new Promise(
+          resolve =>
+            setTimeout(
+              resolve,
+              450 * attempt
+            )
+        );
+      }
+    }
   }
 
 
-  return response.json();
+  throw lastError;
 }
 
 
@@ -522,10 +558,12 @@ async function loadCountryHistory(
 --------------------------------------------------------- */
 
 const seriesColors = [
-  "#c64a4a",
-  "#37805c",
-  "#3f6fa8",
-  "#8659a3"
+  "#155eef", // PublicDebt blue
+  "#35a99d", // teal
+  "#d99a00", // accessible gold
+  "#7a5af8", // violet
+  "#e05a47", // coral
+  "#0f8a5f"  // emerald fallback
 ];
 
 
@@ -2027,7 +2065,7 @@ async function renderComparison() {
 --------------------------------------------------------- */
 
 loadJSON(
-  "/api/eu"
+  "/data/eu.json"
 )
   .then(
     async data => {

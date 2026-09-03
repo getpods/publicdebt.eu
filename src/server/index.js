@@ -245,7 +245,7 @@ async function renderCountryPage(
 
 
   const alternateEn =
-    `https://publicdebt.eu/en/countries/${country.slug_en}/`;
+    `/en/countries/${country.slug_en}/`;
 
 
   return template
@@ -309,7 +309,7 @@ async function renderEnglishCountryPage(
 
 
   const alternateCs =
-    `https://publicdebt.eu/cs/zeme/${country.slug}/`;
+    `/cs/zeme/${country.slug}/`;
 
 
   return template

@@ -34,7 +34,7 @@ export function renderCta({
       size: 34,
       weight: 700,
       fill:
-        theme.colors.text,
+        theme.colors.blueDark,
       anchor:
         "middle",
       letterSpacing: 0.4

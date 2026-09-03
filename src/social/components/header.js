@@ -7,7 +7,7 @@ export function renderHeader({
   subtitle,
   period
 }) {
-  const { text: primary, muted } = theme.colors;
+  const { text: primary, muted, blueDark } = theme.colors;
 
   return `
     ${text({
@@ -16,7 +16,7 @@ export function renderHeader({
       value: eyebrow,
       size: 22,
       weight: 700,
-      fill: muted,
+      fill: blueDark,
       letterSpacing: 2
     })}
 

@@ -231,9 +231,9 @@ export function renderDebtClock({
           radius:
             theme.radius,
           fill:
-            theme.colors.card,
+            "#f7faff",
           stroke:
-            theme.colors.line,
+            theme.colors.blue,
           strokeWidth: 1
         })}
 
@@ -257,7 +257,7 @@ export function renderDebtClock({
           size: 76,
           weight: 700,
           fill:
-            theme.colors.text
+            theme.colors.blueDark
         })}
 
         ${text({
@@ -305,7 +305,7 @@ export function renderDebtClock({
           size: 58,
           weight: 700,
           fill:
-            theme.colors.text
+            theme.colors.goldDark
         })}
 
         ${line({

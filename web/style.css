@@ -2037,19 +2037,21 @@ footer p {
 .compare-country-option input:checked +
 .compare-country-option-content {
   background:
-    #171717;
-
+    var(--compare-series-color, var(--pd-blue));
   color:
-    #ffffff;
-
+    var(--compare-series-text, #ffffff);
   border-color:
-    #171717;
+    var(--compare-series-color, var(--pd-blue));
+  box-shadow:
+    none;
 }
 
 .compare-country-option input:checked +
 .compare-country-option-content small {
   color:
-    #a5a5a0;
+    var(--compare-series-text, #ffffff);
+  opacity:
+    0.78;
 }
 
 .compare-selection-note {
@@ -2138,6 +2140,10 @@ footer p {
       0
     );
   background: var(--pd-navy);
+  width: 240px;
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0.94;
 }
 
 .compare-tooltip-row {
@@ -2196,7 +2202,9 @@ footer p {
   display: flex;
   flex-direction: column;
   border-color: var(--line);
-  box-shadow: inset 0 3px 0 var(--pd-blue);
+  box-shadow:
+    inset 0 3px 0
+    var(--compare-series-color, var(--pd-blue));
 }
 
 .compare-summary-country {
@@ -3411,15 +3419,25 @@ footer p {
 }
 
 
-.compare-country-option input:checked + .compare-country-option-content{
-  background: var(--pd-blue);
-  color: #ffffff;
-  border-color: var(--pd-blue);
+.compare-country-option input:checked +
+.compare-country-option-content {
+  background:
+    var(--compare-series-color, var(--pd-blue));
+  color:
+    var(--compare-series-text, #ffffff);
+  border-color:
+    var(--compare-series-color, var(--pd-blue));
+  box-shadow:
+    none;
 }
 
 
-.compare-country-option input:checked + .compare-country-option-content small{
-  color: #dce8ff;
+.compare-country-option input:checked +
+.compare-country-option-content small {
+  color:
+    var(--compare-series-text, #ffffff);
+  opacity:
+    0.78;
 }
 
 
@@ -3584,16 +3602,15 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
 .methodology-card:nth-child(3n){border-top:3px solid var(--pd-gold);}
 
 
-.compare-summary-card:nth-child(3n + 1){box-shadow:inset 0 3px 0 var(--pd-blue);}
-
-
-.compare-summary-card:nth-child(3n + 2){box-shadow:inset 0 3px 0 var(--pd-teal);}
-
-
-.compare-summary-card:nth-child(3n){box-shadow:inset 0 3px 0 var(--pd-gold);}
-
-
-.compare-country-option input:checked + .compare-country-option-content:hover{background:var(--pd-blue-dark);}
+.compare-country-option input:checked +
+.compare-country-option-content:hover {
+  background:
+    var(--compare-series-color, var(--pd-blue));
+  color:
+    var(--compare-series-text, #ffffff);
+  border-color:
+    var(--compare-series-color, var(--pd-blue));
+}
 
 
 .ranking-row.is-czechia small{

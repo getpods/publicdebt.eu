@@ -39,11 +39,12 @@ const text = {
       "Vyberte ještě jednu zemi pro zobrazení grafu.",
 
     selected:
-      count =>
-        `Vybrány ${count} ze 4 možných zemí.`,
+      (count, maximum) =>
+        `Vybrány ${count} ze ${maximum} možných zemí.`,
 
     selectedMaximum:
-      "Vybrány 4 ze 4 možných zemí.",
+      maximum =>
+        `Vybráno ${maximum} ze ${maximum} možných zemí.`,
 
     chartSelectTwo:
       "Vyberte alespoň dvě země.",
@@ -104,11 +105,12 @@ const text = {
       "Select one more country to display the chart.",
 
     selected:
-      count =>
-        `${count} of 4 countries selected.`,
+      (count, maximum) =>
+        `${count} of ${maximum} countries selected.`,
 
     selectedMaximum:
-      "4 of 4 countries selected.",
+      maximum =>
+        `${maximum} of ${maximum} countries selected.`,
 
     chartSelectTwo:
       "Select at least two countries.",
@@ -260,7 +262,7 @@ const MIN_COUNTRIES =
 
 
 const MAX_COUNTRIES =
-  4;
+  6;
 
 
 let selectedCodes =
@@ -429,6 +431,15 @@ function periodToNumber(
 }
 
 
+const COMPARE_START_PERIOD =
+  "2000-Q1";
+
+const COMPARE_START_TIME =
+  periodToNumber(
+    COMPARE_START_PERIOD
+  );
+
+
 function cleanSeries(
   items
 ) {
@@ -463,7 +474,9 @@ function cleanSeries(
       ) ||
       !Number.isFinite(
         value
-      )
+      ) ||
+      time <
+        COMPARE_START_TIME
     ) {
       continue;
     }
@@ -563,8 +576,113 @@ const seriesColors = [
   "#d99a00", // accessible gold
   "#7a5af8", // violet
   "#e05a47", // coral
-  "#0f8a5f"  // emerald fallback
+  "#0f8a5f"  // emerald
 ];
+
+const seriesColorAssignments =
+  new Map();
+
+
+function syncSeriesColorAssignments() {
+  const usedColors =
+    new Set();
+
+  /*
+   * Preserve colors of countries that are already selected.
+   * If an old stored assignment now conflicts with another
+   * active country, the later/newer country gets reassigned.
+   */
+  for (
+    const code of
+    selectedCodes
+  ) {
+    const color =
+      seriesColorAssignments.get(
+        code
+      );
+
+    if (
+      color &&
+      seriesColors.includes(
+        color
+      ) &&
+      !usedColors.has(
+        color
+      )
+    ) {
+      usedColors.add(
+        color
+      );
+    } else {
+      seriesColorAssignments.delete(
+        code
+      );
+    }
+  }
+
+  /*
+   * Assign the first currently unused color to countries
+   * that do not yet have a valid active assignment.
+   */
+  for (
+    const code of
+    selectedCodes
+  ) {
+    if (
+      seriesColorAssignments.has(
+        code
+      )
+    ) {
+      continue;
+    }
+
+    const color =
+      seriesColors.find(
+        candidate =>
+          !usedColors.has(
+            candidate
+          )
+      );
+
+    if (
+      !color
+    ) {
+      continue;
+    }
+
+    seriesColorAssignments.set(
+      code,
+      color
+    );
+
+    usedColors.add(
+      color
+    );
+  }
+}
+
+
+function getSeriesColor(
+  code
+) {
+  return (
+    seriesColorAssignments.get(
+      code
+    ) ??
+    seriesColors[0]
+  );
+}
+
+
+function getSeriesTextColor(
+  code
+) {
+  return getSeriesColor(
+    code
+  ) === "#d99a00"
+    ? "#071731"
+    : "#ffffff";
+}
 
 
 
@@ -573,6 +691,8 @@ const seriesColors = [
 --------------------------------------------------------- */
 
 function renderCountrySelector() {
+  syncSeriesColorAssignments();
+
   const container =
     document.querySelector(
       "#compare-country-grid"
@@ -669,6 +789,24 @@ function renderCountrySelector() {
 
     content.className =
       "compare-country-option-content";
+
+    if (
+      input.checked
+    ) {
+      content.style.setProperty(
+        "--compare-series-color",
+        getSeriesColor(
+          country.code
+        )
+      );
+
+      content.style.setProperty(
+        "--compare-series-text",
+        getSeriesTextColor(
+          country.code
+        )
+      );
+    }
 
 
     content.innerHTML = `
@@ -791,7 +929,9 @@ function updateSelectionNote() {
     MAX_COUNTRIES
   ) {
     element.textContent =
-      t.selectedMaximum;
+      t.selectedMaximum(
+        MAX_COUNTRIES
+      );
 
     return;
   }
@@ -799,7 +939,8 @@ function updateSelectionNote() {
 
   element.textContent =
     t.selected(
-      selectedCodes.length
+      selectedCodes.length,
+      MAX_COUNTRIES
     );
 }
 
@@ -828,10 +969,7 @@ function renderLegend() {
 
 
   selectedCodes.forEach(
-    (
-      code,
-      index
-    ) => {
+    code => {
       const country =
         countryByCode(
           code
@@ -866,10 +1004,9 @@ function renderLegend() {
 
 
       line.style.backgroundColor =
-        seriesColors[
-          index %
-          seriesColors.length
-        ];
+        getSeriesColor(
+          code
+        );
 
 
       const textElement =
@@ -950,6 +1087,13 @@ function renderSummary() {
 
     card.className =
       "compare-summary-card";
+
+    card.style.setProperty(
+      "--compare-series-color",
+      getSeriesColor(
+        code
+      )
+    );
 
 
     card.href =
@@ -1102,12 +1246,7 @@ function createComparisonChart(
 
 
   const firstTime =
-    Math.min(
-      ...allPoints.map(
-        item =>
-          item.time
-      )
-    );
+    COMPARE_START_TIME;
 
 
   const lastTime =
@@ -1555,10 +1694,7 @@ function createComparisonChart(
   /* LINES */
 
   normalized.forEach(
-    (
-      series,
-      index
-    ) => {
+    series => {
       const polyline =
         document.createElementNS(
           "http://www.w3.org/2000/svg",
@@ -1589,10 +1725,9 @@ function createComparisonChart(
 
 
       polyline.style.stroke =
-        seriesColors[
-          index %
-          seriesColors.length
-        ];
+        getSeriesColor(
+          series.code
+        );
 
 
       svg.appendChild(
@@ -1858,10 +1993,7 @@ function createComparisonChart(
           const valuesAtPeriod =
             normalized
               .map(
-                (
-                  series,
-                  seriesIndex
-                ) => {
+                series => {
                   const observation =
                     series.data.find(
                       item =>
@@ -1884,10 +2016,9 @@ function createComparisonChart(
                       observation.value,
 
                     color:
-                      seriesColors[
-                        seriesIndex %
-                        seriesColors.length
-                      ]
+                      getSeriesColor(
+                        series.code
+                      )
                   };
                 }
               )
@@ -1976,9 +2107,25 @@ function createComparisonChart(
   );
 
 
-  tooltip.addEventListener(
-    "mouseenter",
-    cancelHide
+  svg.addEventListener(
+    "mouseleave",
+    () => {
+      cancelHide();
+
+      tooltip.hidden =
+        true;
+
+      svg
+        .querySelectorAll(
+          ".chart-hover-guide.is-active"
+        )
+        .forEach(
+          item =>
+            item.classList.remove(
+              "is-active"
+            )
+        );
+    }
   );
 
 

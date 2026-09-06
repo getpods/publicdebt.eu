@@ -1,0 +1,7 @@
+{
+  "layout": "og-image",
+  "platform": "og",
+  "metric": "debt_percent_gdp",
+  "period": "latest",
+  "source": "Eurostat"
+}

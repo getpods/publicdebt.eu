@@ -199,6 +199,14 @@ export function renderRanking({
       ? rankingBottom - cardY + 285
       : rankingBottom - cardY + 65;
 
+  const ctaY =
+    highlight && !highlightInRanking
+      ? height - 125
+      : Math.min(
+          cardY + cardHeight + 105,
+          height - 125
+        );
+
   let highlightSvg = "";
 
   if (highlight && !highlightInRanking) {
@@ -322,7 +330,7 @@ export function renderRanking({
         ${renderCta({
           theme,
           width,
-          y: height - 125,
+          y: ctaY,
           label:
             preset.cta?.label ??
             "Explore the data →",
@@ -340,6 +348,18 @@ export function renderRanking({
           anchor: "middle"
         })}
       </g>
+    
+      <rect
+        x="14"
+        y="14"
+        width="${width - 28}"
+        height="${height - 28}"
+        rx="16"
+        fill="none"
+        stroke="${theme.colors.blue}"
+        stroke-width="2"
+      />
+
     </svg>
   `;
 }

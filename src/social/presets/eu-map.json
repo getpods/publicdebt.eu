@@ -1,0 +1,12 @@
+{
+  "layout": "eu-map",
+  "platform": "landscape",
+  "metric": "debt_percent_gdp",
+  "period": "latest",
+  "source": "Eurostat",
+  "title": "Public debt across Europe",
+  "description": "Explore the latest EU data on public debt as a percentage of GDP.",
+  "cta": {
+    "label": "Explore the data →"
+  }
+}

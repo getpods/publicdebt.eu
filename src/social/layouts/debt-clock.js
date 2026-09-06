@@ -388,6 +388,18 @@ export function renderDebtClock({
             "middle"
         })}
       </g>
+    
+      <rect
+        x="14"
+        y="14"
+        width="${width - 28}"
+        height="${height - 28}"
+        rx="16"
+        fill="none"
+        stroke="${theme.colors.blue}"
+        stroke-width="2"
+      />
+
     </svg>
   `;
 }

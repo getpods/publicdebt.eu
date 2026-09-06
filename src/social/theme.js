@@ -61,6 +61,14 @@ export function getTheme() {
       reddit: {
         width: 1200,
         height: 1500
+      },
+      landscape: {
+        width: 1536,
+        height: 1024
+      },
+      og: {
+        width: 1200,
+        height: 630
       }
     }
   };

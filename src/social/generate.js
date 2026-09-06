@@ -20,6 +20,14 @@ import {
   renderDebtClock
 } from "./layouts/debt-clock.js";
 
+import {
+  renderEuMap
+} from "./layouts/eu-map.js";
+
+import {
+  renderOgImage
+} from "./layouts/og-image.js";
+
 const presetName =
   process.argv[2];
 
@@ -99,6 +107,26 @@ switch (
         data,
         countriesData,
         preset
+      });
+    break;
+
+  case "eu-map":
+    svg =
+      await renderEuMap({
+        theme,
+        data,
+        preset,
+        period
+      });
+    break;
+
+  case "og-image":
+    svg =
+      await renderOgImage({
+        theme,
+        data,
+        preset,
+        period
       });
     break;
 

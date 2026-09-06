@@ -3710,6 +3710,15 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
       360px;
   }
 
+  .eu-map-svg {
+    transform:
+      translateY(-14px)
+      scale(1.5);
+
+    transform-origin:
+      center center;
+  }
+
 
   .eu-map-side {
     grid-template-columns:

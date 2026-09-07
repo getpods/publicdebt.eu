@@ -267,6 +267,26 @@ function loadEU() {
 }
 
 
+function trackEvent(
+  name,
+  data = {}
+) {
+  if (
+    typeof window.umami?.track !==
+    "function"
+  ) {
+    return;
+  }
+
+
+  window.umami.track(
+    name,
+    data
+  );
+}
+
+
+
 /* ---------------------------------------------------------
    METRICS
 --------------------------------------------------------- */
@@ -521,6 +541,21 @@ function renderRanking(
       );
 
 
+    row.addEventListener(
+      "click",
+      () => {
+        trackEvent(
+          "country_open",
+          {
+            country: country.code,
+            source: "ranking",
+            language
+          }
+        );
+      }
+    );
+
+
     const rank =
       metric.rank(
         country
@@ -743,6 +778,15 @@ loadEU()
                 currentMetric =
                   button.dataset
                     .ranking;
+
+
+                trackEvent(
+                  "ranking_metric",
+                  {
+                    metric: currentMetric,
+                    language
+                  }
+                );
 
 
                 document

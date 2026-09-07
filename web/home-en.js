@@ -105,6 +105,26 @@ async function loadJSON(
 }
 
 
+function trackEvent(
+  name,
+  data = {}
+) {
+  if (
+    typeof window.umami?.track !==
+    "function"
+  ) {
+    return;
+  }
+
+
+  window.umami.track(
+    name,
+    data
+  );
+}
+
+
+
 /* ---------------------------------------------------------
    HELPERS
 --------------------------------------------------------- */
@@ -381,6 +401,21 @@ function renderRanking(
       countryUrl(
         country
       );
+
+
+    link.addEventListener(
+      "click",
+      () => {
+        trackEvent(
+          "country_open",
+          {
+            country: country.code,
+            source: "homepage_ranking",
+            language: "en"
+          }
+        );
+      }
+    );
 
 
     link.innerHTML = `
@@ -1192,6 +1227,16 @@ function renderMap(
     path.addEventListener(
       "click",
       () => {
+        trackEvent(
+          "country_open",
+          {
+            country: country.code,
+            source: "eu_map",
+            language: "en"
+          }
+        );
+
+
         window.location.href =
           countryUrl(
             country
@@ -1375,6 +1420,16 @@ function renderMap(
     marker.addEventListener(
       "click",
       () => {
+        trackEvent(
+          "country_open",
+          {
+            country: country.code,
+            source: "eu_map",
+            language: "en"
+          }
+        );
+
+
         window.location.href =
           countryUrl(
             country

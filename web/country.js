@@ -180,6 +180,26 @@ const t =
 
 
 
+function trackEvent(
+  name,
+  data = {}
+) {
+  if (
+    typeof window.umami?.track !==
+    "function"
+  ) {
+    return;
+  }
+
+
+  window.umami.track(
+    name,
+    data
+  );
+}
+
+
+
 /* ---------------------------------------------------------
    FORMATTERS
 --------------------------------------------------------- */
@@ -576,6 +596,16 @@ function setupEmbedBuilder() {
       if (
         willOpen
       ) {
+        trackEvent(
+          "embed_open",
+          {
+            country: countryCode,
+            location: "country",
+            language
+          }
+        );
+
+
         updateEmbed();
       }
     }
@@ -615,6 +645,18 @@ function setupEmbedBuilder() {
           "copy"
         );
       }
+
+
+      trackEvent(
+        "embed_copy",
+        {
+          country: countryCode,
+          location: "country",
+          theme: themeSelect.value,
+          width: widthSelect.value,
+          language
+        }
+      );
 
 
       copyButton.textContent =

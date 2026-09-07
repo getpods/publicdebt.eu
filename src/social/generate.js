@@ -28,6 +28,10 @@ import {
   renderOgImage
 } from "./layouts/og-image.js";
 
+import {
+  renderCzBudget
+} from "./layouts/cz-budget.js";
+
 const presetName =
   process.argv[2];
 
@@ -127,6 +131,14 @@ switch (
         data,
         preset,
         period
+      });
+    break;
+
+  case "cz-budget":
+    svg =
+      await renderCzBudget({
+        theme,
+        preset
       });
     break;
 

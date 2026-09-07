@@ -205,6 +205,26 @@ async function loadJSON(
 
 
 
+function trackEvent(
+  name,
+  data = {}
+) {
+  if (
+    typeof window.umami?.track !==
+    "function"
+  ) {
+    return;
+  }
+
+
+  window.umami.track(
+    name,
+    data
+  );
+}
+
+
+
 /* ---------------------------------------------------------
    QUERY PARAMETERS
 --------------------------------------------------------- */
@@ -491,6 +511,21 @@ function startDebtClock(
     sourceLink.href =
       t.home;
   }
+
+
+  sourceLink.addEventListener(
+    "click",
+    () => {
+      trackEvent(
+        "embed_source_open",
+        {
+          country: countryCode,
+          language,
+          theme
+        }
+      );
+    }
+  );
 
 
   document.title =

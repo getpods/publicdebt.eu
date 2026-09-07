@@ -573,6 +573,458 @@ for (
 }
 
 
+
+/* ---------------------------------------------------------
+   STATIC SEO PRERENDER
+--------------------------------------------------------- */
+
+function escapeHtml(
+  value
+) {
+  return String(
+    value
+  )
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+}
+
+
+function replaceHtmlById(
+  html,
+  id,
+  value
+) {
+  const escapedId =
+    id.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      "\\$&"
+    );
+
+  const pattern =
+    new RegExp(
+      `(<([a-z][a-z0-9:-]*)[^>]*\\bid=["']${escapedId}["'][^>]*>)[\\s\\S]*?(</\\2>)`,
+      "i"
+    );
+
+  if (
+    !pattern.test(
+      html
+    )
+  ) {
+    throw new Error(
+      `Could not find HTML element #${id}`
+    );
+  }
+
+  return html.replace(
+    pattern,
+    (
+      match,
+      opening,
+      tag,
+      closing
+    ) =>
+      `${opening}${escapeHtml(value)}${closing}`
+  );
+}
+
+
+
+function replaceHtmlRawById(
+  html,
+  id,
+  value
+) {
+  const escapedId =
+    id.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      "\\$&"
+    );
+
+  const pattern =
+    new RegExp(
+      `(<([a-z][a-z0-9:-]*)[^>]*\\bid=["']${escapedId}["'][^>]*>)[\\s\\S]*?(</\\2>)`,
+      "i"
+    );
+
+  if (
+    !pattern.test(
+      html
+    )
+  ) {
+    throw new Error(
+      `Could not find HTML element #${id}`
+    );
+  }
+
+  return html.replace(
+    pattern,
+    (
+      match,
+      opening,
+      tag,
+      closing
+    ) =>
+      `${opening}${value}${closing}`
+  );
+}
+
+
+function formatStaticNumber(
+  value,
+  language,
+  digits = 1
+) {
+  return new Intl.NumberFormat(
+    language === "en"
+      ? "en-GB"
+      : "cs-CZ",
+    {
+      maximumFractionDigits:
+        digits
+    }
+  ).format(
+    value
+  );
+}
+
+
+async function prerenderCountrySeo(
+  html,
+  country,
+  language
+) {
+  const code =
+    country.code
+      .toLowerCase();
+
+  const countryData =
+    JSON.parse(
+      await readFile(
+        resolve(
+          processedCountriesDir,
+          `${code}.json`
+        ),
+        "utf8"
+      )
+    );
+
+  const debt =
+    countryData.latest
+      ?.debt;
+
+  const currency =
+    countryData.country
+      ?.currency;
+
+  if (
+    !debt ||
+    !currency
+  ) {
+    throw new Error(
+      `Missing country SEO data for ${country.code}`
+    );
+  }
+
+  const nationalDebtMillion =
+    Number(
+      debt.national_currency
+    );
+
+  if (
+    !Number.isFinite(
+      nationalDebtMillion
+    )
+  ) {
+    throw new Error(
+      `Invalid national debt for ${country.code}`
+    );
+  }
+
+  const nationalDebtBillion =
+    nationalDebtMillion /
+    1000;
+
+  const currencyLabel =
+    language === "en"
+      ? (
+          currency.code ??
+          currency.label
+        )
+      : currency.label;
+
+  const debtUnit =
+    language === "en"
+      ? `bn ${currencyLabel}`
+      : `mld. ${currencyLabel}`;
+
+  let result =
+    html;
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-total-debt",
+      formatStaticNumber(
+        nationalDebtBillion,
+        language
+      )
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-total-debt-unit",
+      debtUnit
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-debt-gdp",
+      formatStaticNumber(
+        country.debt
+          .percent_gdp,
+        language
+      )
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-period",
+      country.debt
+        .period
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-rank",
+      `${country.rank.debt_percent_gdp}.`
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-population",
+      formatStaticNumber(
+        country.population
+          .value,
+        language,
+        0
+      )
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "country-debt-per-capita",
+      formatStaticNumber(
+        country.debt_per_capita
+          .eur,
+        language,
+        0
+      )
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "rank-gdp",
+      `${country.rank.debt_percent_gdp}.`
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "rank-total",
+      `${country.rank.debt_euro}.`
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "rank-per-capita",
+      `${country.rank.debt_per_capita_eur}.`
+    );
+
+  return result;
+}
+
+
+function prerenderRankingSeo(
+  html,
+  language
+) {
+  const countries =
+    [
+      ...eu.countries
+    ]
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          a.rank.debt_percent_gdp -
+          b.rank.debt_percent_gdp
+      );
+
+  const rankLabel =
+    language === "en"
+      ? "Rank"
+      : "Pořadí";
+
+  const countryLabel =
+    language === "en"
+      ? "Country"
+      : "Země";
+
+  const metricLabel =
+    language === "en"
+      ? "Debt / GDP"
+      : "Dluh / HDP";
+
+  const description =
+    language === "en"
+      ? "Countries are ranked by their public debt-to-GDP ratio."
+      : "Země jsou seřazeny podle výše veřejného dluhu vůči HDP.";
+
+  const debtPeriod =
+    countries[0]
+      ?.debt
+      ?.period ??
+    "";
+
+  const populationYears =
+    [
+      ...new Set(
+        countries.map(
+          country =>
+            country.population.year
+        )
+      )
+    ]
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          a - b
+      )
+      .join(
+        ", "
+      );
+
+  const period =
+    language === "en"
+      ? `Debt: ${debtPeriod} · population: ${populationYears}`
+      : `Dluh: ${debtPeriod} · populace: ${populationYears}`;
+
+  const header = `
+      <div class="ranking-row ranking-row-header">
+        <span>${escapeHtml(rankLabel)}</span>
+        <span>${escapeHtml(countryLabel)}</span>
+        <span>${escapeHtml(metricLabel)}</span>
+      </div>`;
+
+  const rows =
+    countries
+      .map(
+        country => {
+          const countryName =
+            language === "en"
+              ? country.name
+              : country.name_cs;
+
+          const href =
+            language === "en"
+              ? `/en/countries/${country.slug_en}/`
+              : `/cs/zeme/${country.slug}/`;
+
+          const czechiaClass =
+            language === "cs" &&
+            country.code === "CZ"
+              ? " is-czechia"
+              : "";
+
+          const value =
+            formatStaticNumber(
+              country.debt
+                .percent_gdp,
+              language
+            );
+
+          return `
+      <a
+        class="ranking-row${czechiaClass}"
+        href="${escapeHtml(href)}"
+      >
+        <span class="ranking-position">
+          ${country.rank.debt_percent_gdp}.
+        </span>
+
+        <span class="ranking-country">
+          <strong>${escapeHtml(countryName)}</strong>
+          <small>${escapeHtml(country.code)}</small>
+        </span>
+
+        <span class="ranking-value">
+          ${escapeHtml(value)} %
+        </span>
+      </a>`;
+        }
+      )
+      .join(
+        ""
+      );
+
+  let result =
+    html;
+
+  result =
+    replaceHtmlById(
+      result,
+      "ranking-description",
+      description
+    );
+
+  result =
+    replaceHtmlById(
+      result,
+      "ranking-period",
+      period
+    );
+
+  result =
+    replaceHtmlRawById(
+      result,
+      "ranking-table",
+      header + rows
+    );
+
+  return result;
+}
+
+
 /* ---------------------------------------------------------
    CLEAN DIST
 --------------------------------------------------------- */
@@ -837,7 +1289,10 @@ await writeFile(
   ),
 
   prepareHtml(
-    rankingHtmlSource
+    prerenderRankingSeo(
+      rankingHtmlSource,
+      "cs"
+    )
   ),
 
   "utf8"
@@ -865,7 +1320,10 @@ await writeFile(
   ),
 
   prepareHtml(
-    englishRankingHtmlSource
+    prerenderRankingSeo(
+      englishRankingHtmlSource,
+      "en"
+    )
   ),
 
   "utf8"
@@ -1316,6 +1774,13 @@ for (
 
 
   html =
+    await prerenderCountrySeo(
+      html,
+      country,
+      "cs"
+    );
+
+  html =
     prepareHtml(
       html
     );
@@ -1384,6 +1849,13 @@ for (
         alternateCs
       );
 
+
+  html =
+    await prerenderCountrySeo(
+      html,
+      country,
+      "en"
+    );
 
   html =
     prepareHtml(

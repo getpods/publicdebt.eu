@@ -34,6 +34,11 @@ const populationsFile = resolve(
   "populations.json"
 );
 
+
+const interestRatesFile = resolve(
+  processedDir,
+  "interest-rates.json"
+);
 const outputFile = resolve(
   processedDir,
   "eu.json"
@@ -59,12 +64,20 @@ const populationData = JSON.parse(
 );
 
 
+
+const interestRateData = JSON.parse(
+  await readFile(
+    interestRatesFile,
+    "utf8"
+  )
+);
 if (
   debtData.count !== 27 ||
-  populationData.count !== 27
+  populationData.count !== 27 ||
+  interestRateData.count !== 27
 ) {
   throw new Error(
-    `Expected 27 countries. Debt=${debtData.count}, population=${populationData.count}`
+    `Expected 27 countries. Debt=${debtData.count}, population=${populationData.count}, interest rates=${interestRateData.count}`
   );
 }
 
@@ -76,6 +89,16 @@ if (
 const populationByCode =
   new Map(
     populationData.countries.map(
+      country => [
+        country.code,
+        country
+      ]
+    )
+  );
+
+const interestRateByCode =
+  new Map(
+    interestRateData.countries.map(
       country => [
         country.code,
         country
@@ -99,6 +122,17 @@ const countries =
       if (!populationCountry) {
         throw new Error(
           `Population data missing for ${debtCountry.code}`
+        );
+      }
+
+      const interestRateCountry =
+        interestRateByCode.get(
+          debtCountry.code
+        );
+
+      if (!interestRateCountry) {
+        throw new Error(
+          `Interest-rate data missing for ${debtCountry.code}`
         );
       }
 
@@ -193,6 +227,15 @@ const countries =
             Math.round(
               debtPerCapitaEuro
             )
+        },
+
+        interest_rate: {
+          period:
+            interestRateCountry.latest.period,
+          percent:
+            interestRateCountry.latest.percent,
+          currency:
+            interestRateCountry.currency
         }
       };
     }
@@ -271,6 +314,13 @@ const populationRank =
       item.population.value
   );
 
+const interestRateRank =
+  createRankMap(
+    countries,
+    item =>
+      item.interest_rate.percent
+  );
+
 
 for (const country of countries) {
   country.rank = {
@@ -291,6 +341,11 @@ for (const country of countries) {
 
     population:
       populationRank.get(
+        country.code
+      ) ?? null,
+
+    interest_rate:
+      interestRateRank.get(
         country.code
       ) ?? null
   };
@@ -338,6 +393,16 @@ const populationYears =
       a - b
   );
 
+const interestRatePeriods =
+  [
+    ...new Set(
+      countries.map(
+        country =>
+          country.interest_rate.period
+      )
+    )
+  ].sort();
+
 
 /* ---------------------------------------------------------
    OUTPUT
@@ -380,6 +445,17 @@ const output = {
 
       retrieved_at:
         populationData.dataset.retrieved_at
+    },
+
+    interest_rate: {
+      id:
+        interestRateData.dataset,
+      source:
+        interestRateData.source,
+      metric:
+        interestRateData.metric,
+      frequency:
+        interestRateData.frequency
     }
   },
 
@@ -393,7 +469,10 @@ const output = {
       debtPeriods,
 
     population:
-      populationYears
+      populationYears,
+
+    interest_rate:
+      interestRatePeriods
   },
 
 
@@ -448,6 +527,10 @@ console.log(
 
 console.log(
   `Population years:   ${populationYears.join(", ")}`
+);
+
+console.log(
+  `Interest-rate periods: ${interestRatePeriods.join(", ")}`
 );
 
 

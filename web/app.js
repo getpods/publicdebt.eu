@@ -2181,6 +2181,12 @@ function renderMethodology(
     );
 
 
+  const ecbPeriod =
+    document.querySelector(
+      "#source-ecb-period"
+    );
+
+
   const populationYear =
     document.querySelector(
       "#source-population-year"
@@ -2244,6 +2250,123 @@ function renderMethodology(
   }
 }
 
+
+
+function renderHomepageInterestRate(
+  eu
+) {
+  const valueElement =
+    document.querySelector(
+      "#home-interest-rate"
+    );
+
+  const periodElement =
+    document.querySelector(
+      "#home-interest-rate-period"
+    );
+
+
+  if (
+    !valueElement ||
+    !periodElement
+  ) {
+    return;
+  }
+
+
+  const czechia =
+    eu.countries?.find(
+      country =>
+        country.code === "CZ"
+    );
+
+
+  const interestRate =
+    czechia?.interest_rate;
+
+
+  if (
+    !interestRate ||
+    !Number.isFinite(
+      Number(
+        interestRate.percent
+      )
+    ) ||
+    !/^\d{4}-(0[1-9]|1[0-2])$/.test(
+      interestRate.period ?? ""
+    )
+  ) {
+    valueElement.textContent =
+      "—";
+
+    periodElement.textContent =
+      "—";
+
+    return;
+  }
+
+
+  const formattedRate =
+    new Intl.NumberFormat(
+      "cs-CZ",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    ).format(
+      interestRate.percent
+    );
+
+
+  const [
+    year,
+    month
+  ] =
+    interestRate.period
+      .split("-")
+      .map(Number);
+
+
+  const formattedPeriod =
+    new Intl.DateTimeFormat(
+      "cs-CZ",
+      {
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC"
+      }
+    ).format(
+      new Date(
+        Date.UTC(
+          year,
+          month - 1,
+          1
+        )
+      )
+    );
+
+
+  valueElement.textContent =
+    `${formattedRate} %`;
+
+
+  periodElement.textContent =
+    `${formattedPeriod} · ECB`;
+
+
+  const sourceEcbPeriod =
+    document.querySelector(
+      "#source-ecb-period"
+    );
+
+
+  if (
+    sourceEcbPeriod
+  ) {
+    sourceEcbPeriod.textContent =
+      formattedPeriod;
+  }
+}
 
 
 /* ---------------------------------------------------------
@@ -2529,6 +2652,11 @@ Promise.all([
 
 
       renderEUPosition(
+        eu
+      );
+
+
+      renderHomepageInterestRate(
         eu
       );
 

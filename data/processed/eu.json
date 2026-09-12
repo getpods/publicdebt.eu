@@ -8,13 +8,19 @@
     "debt": {
       "id": "gov_10q_ggdebt",
       "source": "Eurostat",
-      "retrieved_at": "2026-09-06T18:52:51.532Z"
+      "retrieved_at": "2026-09-12T11:31:51.203Z"
     },
     "population": {
       "id": "demo_gind",
       "source": "Eurostat",
       "indicator": "JAN",
-      "retrieved_at": "2026-09-06T18:52:52.637Z"
+      "retrieved_at": "2026-09-12T11:31:52.283Z"
+    },
+    "interest_rate": {
+      "id": "IRS",
+      "source": "ECB",
+      "metric": "long_term_interest_rate",
+      "frequency": "monthly"
     }
   },
   "count": 27,
@@ -24,6 +30,9 @@
     ],
     "population": [
       2026
+    ],
+    "interest_rate": [
+      "2026-08"
     ]
   },
   "countries": [
@@ -47,11 +56,17 @@
       "debt_per_capita": {
         "eur": 34737
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.87,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 1,
         "debt_euro": 9,
         "debt_per_capita_eur": 10,
-        "population": 12
+        "population": 12,
+        "interest_rate": 9
       }
     },
     {
@@ -74,11 +89,17 @@
       "debt_per_capita": {
         "eur": 53581
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.986,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 2,
         "debt_euro": 2,
         "debt_per_capita_eur": 2,
-        "population": 3
+        "population": 3,
+        "interest_rate": 7
       }
     },
     {
@@ -101,11 +122,17 @@
       "debt_per_capita": {
         "eur": 51164
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 4,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 3,
         "debt_euro": 1,
         "debt_per_capita_eur": 3,
-        "population": 2
+        "population": 2,
+        "interest_rate": 6
       }
     },
     {
@@ -128,11 +155,17 @@
       "debt_per_capita": {
         "eur": 59102
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.76,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 4,
         "debt_euro": 5,
         "debt_per_capita_eur": 1,
-        "population": 8
+        "population": 8,
+        "interest_rate": 13
       }
     },
     {
@@ -155,11 +188,17 @@
       "debt_per_capita": {
         "eur": 35078
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.63,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 5,
         "debt_euro": 4,
         "debt_per_capita_eur": 8,
-        "population": 4
+        "population": 4,
+        "interest_rate": 14
       }
     },
     {
@@ -182,11 +221,17 @@
       "debt_per_capita": {
         "eur": 24782
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.537,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 6,
         "debt_euro": 10,
         "debt_per_capita_eur": 12,
-        "population": 9
+        "population": 9,
+        "interest_rate": 18
       }
     },
     {
@@ -209,11 +254,17 @@
       "debt_per_capita": {
         "eur": 45134
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.522,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 7,
         "debt_euro": 11,
         "debt_per_capita_eur": 5,
-        "population": 17
+        "population": 17,
+        "interest_rate": 19
       }
     },
     {
@@ -236,11 +287,17 @@
       "debt_per_capita": {
         "eur": 46811
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.4125,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 8,
         "debt_euro": 8,
         "debt_per_capita_eur": 4,
-        "population": 14
+        "population": 14,
+        "interest_rate": 20
       }
     },
     {
@@ -263,11 +320,17 @@
       "debt_per_capita": {
         "eur": 18886
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 5.458,
+        "currency": "HUF"
+      },
       "rank": {
         "debt_percent_gdp": 9,
         "debt_euro": 15,
         "debt_per_capita_eur": 17,
-        "population": 13
+        "population": 13,
+        "interest_rate": 3
       }
     },
     {
@@ -290,11 +353,17 @@
       "debt_per_capita": {
         "eur": 21692
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.54,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 10,
         "debt_euro": 20,
         "debt_per_capita_eur": 13,
-        "population": 22
+        "population": 22,
+        "interest_rate": 17
       }
     },
     {
@@ -317,11 +386,17 @@
       "debt_per_capita": {
         "eur": 34769
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.185,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 11,
         "debt_euro": 3,
         "debt_per_capita_eur": 9,
-        "population": 1
+        "population": 1,
+        "interest_rate": 24
       }
     },
     {
@@ -344,11 +419,17 @@
       "debt_per_capita": {
         "eur": 16047
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.849571,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 12,
         "debt_euro": 18,
         "debt_per_capita_eur": 19,
-        "population": 19
+        "population": 19,
+        "interest_rate": 10
       }
     },
     {
@@ -371,11 +452,17 @@
       "debt_per_capita": {
         "eur": 15685
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 5.81,
+        "currency": "PLN"
+      },
       "rank": {
         "debt_percent_gdp": 13,
         "debt_euro": 6,
         "debt_per_capita_eur": 20,
-        "population": 5
+        "population": 5,
+        "interest_rate": 2
       }
     },
     {
@@ -398,11 +485,17 @@
       "debt_per_capita": {
         "eur": 12049
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 6.43,
+        "currency": "RON"
+      },
       "rank": {
         "debt_percent_gdp": 14,
         "debt_euro": 12,
         "debt_per_capita_eur": 24,
-        "population": 6
+        "population": 6,
+        "interest_rate": 1
       }
     },
     {
@@ -425,11 +518,17 @@
       "debt_per_capita": {
         "eur": 14246
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.58,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 15,
         "debt_euro": 19,
         "debt_per_capita_eur": 22,
-        "population": 20
+        "population": 20,
+        "interest_rate": 16
       }
     },
     {
@@ -452,11 +551,17 @@
       "debt_per_capita": {
         "eur": 20158
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.62,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 16,
         "debt_euro": 25,
         "debt_per_capita_eur": 15,
-        "population": 25
+        "population": 25,
+        "interest_rate": 15
       }
     },
     {
@@ -479,11 +584,17 @@
       "debt_per_capita": {
         "eur": 11076
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.82,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 17,
         "debt_euro": 24,
         "debt_per_capita_eur": 25,
-        "population": 23
+        "population": 23,
+        "interest_rate": 12
       }
     },
     {
@@ -506,11 +617,17 @@
       "debt_per_capita": {
         "eur": 19477
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.9,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 18,
         "debt_euro": 26,
         "debt_per_capita_eur": 16,
-        "population": 27
+        "population": 27,
+        "interest_rate": 8
       }
     },
     {
@@ -533,11 +650,17 @@
       "debt_per_capita": {
         "eur": 14305
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 4.91,
+        "currency": "CZK"
+      },
       "rank": {
         "debt_percent_gdp": 19,
         "debt_euro": 16,
         "debt_per_capita_eur": 21,
-        "population": 10
+        "population": 10,
+        "interest_rate": 4
       }
     },
     {
@@ -560,11 +683,17 @@
       "debt_per_capita": {
         "eur": 28537
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.285,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 20,
         "debt_euro": 7,
         "debt_per_capita_eur": 11,
-        "population": 7
+        "population": 7,
+        "interest_rate": 23
       }
     },
     {
@@ -587,11 +716,17 @@
       "debt_per_capita": {
         "eur": 12557
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 2.88,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 21,
         "debt_euro": 21,
         "debt_per_capita_eur": 23,
-        "population": 21
+        "population": 21,
+        "interest_rate": 27
       }
     },
     {
@@ -614,11 +749,17 @@
       "debt_per_capita": {
         "eur": 39091
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.35,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 22,
         "debt_euro": 13,
         "debt_per_capita_eur": 6,
-        "population": 18
+        "population": 18,
+        "interest_rate": 22
       }
     },
     {
@@ -641,11 +782,17 @@
       "debt_per_capita": {
         "eur": 20172
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.02,
+        "currency": "SEK"
+      },
       "rank": {
         "debt_percent_gdp": 23,
         "debt_euro": 14,
         "debt_per_capita_eur": 14,
-        "population": 11
+        "population": 11,
+        "interest_rate": 25
       }
     },
     {
@@ -668,11 +815,17 @@
       "debt_per_capita": {
         "eur": 38211
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.401,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 24,
         "debt_euro": 23,
         "debt_per_capita_eur": 7,
-        "population": 26
+        "population": 26,
+        "interest_rate": 21
       }
     },
     {
@@ -695,11 +848,17 @@
       "debt_per_capita": {
         "eur": 5330
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 4.09,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 25,
         "debt_euro": 22,
         "debt_per_capita_eur": 27,
-        "population": 15
+        "population": 15,
+        "interest_rate": 5
       }
     },
     {
@@ -722,11 +881,17 @@
       "debt_per_capita": {
         "eur": 18664
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.01,
+        "currency": "DKK"
+      },
       "rank": {
         "debt_percent_gdp": 26,
         "debt_euro": 17,
         "debt_per_capita_eur": 18,
-        "population": 16
+        "population": 16,
+        "interest_rate": 26
       }
     },
     {
@@ -749,13 +914,19 @@
       "debt_per_capita": {
         "eur": 7824
       },
+      "interest_rate": {
+        "period": "2026-08",
+        "percent": 3.83,
+        "currency": "EUR"
+      },
       "rank": {
         "debt_percent_gdp": 27,
         "debt_euro": 27,
         "debt_per_capita_eur": 26,
-        "population": 24
+        "population": 24,
+        "interest_rate": 11
       }
     }
   ],
-  "generated_at": "2026-09-06T18:52:52.863Z"
+  "generated_at": "2026-09-12T11:54:20.074Z"
 }

@@ -2315,6 +2315,92 @@ function render(
     );
 
 
+  /* INTEREST RATE */
+
+  const interestRate =
+    country.interest_rate;
+
+
+  if (
+    !interestRate ||
+    !Number.isFinite(
+      Number(
+        interestRate.percent
+      )
+    ) ||
+    !/^\d{4}-(0[1-9]|1[0-2])$/.test(
+      interestRate.period ?? ""
+    )
+  ) {
+    throw new Error(
+      `Invalid ECB interest-rate data for ${countryCode}.`
+    );
+  }
+
+
+  const interestRateValue =
+    new Intl.NumberFormat(
+      language === "en"
+        ? "en-GB"
+        : "cs-CZ",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }
+    ).format(
+      interestRate.percent
+    );
+
+
+  const [
+    interestRateYear,
+    interestRateMonth
+  ] =
+    interestRate.period
+      .split("-")
+      .map(Number);
+
+
+  const interestRatePeriod =
+    new Intl.DateTimeFormat(
+      language === "en"
+        ? "en-GB"
+        : "cs-CZ",
+      {
+        month: "long",
+        year: "numeric",
+        timeZone: "UTC"
+      }
+    ).format(
+      new Date(
+        Date.UTC(
+          interestRateYear,
+          interestRateMonth - 1,
+          1
+        )
+      )
+    );
+
+
+  document.querySelector(
+    "#country-interest-rate"
+  ).textContent =
+    interestRateValue;
+
+
+  document.querySelector(
+    "#country-interest-rate-period"
+  ).textContent =
+    interestRatePeriod;
+
+
+  document.querySelector(
+    "#country-source-interest-rate"
+  ).textContent =
+    interestRatePeriod;
+
+
+
   /* EU RANKINGS */
 
   document.querySelector(

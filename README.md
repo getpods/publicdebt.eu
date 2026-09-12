@@ -12,22 +12,28 @@ The project combines official public data, a Node.js data pipeline and a statica
 
 - public debt overview for all 27 EU member states
 - Czech and English versions
-- individual country pages
-- EU debt ranking
+- individual country profiles
+- EU public debt rankings
 - country comparison
-- historical debt development
+- historical public debt development
 - debt-to-GDP indicators
-- debt per capita
-- detailed Czech public debt dashboard
-- Czech debt forecast
-- debt clocks for all 27 EU countries
+- public debt per capita
+- public debt in national currency
+- detailed Czech public debt overview
+- Czech public debt and fiscal forecast
+- estimated debt clocks for all 27 EU countries
 - embeddable debt clock
-- automated data fetching and transformation
-- production and staging builds
-- data, build and link validation
-- sitemap and SEO metadata generation
+- 10-year government bond yields for all 27 EU countries
+- historical government bond yield development
+- EU ranking by latest available 10-year government bond yield
+- interactive EU debt map
+- automated data fetching, transformation and validation
+- static production and staging builds
+- statically prerendered statistical values for important pages
+- sitemap, canonical URLs and SEO metadata generation
+- build and internal link validation
 - optional privacy-friendly Umami analytics
-- data-driven social media graphics
+- data-driven social media and Open Graph graphics
 
 ## Data sources
 
@@ -36,37 +42,69 @@ PublicDebt.eu uses official public data.
 The main sources are:
 
 - **Eurostat** — harmonised public debt and population data for EU countries
-- **Ministry of Finance of the Czech Republic** — Czech government debt data and forecasts
+- **Ministry of Finance of the Czech Republic** — Czech public debt data and fiscal forecasts
+- **European Central Bank (ECB)** — harmonised long-term interest rates based on government bonds with a residual maturity close to 10 years
 
 Raw source data are downloaded by the project's import scripts and transformed into compact JSON files used by the website.
 
-Generated data files preserve source metadata where appropriate so that the origin and reference period of the displayed figures can be identified.
+Generated data files preserve source metadata and reporting periods where appropriate so that the origin and reference period of displayed figures can be identified.
+
+### 10-year government bond yields
+
+PublicDebt.eu uses the ECB long-term interest rate dataset (`IRS`) for the 10-year government bond yield indicator.
+
+The indicator represents long-term market borrowing conditions. It should not be interpreted as the average interest rate paid on a country's existing public debt.
+
+ECB observations are monthly. Because individual country series may be updated at different times, each country uses its own latest available observation. Rankings therefore also use the latest available observation for each country rather than requiring a single common month across all 27 countries.
+
+Historical monthly observations are retained for country charts.
 
 ## How it works
 
-The project consists of three main stages:
+The project consists of four main stages.
 
 ### 1. Data fetching
 
 Scripts in `src/fetch/` download source data from the original providers.
 
+The fetch layer includes data imports for:
+
+- Eurostat public debt data
+- Eurostat population data
+- Czech Ministry of Finance data
+- Czech Ministry of Finance forecasts
+- ECB long-term interest rates
+
+For example:
+
 ```text
 src/fetch/
+├── ecb-interest-rates.js
 ├── eurostat.js
 ├── mfcr.js
 ├── mfcr-forecast.js
 └── population.js
 ```
 
+Downloaded source files are stored under:
+
+```text
+data/raw/
+```
+
 ### 2. Data transformation
 
 Scripts in `src/transform/` convert downloaded source data into the structures used by the website.
+
+The transformation layer includes public debt, population, Czech forecast and ECB interest-rate processing.
+
+For example:
 
 ```text
 src/transform/
 ├── debt.js
 ├── eu.js
-├── inspect-forecast.js
+├── interest-rates.js
 ├── mfcr.js
 ├── mfcr-forecast.js
 ├── overview.js
@@ -79,7 +117,29 @@ Processed data are stored in:
 data/processed/
 ```
 
-### 3. Static site generation
+The generated EU dataset combines the indicators required for rankings, comparisons and country summaries.
+
+ECB interest-rate history is also stored as a separate processed dataset for historical country charts.
+
+### 3. Validation
+
+Validation scripts in `src/validate/` check the processed datasets before deployment.
+
+Validation covers, among other things:
+
+- expected EU27 country coverage
+- country codes and identifiers
+- statistical values and periods
+- population data
+- ECB interest-rate series
+- ECB latest observations
+- interest-rate ranking consistency
+- generated country data
+- build output
+- sitemap contents
+- internal links
+
+### 4. Static site generation
 
 `src/build.js` generates the deployable website into:
 
@@ -87,9 +147,17 @@ data/processed/
 dist/
 ```
 
-The resulting site consists entirely of static files and can therefore be served by a standard web server or CDN without a Node.js application running in production.
+The resulting production site consists entirely of static files and can be served by a standard web server or CDN without a Node.js application running in production.
 
-Social media graphics are generated separately from the same processed data using the tools in `src/social/`.
+Important statistical values are prerendered into generated HTML where appropriate. JavaScript then provides interactive functionality such as charts, rankings, comparisons, maps and debt clocks.
+
+Processed datasets required by the browser are published under:
+
+```text
+dist/data/
+```
+
+The frontend loads these static JSON files directly rather than depending on a production API server.
 
 ## Project structure
 
@@ -117,6 +185,7 @@ Social media graphics are generated separately from the same processed data usin
 │   ├── app.js
 │   ├── compare.js
 │   ├── country.js
+│   ├── home-en.js
 │   ├── ranking.js
 │   ├── style.css
 │   └── *.html
@@ -132,6 +201,8 @@ Social media graphics are generated separately from the same processed data usin
 ```
 
 `social-output/` contains generated social media images and is excluded from Git.
+
+Raw downloaded datasets and local verification files can also be excluded from Git and recreated or supplied locally when needed.
 
 ## Requirements
 
@@ -154,7 +225,9 @@ Start the local development server:
 npm start
 ```
 
-The development server uses local API endpoints consumed by the frontend source files.
+The development server serves the frontend together with locally processed data.
+
+Production does not require this server. The production build uses static files generated into `dist/`.
 
 ## Updating data
 
@@ -164,7 +237,7 @@ Run the complete data update pipeline:
 npm run update
 ```
 
-This performs:
+The update process consists of:
 
 ```text
 fetch
@@ -182,16 +255,36 @@ The individual stages can also be run separately.
 npm run fetch
 ```
 
+This includes the ECB interest-rate import.
+
+The ECB import can also be run separately:
+
+```bash
+npm run fetch:interest-rates
+```
+
 ### Transform data
 
 ```bash
 npm run transform
 ```
 
+The ECB interest-rate transformation can also be run separately:
+
+```bash
+npm run transform:interest-rates
+```
+
 ### Validate processed data
 
 ```bash
 npm run validate:all
+```
+
+The ECB interest-rate validation can also be run separately:
+
+```bash
+npm run validate:interest-rates
 ```
 
 ## Production build
@@ -209,6 +302,8 @@ dist/
 ```
 
 The production build uses `https://publicdebt.eu` as the canonical site URL.
+
+The build generates or copies the required HTML, CSS, JavaScript, processed JSON data, country pages, embeds, SEO files and other static assets.
 
 ## Staging build
 
@@ -260,6 +355,12 @@ Several validation tools are included in the project.
 npm run validate:all
 ```
 
+### ECB interest-rate validation
+
+```bash
+npm run validate:interest-rates
+```
+
 ### Country data audit
 
 ```bash
@@ -278,7 +379,62 @@ npm run validate:build
 npm run validate:links
 ```
 
-The validators check processed data, generated country pages, language relationships, sitemap contents, metadata, expected output structure and internal links.
+The validators check processed data, generated country pages, language relationships, statistical rankings, sitemap contents, metadata, expected output structure and internal links.
+
+## Static data
+
+The browser-facing production datasets are generated into:
+
+```text
+dist/data/
+```
+
+They include:
+
+```text
+dist/data/
+├── overview.json
+├── eu.json
+├── interest-rates.json
+├── countries/
+└── populations/
+```
+
+Using static data files keeps the production architecture simple and avoids a runtime dependency on external statistical APIs.
+
+External data providers are contacted during the data pipeline rather than during normal visits to the production website.
+
+## SEO and static rendering
+
+PublicDebt.eu is generated as a static bilingual website.
+
+Country pages are generated for all 27 EU member states in both Czech and English.
+
+Important statistical values are included directly in generated HTML rather than existing only after client-side JavaScript execution.
+
+The production build also generates:
+
+- canonical URLs
+- language relationships
+- metadata
+- `robots.txt`
+- `sitemap.xml`
+
+This keeps the website usable as a static site while making important page content available directly in the generated HTML.
+
+## Site verification files
+
+Local webmaster verification files beginning with:
+
+```text
+web/seznam-*
+```
+
+are copied automatically to the root of `dist/` during the build when present.
+
+These files are intentionally excluded from Git because they are local site-verification credentials.
+
+If no matching file exists locally, the build continues normally.
 
 ## Analytics
 
@@ -301,6 +457,8 @@ Analytics are disabled in the staging build.
 
 The `.env` file is excluded from Git and should never be committed. See `.env.example` for the expected configuration.
 
+The frontend can also record selected interaction events, such as changes to ranking metrics and country chart metrics.
+
 ## Raw and processed data
 
 Downloaded source files are stored under:
@@ -321,7 +479,7 @@ Processed data used by the project are stored under:
 data/processed/
 ```
 
-Keeping the processed data in the repository provides a reproducible snapshot of the data used by the generated site.
+Keeping processed data in the repository provides a reproducible snapshot of the data used by the generated site.
 
 ## Languages
 
@@ -331,6 +489,58 @@ The website supports:
 - English (`/en/`)
 
 Country pages are generated for all 27 EU member states in both languages.
+
+Shared processed datasets are used by both language versions so that the underlying statistical values remain consistent.
+
+## Country pages
+
+Each EU country has a dedicated profile.
+
+Depending on the available data, country pages include:
+
+- total public debt
+- public debt as a percentage of GDP
+- public debt per capita
+- population
+- EU rankings
+- historical public debt as a percentage of GDP
+- historical total public debt in national currency
+- latest 10-year government bond yield
+- historical 10-year government bond yield
+- estimated debt clock
+- source and reporting-period information
+
+Historical public debt can be switched between debt-to-GDP and total public debt views.
+
+Total public debt is displayed in the country's national currency rather than being automatically converted to euros.
+
+## Rankings
+
+The EU ranking page supports multiple indicators, including:
+
+- public debt as a percentage of GDP
+- total public debt
+- public debt per capita
+- population
+- 10-year government bond yield
+
+For the bond-yield ranking, each country uses its own latest available ECB monthly observation.
+
+## Country comparison
+
+The comparison tool allows multiple EU countries to be viewed together.
+
+Historical comparison charts use a common starting period and stable country colours so that series remain visually consistent while the selected countries change.
+
+## Debt clocks
+
+PublicDebt.eu includes estimated debt clocks for all 27 EU countries.
+
+The debt-clock rate is derived from the change in public debt between reporting periods. It is an estimate of the rate at which public debt changed over that period, not a live feed of government borrowing transactions.
+
+The clock shown to a visitor starts when the page is loaded and accumulates the estimated change from that point.
+
+Negative values are supported when public debt decreased over the reference period.
 
 ## Embeds
 
@@ -343,13 +553,25 @@ The project includes standalone debt-clock embeds:
 
 These can be embedded independently of the main website.
 
+The embed supports multiple visual themes, including the PublicDebt.eu Blue & Gold theme, a dark theme and a light theme.
+
+## Interactive EU map
+
+The website includes an interactive EU map based on GISCO geographic data.
+
+The map visualises public debt as a percentage of GDP and provides direct access to individual country profiles.
+
+Only EU member states represented in the PublicDebt.eu dataset are rendered as data regions.
+
 ## Social graphics
 
-The project includes a data-driven generator for creating consistent social media graphics directly from the processed datasets.
+The project includes a data-driven generator for creating consistent social media and Open Graph graphics directly from processed datasets.
 
-The graphics use the same visual language as the website and are rendered deterministically from SVG to PNG.
+Generate graphics using:
 
-Statistical values, rankings, reporting periods and debt-clock rates are read from processed data rather than entered manually.
+```bash
+npm run social -- <preset>
+```
 
 Generated images are written to:
 
@@ -359,122 +581,51 @@ social-output/
 
 This directory is intentionally excluded from Git.
 
-### Generate a ranking graphic
+The graphics use the same visual language as the website and are rendered deterministically from SVG to PNG.
 
-The ranking preset generates a public-debt ranking based on the processed EU dataset:
+Statistical values, rankings, reporting periods and debt-clock rates are read from processed data rather than entered manually.
+
+### Ranking graphic
+
+Generate a public-debt ranking graphic with:
 
 ```bash
 npm run social -- ranking
 ```
 
-The output is written to:
+The ranking generator derives positions, values and reporting periods directly from processed EU data.
 
-```text
-social-output/ranking.png
-```
+A selected country can be highlighted in place or displayed separately when it falls outside the visible ranking range.
 
-The preset is stored in:
+### Debt-clock graphic
 
-```text
-src/social/presets/ranking.json
-```
-
-It can define:
-
-- metric
-- reporting period
-- number of displayed countries
-- ascending or descending order
-- optional highlighted country
-- platform
-- call to action
-
-For example:
-
-```json
-{
-  "layout": "ranking",
-  "platform": "linkedin",
-  "eyebrow": "EUROPEAN UNION",
-  "title": "Public debt ranking",
-  "subtitle": "Public debt as % of GDP",
-  "metric": "debt_percent_gdp",
-  "period": "latest",
-  "ranking": {
-    "limit": 10,
-    "order": "desc"
-  },
-  "highlight": {
-    "country": "CZ"
-  },
-  "cta": {
-    "label": "Explore all 27 EU countries →",
-    "url": "PUBLICDEBT.EU"
-  },
-  "source": "Eurostat"
-}
-```
-
-The generator automatically derives ranking positions, values and the current reporting period from the processed data.
-
-If the highlighted country is already part of the displayed ranking, it is highlighted directly in place.
-
-If it falls outside the displayed range, it is shown separately for context.
-
-### Generate a debt-clock graphic
-
-The debt-clock preset creates a social graphic showing the estimated rate of change in public debt for a selected EU country.
-
-Generate it with:
+Generate a debt-clock graphic with:
 
 ```bash
 npm run social -- debt-clock
 ```
 
-The output is written to:
+The graphic uses the processed `debt_clock` data for the selected country.
 
-```text
-social-output/debt-clock.png
-```
+The per-second rate is based on the change in public debt between two reporting periods rather than a live borrowing feed.
 
-The preset is stored in:
+### EU map graphic
 
-```text
-src/social/presets/debt-clock.json
-```
+The social generator includes an EU map layout using geographic data to create a data-driven choropleth of EU member states.
 
-For example:
+The map intentionally renders EU countries represented in the dataset rather than using a generic Europe basemap.
 
-```json
-{
-  "layout": "debt-clock",
-  "platform": "linkedin",
-  "country": "CZ",
-  "cta": {
-    "label": "Start the debt clock →",
-    "url": "PUBLICDEBT.EU"
-  },
-  "source": "Eurostat"
-}
-```
+### Open Graph image
 
-To generate the same graphic for another country, change only the country code:
+The project includes a generated Open Graph image used for link previews and other metadata-driven sharing contexts.
 
-```json
-{
-  "country": "IT"
-}
-```
+### Czech budget graphic
 
-The debt-clock graphic uses the processed `debt_clock` data for the selected country.
-
-The per-second rate is based on the change in public debt between two reporting periods. The graphic also shows how much that rate represents over 60 seconds.
-
-Negative values are displayed with a minus sign when public debt decreased over the reference period.
+A dedicated Czech budget layout is also available for presenting Czech fiscal data using the same design system as the rest of the project.
 
 ### Social graphics architecture
 
-Social graphics are assembled from reusable components and layouts:
+Social graphics are assembled from reusable components, layouts and presets:
 
 ```text
 src/social/
@@ -485,18 +636,18 @@ src/social/
 │   ├── header.js
 │   └── svg.js
 ├── layouts/
+│   ├── cz-budget.js
 │   ├── debt-clock.js
+│   ├── eu-map.js
+│   ├── og-image.js
 │   └── ranking.js
 ├── presets/
-│   ├── debt-clock.json
-│   ├── ranking.json
-│   └── reddit-ranking.json
 ├── data.js
 ├── generate.js
 └── theme.js
 ```
 
-The theme reads the main design variables directly from `web/style.css`, keeping generated graphics visually consistent with the website.
+The theme reads the main design variables from `web/style.css`, keeping generated graphics visually consistent with the website.
 
 ## Technology
 
@@ -520,11 +671,14 @@ PublicDebt.eu is built around a few principles:
 
 - use official and traceable data sources
 - keep the presentation understandable for non-specialists
-- make EU countries directly comparable
+- make all EU countries directly comparable
+- clearly distinguish observed data from forecasts and estimates
+- clearly identify statistical reporting periods
 - keep the production architecture simple
 - minimise runtime dependencies
+- avoid unnecessary live dependencies on external statistical APIs
 - make data processing reproducible
-- validate generated output before deployment
+- validate processed and generated output before deployment
 - keep generated visual content consistent with the website
 - derive published statistical graphics from processed source data rather than manually entering values
 

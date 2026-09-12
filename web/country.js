@@ -846,13 +846,15 @@ function createChart({
   container,
   series,
   unit,
-  xAxisLabel = t.year,
-  yAxisLabel = ""
+  xAxisLabel = t.year,  yAxisLabel = "",
+  prepared = false
 }) {
   const data =
-    cleanSeries(
-      series
-    );
+    prepared
+      ? series
+      : cleanSeries(
+          series
+        );
 
 
   container.innerHTML =
@@ -2137,7 +2139,8 @@ function startDebtClock(
 function render(
   eu,
   debtHistory,
-  populationHistory
+  populationHistory,
+  interestRates
 ) {
   const country =
     eu.countries.find(
@@ -2473,25 +2476,269 @@ function render(
 
   /* HISTORY */
 
+  const localCurrency =
+    debtHistory.country
+      ?.currency;
+
+  if (!localCurrency) {
+    throw new Error(
+      `Missing local currency for ${countryCode}.`
+    );
+  }
+
+  const debtChartContainer =
+    document.querySelector(
+      "#country-chart"
+    );
+
+  const debtChartDescription =
+    document.querySelector(
+      "#country-chart-description"
+    );
+
+  const debtChartControls =
+    [
+      ...document.querySelectorAll(
+        "[data-country-chart]"
+      )
+    ];
+
+  const totalDebtSeries =
+    debtHistory.history
+      .debt_national_currency_million
+      .map(
+        item => ({
+          ...item,
+
+          // Source data are millions.
+          // Country chart displays billions.
+          value:
+            Number(
+              item.value
+            ) /
+            1000
+        })
+      );
+
+  function renderDebtChart(
+    metric
+  ) {
+    const isTotal =
+      metric === "total";
+
+    const series =
+      isTotal
+        ? totalDebtSeries
+        : debtHistory.history
+            .debt_percent_gdp;
+
+    const unit =
+      isTotal
+        ? (
+            language === "en"
+              ? `${localCurrency} bn`
+              : `mld. ${localCurrency}`
+          )
+        : t.chartUnit;
+
+    const yAxisLabel =
+      isTotal
+        ? (
+            language === "en"
+              ? `Total public debt (${localCurrency} bn)`
+              : `Celkový veřejný dluh (mld. ${localCurrency})`
+          )
+        : t.chartAxis;
+
+    debtChartDescription.textContent =
+      isTotal
+        ? (
+            language === "en"
+              ? `Historical development of total public debt in ${countryName} in local currency.`
+              : `Historický vývoj celkového veřejného dluhu země ${countryName} v místní měně.`
+          )
+        : t.chartDescription(
+            countryName
+          );
+
+    createChart({
+      container:
+        debtChartContainer,
+
+      series,
+
+      unit,
+
+      xAxisLabel:
+        t.year,
+
+      yAxisLabel
+    });
+
+    for (
+      const control of
+      debtChartControls
+    ) {
+      const active =
+        control.dataset
+          .countryChart ===
+        metric;
+
+      control.classList.toggle(
+        "is-active",
+        active
+      );
+
+      control.setAttribute(
+        "aria-pressed",
+        active
+          ? "true"
+          : "false"
+      );
+    }
+  }
+
+  renderDebtChart(
+    "gdp"
+  );
+
+  for (
+    const control of
+    debtChartControls
+  ) {
+    control.addEventListener(
+      "click",
+      () => {
+        const metric =
+          control.dataset
+            .countryChart;
+
+        if (
+          metric !== "gdp" &&
+          metric !== "total"
+        ) {
+          return;
+        }
+
+        renderDebtChart(
+          metric
+        );
+
+        trackEvent(
+          "country_debt_chart_metric",
+          {
+            metric,
+            country:
+              countryCode,
+            language
+          }
+        );
+      }
+    );
+  }
+
+
+  /* INTEREST RATE HISTORY */
+
+  const interestRateCountry =
+    interestRates.countries
+      .find(
+        item =>
+          item.code ===
+          countryCode
+      );
+
+  if (
+    !interestRateCountry ||
+    !Array.isArray(
+      interestRateCountry.history
+    )
+  ) {
+    throw new Error(
+      `Missing ECB history for ${countryCode}.`
+    );
+  }
+
+  const interestRateHistory =
+    interestRateCountry.history
+      .map(
+        item => {
+          const match =
+            String(
+              item.period
+            ).match(
+              /^(\d{4})-(0[1-9]|1[0-2])$/
+            );
+
+          if (!match) {
+            return null;
+          }
+
+          const year =
+            Number(
+              match[1]
+            );
+
+          const month =
+            Number(
+              match[2]
+            );
+
+          const value =
+            Number(
+              item.value
+            );
+
+          if (
+            !Number.isFinite(
+              value
+            )
+          ) {
+            return null;
+          }
+
+          return {
+            period:
+              item.period,
+
+            value,
+
+            time:
+              year +
+              (
+                month -
+                1
+              ) /
+              12
+          };
+        }
+      )
+      .filter(Boolean);
+
   createChart({
     container:
       document.querySelector(
-        "#country-chart"
+        "#country-interest-rate-chart"
       ),
 
     series:
-      debtHistory.history
-        .debt_percent_gdp,
+      interestRateHistory,
 
     unit:
-      t.chartUnit,
+      "% p.a.",
 
     xAxisLabel:
       t.year,
 
     yAxisLabel:
-      t.chartAxis
+      language === "en"
+        ? "Yield (%)"
+        : "Výnos (%)",
+
+    prepared:
+      true
   });
+
 }
 
 
@@ -2511,18 +2758,24 @@ Promise.all([
 
   loadJSON(
     `/data/populations/${fileCode}.json`
+  ),
+
+  loadJSON(
+    "/data/interest-rates.json"
   )
 ])
   .then(
     ([
       eu,
       debtHistory,
-      populationHistory
+      populationHistory,
+      interestRates
     ]) => {
       render(
         eu,
         debtHistory,
-        populationHistory
+        populationHistory,
+        interestRates
       );
     }
   )

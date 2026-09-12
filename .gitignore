@@ -27,3 +27,10 @@ data/raw/*
 # Logs
 *.log
 npm-debug.log*
+# Local backup files
+*.pre-*
+*.bak
+*.backup
+
+# Seznam Webmaster verification
+web/seznam-*

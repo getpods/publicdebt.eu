@@ -424,7 +424,7 @@
     </section>
 
 
-    <section class="hero">
+    <section class="hero home-primary-stats">
 
       <div class="hero-card">
 
@@ -480,59 +480,10 @@
       </div>
 
 
-      <div class="hero-card forecast">
-
-        <p class="label">
-          Predikce MF ČR
-        </p>
-
-        <div
-          class="value"
-          id="forecast"
-        >
-          —
-        </div>
-
-        <div class="unit">
-          % HDP
-        </div>
-
-        <p
-          class="period"
-          id="forecast-year"
-        >
-          —
-        </p>
-
-      </div>
-
-    </section>
+      </section>
 
 
     <section class="secondary-stats home-secondary-stats">
-
-      <div class="secondary-stat-card">
-
-        <p class="secondary-stat-label">
-          Počet obyvatel
-        </p>
-
-        <strong
-          class="secondary-stat-value"
-          id="population"
-        >
-          —
-        </strong>
-
-        <p
-          class="secondary-stat-note"
-          id="population-date"
-        >
-          —
-        </p>
-
-      </div>
-
 
       <div class="secondary-stat-card">
 
@@ -580,14 +531,42 @@
 </section>
 
 
-    <p class="secondary-stats-explanation">
-      Dluh na obyvatele je statistický přepočet
-      celkového veřejného dluhu na počet obyvatel.
-      Nejde o osobní závazek jednotlivce.
-    </p>
+    <a
+      class="home-country-cta"
+      href="/cs/zeme/cesko/"
+    >
+
+      <div class="home-country-cta-copy">
+
+        <p class="eyebrow">
+          ČESKO PODROBNĚ
+        </p>
+
+        <strong>
+          Více dat o veřejném dluhu České republiky
+        </strong>
+
+        <p>
+          Historický vývoj, pořadí v EU, počet obyvatel,
+          výnos státních dluhopisů a další ukazatele.
+        </p>
+
+      </div>
+
+      <span class="home-country-cta-action">
+        Zobrazit detail Česka
+
+        <span aria-hidden="true">
+          →
+        </span>
+      </span>
+
+    </a>
 
 
-    <section class="section eu-discovery">
+
+
+    <section class="section eu-map-section">
 
       <div class="section-heading">
 
@@ -596,21 +575,130 @@
         </p>
 
         <h2>
-          Data pro všech 27 zemí EU
+          Veřejný dluh v celé EU
         </h2>
 
         <p>
-          Porovnejte veřejný dluh České republiky
-          s ostatními státy Evropské unie.
+          Prozkoumejte všech 27 zemí Evropské unie.
+          Barva mapy odpovídá aktuálnímu podílu
+          veřejného dluhu na HDP.
         </p>
 
       </div>
 
 
-      <div class="eu-discovery-grid">
+      <div class="eu-map-layout">
+
+        <div class="eu-map-card">
+
+          <div
+            class="eu-map"
+            id="eu-debt-map"
+            aria-label="Interaktivní mapa veřejného dluhu zemí Evropské unie"
+          >
+
+            <p class="loading">
+              Načítám mapu…
+            </p>
+
+          </div>
+
+
+          <div
+            class="eu-map-tooltip"
+            id="eu-map-tooltip"
+            hidden
+          >
+
+            <strong id="eu-map-tooltip-country">
+              —
+            </strong>
+
+            <span id="eu-map-tooltip-debt">
+              —
+            </span>
+
+            <small id="eu-map-tooltip-rank">
+              —
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <aside class="eu-map-side">
+
+          <div class="eu-map-legend">
+
+            <p class="eu-map-side-title">
+              Dluh / HDP
+            </p>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-1"></i>
+              <span>Méně než 40 %</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-2"></i>
+              <span>40–60 %</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-3"></i>
+              <span>60–80 %</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-4"></i>
+              <span>80–100 %</span>
+            </div>
+
+            <div class="eu-map-legend-row">
+              <i class="eu-map-level eu-map-level-5"></i>
+              <span>Více než 100 %</span>
+            </div>
+
+          </div>
+
+
+          <div class="eu-map-selected">
+
+            <p class="eu-map-side-title">
+              Vybraná země
+            </p>
+
+            <strong id="eu-map-selected-country">
+              Vyberte zemi
+            </strong>
+
+            <p id="eu-map-selected-value">
+              Kliknutím na zemi otevřete její detail.
+            </p>
+
+            <a
+              id="eu-map-selected-link"
+              href="/cs/zebricek/#zeme"
+            >
+              Zobrazit všechny země
+
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+
+      <div class="home-eu-links">
 
         <a
-          class="eu-discovery-card eu-discovery-primary"
+          class="eu-discovery-card"
           href="/cs/zebricek/"
         >
 
@@ -619,12 +707,12 @@
           </span>
 
           <strong>
-            Srovnání všech zemí EU
+            Žebříček zemí EU
           </strong>
 
           <p>
-            Dluh vůči HDP, celkový dluh,
-            počet obyvatel a dluh na obyvatele.
+            Seřaďte všech 27 zemí podle veřejného
+            dluhu a dalších ukazatelů.
           </p>
 
           <span class="eu-discovery-arrow">
@@ -636,7 +724,7 @@
 
         <a
           class="eu-discovery-card"
-          href="/cs/zeme/nemecko/"
+          href="/cs/zebricek/#zeme"
         >
 
           <span class="eu-discovery-kicker">
@@ -644,11 +732,12 @@
           </span>
 
           <strong>
-            Německo
+            Profily všech zemí
           </strong>
 
           <p>
-            Aktuální údaje a historický vývoj.
+            Otevřete detail veřejného dluhu
+            kterékoliv země Evropské unie.
           </p>
 
           <span class="eu-discovery-arrow">
@@ -660,43 +749,20 @@
 
         <a
           class="eu-discovery-card"
-          href="/cs/zeme/francie/"
+          href="/cs/porovnani/"
         >
 
           <span class="eu-discovery-kicker">
-            ZEMĚ
+            POROVNÁNÍ
           </span>
 
           <strong>
-            Francie
+            Porovnat země
           </strong>
 
           <p>
-            Aktuální údaje a historický vývoj.
-          </p>
-
-          <span class="eu-discovery-arrow">
-            →
-          </span>
-
-        </a>
-
-
-        <a
-          class="eu-discovery-card"
-          href="/cs/zeme/polsko/"
-        >
-
-          <span class="eu-discovery-kicker">
-            ZEMĚ
-          </span>
-
-          <strong>
-            Polsko
-          </strong>
-
-          <p>
-            Aktuální údaje a historický vývoj.
+            Sledujte vývoj několika zemí společně
+            v jednom grafu.
           </p>
 
           <span class="eu-discovery-arrow">
@@ -794,76 +860,10 @@
     </section>
 
 
-    <section class="section">
-
-      <div class="section-heading">
-
-        <p class="eyebrow">
-          VÝVOJ
-        </p>
-
-        <h2>
-          Hrubý veřejný dluh
-        </h2>
-
-        <p>
-          Vývoj dluhu sektoru vládních institucí
-          podle údajů Ministerstva financí ČR.
-        </p>
-
-      </div>
+    
 
 
-      <div class="chart-card">
-
-        <div
-          class="chart"
-          id="debt-chart"
-        >
-          <p class="loading">
-            Načítám data…
-          </p>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <section class="section">
-
-      <div class="section-heading">
-
-        <p class="eyebrow">
-          DLUH / HDP
-        </p>
-
-        <h2>
-          Dluh vůči HDP
-        </h2>
-
-        <p>
-          Podíl hrubého dluhu sektoru vládních
-          institucí na hrubém domácím produktu.
-        </p>
-
-      </div>
-
-
-      <div class="chart-card">
-
-        <div
-          class="chart"
-          id="debt-gdp-chart"
-        >
-          <p class="loading">
-            Načítám data…
-          </p>
-        </div>
-
-      </div>
-
-    </section>
+    
 
 
     <section class="section">
@@ -875,7 +875,8 @@
         </p>
 
         <h2>
-          Co čeká veřejné finance
+          Co čeká veřejné finance v roce
+          <span id="homepage-forecast-year">—</span>
         </h2>
 
         <p>
@@ -1088,8 +1089,9 @@
           </h3>
 
           <p>
-            Predikce dluhu a salda vychází
-            z makroekonomické predikce Ministerstva
+            Predikce dluhu a salda pro rok
+            <span id="methodology-forecast-year">—</span>
+            vychází z makroekonomické predikce Ministerstva
             financí ČR.
           </p>
 

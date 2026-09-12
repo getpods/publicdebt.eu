@@ -58,6 +58,13 @@ const euFile =
   );
 
 
+const interestRatesFile =
+  resolve(
+    processedDir,
+    "interest-rates.json"
+  );
+
+
 const countriesDir =
   resolve(
     processedDir,
@@ -511,6 +518,26 @@ const server =
           const data =
             await readFile(
               overviewFile,
+              "utf8"
+            );
+
+
+          sendJson(
+            res,
+            data
+          );
+
+          return;
+        }
+
+
+        if (
+          pathname ===
+            "/data/interest-rates.json"
+        ) {
+          const data =
+            await readFile(
+              interestRatesFile,
               "utf8"
             );
 

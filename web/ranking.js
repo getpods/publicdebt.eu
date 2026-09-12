@@ -79,6 +79,14 @@ const text = {
 
         description:
           "Statistický přepočet veřejného dluhu na jednoho obyvatele."
+      },
+
+      "interest-rate": {
+        label:
+          "Výnos 10letého dluhopisu",
+
+        description:
+          "Země jsou seřazeny podle posledního dostupného výnosu 10letého státního dluhopisu."
       }
     }
   },
@@ -151,6 +159,14 @@ const text = {
 
         description:
           "Statistical calculation of public debt per resident."
+      },
+
+      "interest-rate": {
+        label:
+          "10-year government bond yield",
+
+        description:
+          "Countries are ranked by the latest available 10-year government bond yield."
       }
     }
   }
@@ -196,6 +212,40 @@ const formatDate = value =>
       value
     )
   );
+
+
+
+const formatMonthPeriod = value => {
+  if (
+    !/^\d{4}-(0[1-9]|1[0-2])$/.test(
+      value ?? ""
+    )
+  ) {
+    return value ?? "—";
+  }
+
+  const [
+    year,
+    month
+  ] =
+    value.split(
+      "-"
+    );
+
+  return new Intl.DateTimeFormat(
+    locale,
+    {
+      month: "long",
+      year: "numeric"
+    }
+  ).format(
+    new Date(
+      Number(year),
+      Number(month) - 1,
+      1
+    )
+  );
+};
 
 
 async function loadJSON(
@@ -417,6 +467,43 @@ const metrics = {
       country =>
         country.rank
           .debt_per_capita_eur
+  },
+
+
+  "interest-rate": {
+    get label() {
+      return t.metrics[
+        "interest-rate"
+      ].label;
+    },
+
+    get description() {
+      return t.metrics[
+        "interest-rate"
+      ].description;
+    },
+
+    getValue:
+      country =>
+        country.interest_rate
+          .percent,
+
+    format:
+      value =>
+        `${new Intl.NumberFormat(
+          locale,
+          {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+          }
+        ).format(
+          value
+        )} %`,
+
+    rank:
+      country =>
+        country.rank
+          .interest_rate
   }
 };
 
@@ -811,6 +898,45 @@ loadEU()
                   data,
                   currentMetric
                 );
+
+                if (
+                  periodElement
+                ) {
+                  if (
+                    currentMetric ===
+                    "interest-rate"
+                  ) {
+                    const periods =
+                      data.periods
+                        ?.interest_rate ??
+                      [];
+
+                    periodElement.textContent =
+                      language === "en"
+                        ? `ECB · latest available month by country: ${
+                            periods
+                              .map(
+                                formatMonthPeriod
+                              )
+                              .join(", ") ||
+                            "—"
+                          }`
+                        : `ECB · poslední dostupný měsíc podle země: ${
+                            periods
+                              .map(
+                                formatMonthPeriod
+                              )
+                              .join(", ") ||
+                            "—"
+                          }`;
+                  } else {
+                    periodElement.textContent =
+                      t.debtPeriod(
+                        period,
+                        populationPeriod
+                      );
+                  }
+                }
               }
             );
           }

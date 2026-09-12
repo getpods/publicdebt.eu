@@ -557,7 +557,58 @@
 
     </section>
 
-    <section class="section country-interest-rate-section">
+    <section class="section country-debt-history-section">
+      <div class="section-heading">
+        <p class="eyebrow">
+          HISTORICAL DEVELOPMENT
+        </p>
+
+        <h2>
+          Public debt development
+        </h2>
+
+        <p id="country-chart-description">
+          Historical development of public debt relative to GDP.
+        </p>
+      </div>
+
+      <div class="chart-card">
+        <div
+          class="country-chart-controls"
+          role="group"
+          aria-label="Public debt history metric"
+        >
+          <button
+            class="country-chart-control is-active"
+            type="button"
+            data-country-chart="gdp"
+            aria-pressed="true"
+          >
+            Debt / GDP
+          </button>
+
+          <button
+            class="country-chart-control"
+            type="button"
+            data-country-chart="total"
+            aria-pressed="false"
+          >
+            Total debt
+          </button>
+        </div>
+
+        <div
+          class="chart"
+          id="country-chart"
+        >
+          <p class="loading">
+            Loading data…
+          </p>
+        </div>
+      </div>
+    </section>
+
+<section class="section country-interest-rate-section">
 
       <div class="section-heading">
 
@@ -632,41 +683,36 @@
 
     </section>
 
-
-    <section class="section">
-
+<section class="section country-interest-history-section">
       <div class="section-heading">
-
         <p class="eyebrow">
           HISTORICAL DEVELOPMENT
         </p>
 
         <h2>
-          Debt-to-GDP ratio
+          10-year government bond yield over time
         </h2>
 
-        <p id="country-chart-description">
-          Historical development of public debt relative to GDP.
+        <p>
+          Historical development of the harmonised monthly
+          long-term government bond yield.
         </p>
-
       </div>
 
-
       <div class="chart-card">
+        <p class="country-chart-meta">
+          Monthly average · ECB
+        </p>
 
         <div
           class="chart"
-          id="country-chart"
+          id="country-interest-rate-chart"
         >
-
           <p class="loading">
             Loading data…
           </p>
-
         </div>
-
       </div>
-
     </section>
 
 

@@ -549,7 +549,58 @@
 
     </section>
 
-    <section class="section country-interest-rate-section">
+    <section class="section country-debt-history-section">
+      <div class="section-heading">
+        <p class="eyebrow">
+          HISTORICKÝ VÝVOJ
+        </p>
+
+        <h2>
+          Vývoj veřejného dluhu
+        </h2>
+
+        <p id="country-chart-description">
+          Historický vývoj veřejného dluhu vůči HDP.
+        </p>
+      </div>
+
+      <div class="chart-card">
+        <div
+          class="country-chart-controls"
+          role="group"
+          aria-label="Ukazatel historického vývoje veřejného dluhu"
+        >
+          <button
+            class="country-chart-control is-active"
+            type="button"
+            data-country-chart="gdp"
+            aria-pressed="true"
+          >
+            Dluh / HDP
+          </button>
+
+          <button
+            class="country-chart-control"
+            type="button"
+            data-country-chart="total"
+            aria-pressed="false"
+          >
+            Celkový dluh
+          </button>
+        </div>
+
+        <div
+          class="chart"
+          id="country-chart"
+        >
+          <p class="loading">
+            Načítám data…
+          </p>
+        </div>
+      </div>
+    </section>
+
+<section class="section country-interest-rate-section">
 
       <div class="section-heading">
 
@@ -625,39 +676,36 @@
 
     </section>
 
-
-    <section class="section">
-
+<section class="section country-interest-history-section">
       <div class="section-heading">
-
         <p class="eyebrow">
           HISTORICKÝ VÝVOJ
         </p>
 
         <h2>
-          Dluh vůči HDP
+          Vývoj výnosu 10letého státního dluhopisu
         </h2>
 
-        <p id="country-chart-description">
-          Historický vývoj veřejného dluhu vůči HDP.
+        <p>
+          Historický vývoj harmonizovaného měsíčního
+          výnosu dlouhodobých státních dluhopisů.
         </p>
-
       </div>
 
-
       <div class="chart-card">
+        <p class="country-chart-meta">
+          Měsíční průměr · ECB
+        </p>
 
         <div
           class="chart"
-          id="country-chart"
+          id="country-interest-rate-chart"
         >
           <p class="loading">
             Načítám data…
           </p>
         </div>
-
       </div>
-
     </section>
 
 

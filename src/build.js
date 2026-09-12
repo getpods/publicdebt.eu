@@ -3,6 +3,7 @@ import {
   rm,
   copyFile,
   readFile,
+  readdir,
   writeFile
 } from "node:fs/promises";
 
@@ -1355,6 +1356,41 @@ for (
 
 
 /* ---------------------------------------------------------
+   SITE VERIFICATION FILES
+---------------------------------------------------------- */
+
+const webFiles =
+  await readdir(
+    webDir
+  );
+
+const seznamVerificationFiles =
+  webFiles.filter(
+    file =>
+      file.startsWith(
+        "seznam-"
+      )
+  );
+
+for (
+  const file of
+  seznamVerificationFiles
+) {
+  await copyFile(
+    resolve(
+      webDir,
+      file
+    ),
+
+    resolve(
+      distDir,
+      file
+    )
+  );
+}
+
+
+/* ---------------------------------------------------------
    HOMEPAGE APP
 --------------------------------------------------------- */
 
@@ -1836,6 +1872,23 @@ await copyFile(
   resolve(
     distDataDir,
     "eu.json"
+  )
+);
+
+
+/* ---------------------------------------------------------
+   INTEREST RATE DATA
+--------------------------------------------------------- */
+
+await copyFile(
+  resolve(
+    processedDir,
+    "interest-rates.json"
+  ),
+
+  resolve(
+    distDataDir,
+    "interest-rates.json"
   )
 );
 

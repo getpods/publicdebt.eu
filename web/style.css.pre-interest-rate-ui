@@ -376,16 +376,6 @@ body {
   gap: 18px;
 }
 
-/* Homepage: three compact secondary indicators */
-.home-secondary-stats {
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
-}
-
-
 .secondary-stat-card {
   min-height: 180px;
   padding: 28px 30px;
@@ -1518,112 +1508,6 @@ body {
 .country-secondary-stats {
   margin-top: 18px;
 }
-
-/* ---------------------------------------------------------
-   COUNTRY INTEREST RATE
---------------------------------------------------------- */
-
-.country-interest-rate-section {
-  margin-top: 70px;
-}
-
-.country-interest-rate-card {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 0.9fr)
-    minmax(0, 1.1fr);
-  overflow: hidden;
-  background:
-    linear-gradient(
-      135deg,
-      var(--pd-blue-softer) 0%,
-      #ffffff 55%,
-      var(--pd-yellow-soft) 100%
-    );
-  border: 1px solid var(--line);
-  border-top: 4px solid var(--pd-gold);
-  border-radius: var(--radius);
-  box-shadow:
-    0 14px 34px
-    rgba(11, 23, 57, 0.045);
-}
-
-.country-interest-rate-main {
-  min-height: 230px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.country-interest-rate-label {
-  margin: 0 0 18px;
-  color: var(--pd-blue-dark);
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.country-interest-rate-value-row {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.country-interest-rate-value {
-  color: var(--text);
-  font-size: clamp(
-    48px,
-    7vw,
-    72px
-  );
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-}
-
-.country-interest-rate-unit {
-  color: var(--muted);
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.country-interest-rate-period {
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.country-interest-rate-context {
-  padding: 30px;
-  background:
-    rgba(255, 255, 255, 0.64);
-  border-left:
-    1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.country-interest-rate-context strong {
-  color: var(--text);
-  font-size: 15px;
-}
-
-.country-interest-rate-context p {
-  max-width: 520px;
-  margin: 12px 0 18px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.65;
-}
-
-.country-interest-rate-context span {
-  color: var(--pd-blue-dark);
-  font-size: 12px;
-  font-weight: 700;
-}
-
 
 .country-ranking-link {
   display: flex;
@@ -3990,36 +3874,6 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
   }
 
 
-  .country-interest-rate-section {
-    margin-top:
-      60px;
-  }
-
-  .country-interest-rate-card {
-    grid-template-columns:
-      1fr;
-  }
-
-  .country-interest-rate-main {
-    min-height:
-      190px;
-
-    padding:
-      26px 22px;
-  }
-
-  .country-interest-rate-context {
-    padding:
-      26px 22px;
-
-    border-left:
-      0;
-
-    border-top:
-      1px solid var(--line);
-  }
-
-
   .section {
     margin-top:
       70px;
@@ -4317,25 +4171,3 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
     border-top: 1px solid #d7e3f4;
   }
 }
-
-@media (
-  max-width: 900px
-) {
-  .home-secondary-stats {
-    grid-template-columns:
-      repeat(
-        2,
-        minmax(0, 1fr)
-      );
-  }
-}
-
-@media (
-  max-width: 700px
-) {
-  .home-secondary-stats {
-    grid-template-columns:
-      1fr;
-  }
-}
-

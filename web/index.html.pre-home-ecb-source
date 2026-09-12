@@ -1273,35 +1273,6 @@
 
         </div>
 
-        <div class="source-row">
-
-          <div class="source-main">
-
-            <strong>
-              Evropská centrální banka
-            </strong>
-
-            <p>
-              Harmonizovaný tržní výnos státních dluhopisů
-              se zbytkovou splatností blízko 10 let.
-            </p>
-
-          </div>
-
-          <div class="source-meta">
-
-            <span class="source-code">
-              IRS
-            </span>
-
-            <span id="source-ecb-period">
-              —
-            </span>
-
-          </div>
-
-        </div>
-
       </div>
 
 
@@ -1321,8 +1292,7 @@
 
         <p>
           PublicDebt.eu zpracovává veřejně dostupná
-          data Ministerstva financí ČR, Eurostatu
-          a Evropské centrální banky.
+          data Ministerstva financí ČR a Eurostatu.
         </p>
 
         <p id="updated">

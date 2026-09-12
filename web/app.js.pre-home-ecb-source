@@ -2181,12 +2181,6 @@ function renderMethodology(
     );
 
 
-  const ecbPeriod =
-    document.querySelector(
-      "#source-ecb-period"
-    );
-
-
   const populationYear =
     document.querySelector(
       "#source-population-year"
@@ -2352,20 +2346,6 @@ function renderHomepageInterestRate(
 
   periodElement.textContent =
     `${formattedPeriod} · ECB`;
-
-
-  const sourceEcbPeriod =
-    document.querySelector(
-      "#source-ecb-period"
-    );
-
-
-  if (
-    sourceEcbPeriod
-  ) {
-    sourceEcbPeriod.textContent =
-      formattedPeriod;
-  }
 }
 
 

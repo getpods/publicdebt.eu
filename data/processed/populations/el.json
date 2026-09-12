@@ -10,7 +10,7 @@
     "source": "Eurostat",
     "indicator": "JAN",
     "indicator_label": "Population on 1 January - total",
-    "retrieved_at": "2026-09-06T18:52:52.602Z",
+    "retrieved_at": "2026-09-12T11:31:52.225Z",
     "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_gind?lang=en&geo=EL"
   },
   "latest": {

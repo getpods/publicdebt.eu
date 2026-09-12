@@ -707,128 +707,6 @@ function formatStaticNumber(
 }
 
 
-function formatStaticMonthPeriod(
-  period,
-  language
-) {
-  if (
-    typeof period !== "string" ||
-    !/^\d{4}-(0[1-9]|1[0-2])$/.test(
-      period
-    )
-  ) {
-    throw new Error(
-      `Invalid monthly period: ${period}`
-    );
-  }
-
-  const [
-    year,
-    month
-  ] =
-    period
-      .split("-")
-      .map(Number);
-
-  return new Intl.DateTimeFormat(
-    language === "en"
-      ? "en-GB"
-      : "cs-CZ",
-    {
-      month: "long",
-      year: "numeric",
-      timeZone: "UTC"
-    }
-  ).format(
-    new Date(
-      Date.UTC(
-        year,
-        month - 1,
-        1
-      )
-    )
-  );
-}
-
-
-function prerenderCzechHomepageSeo(
-  html,
-  eu
-) {
-  const czechia =
-    eu.countries.find(
-      country =>
-        country.code === "CZ"
-    );
-
-  if (!czechia) {
-    throw new Error(
-      "Czechia missing from eu.json"
-    );
-  }
-
-  const interestRate =
-    czechia.interest_rate;
-
-  if (
-    !interestRate ||
-    !Number.isFinite(
-      Number(
-        interestRate.percent
-      )
-    ) ||
-    typeof interestRate.period !== "string"
-  ) {
-    throw new Error(
-      "Missing Czech ECB interest-rate data"
-    );
-  }
-
-  const formattedRate =
-    new Intl.NumberFormat(
-      "cs-CZ",
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    ).format(
-      interestRate.percent
-    );
-
-  const formattedPeriod =
-    formatStaticMonthPeriod(
-      interestRate.period,
-      "cs"
-    );
-
-  let result =
-    html;
-
-  result =
-    replaceHtmlById(
-      result,
-      "home-interest-rate",
-      `${formattedRate} %`
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "home-interest-rate-period",
-      `${formattedPeriod} · ECB`
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "source-ecb-period",
-      formattedPeriod
-    );
-
-  return result;
-}
-
-
 async function prerenderCountrySeo(
   html,
   country,
@@ -916,59 +794,6 @@ async function prerenderCountrySeo(
       result,
       "country-total-debt-unit",
       debtUnit
-    );
-
-  const interestRate =
-    country.interest_rate;
-
-  if (
-    !interestRate ||
-    !Number.isFinite(
-      Number(
-        interestRate.percent
-      )
-    )
-  ) {
-    throw new Error(
-      `Missing ECB interest-rate SEO data for ${country.code}`
-    );
-  }
-
-  const interestRatePeriod =
-    formatStaticMonthPeriod(
-      interestRate.period,
-      language
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "country-interest-rate",
-      new Intl.NumberFormat(
-        language === "en"
-          ? "en-GB"
-          : "cs-CZ",
-        {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2
-        }
-      ).format(
-        interestRate.percent
-      )
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "country-interest-rate-period",
-      interestRatePeriod
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "country-source-interest-rate",
-      interestRatePeriod
     );
 
   result =
@@ -1278,13 +1103,6 @@ const homepageSource =
   );
 
 
-const prerenderedHomepage =
-  prerenderCzechHomepageSeo(
-    homepageSource,
-    eu
-  );
-
-
 await writeFile(
   resolve(
     csDir,
@@ -1292,7 +1110,7 @@ await writeFile(
   ),
 
   prepareHtml(
-    prerenderedHomepage
+    homepageSource
   ),
 
   "utf8"

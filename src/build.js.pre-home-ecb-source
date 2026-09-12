@@ -818,13 +818,6 @@ function prerenderCzechHomepageSeo(
       `${formattedPeriod} · ECB`
     );
 
-  result =
-    replaceHtmlById(
-      result,
-      "source-ecb-period",
-      formattedPeriod
-    );
-
   return result;
 }
 

@@ -751,84 +751,6 @@ function formatStaticMonthPeriod(
 }
 
 
-function prerenderCzechHomepageSeo(
-  html,
-  eu
-) {
-  const czechia =
-    eu.countries.find(
-      country =>
-        country.code === "CZ"
-    );
-
-  if (!czechia) {
-    throw new Error(
-      "Czechia missing from eu.json"
-    );
-  }
-
-  const interestRate =
-    czechia.interest_rate;
-
-  if (
-    !interestRate ||
-    !Number.isFinite(
-      Number(
-        interestRate.percent
-      )
-    ) ||
-    typeof interestRate.period !== "string"
-  ) {
-    throw new Error(
-      "Missing Czech ECB interest-rate data"
-    );
-  }
-
-  const formattedRate =
-    new Intl.NumberFormat(
-      "cs-CZ",
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    ).format(
-      interestRate.percent
-    );
-
-  const formattedPeriod =
-    formatStaticMonthPeriod(
-      interestRate.period,
-      "cs"
-    );
-
-  let result =
-    html;
-
-  result =
-    replaceHtmlById(
-      result,
-      "home-interest-rate",
-      `${formattedRate} %`
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "home-interest-rate-period",
-      `${formattedPeriod} · ECB`
-    );
-
-  result =
-    replaceHtmlById(
-      result,
-      "source-ecb-period",
-      formattedPeriod
-    );
-
-  return result;
-}
-
-
 async function prerenderCountrySeo(
   html,
   country,
@@ -1278,13 +1200,6 @@ const homepageSource =
   );
 
 
-const prerenderedHomepage =
-  prerenderCzechHomepageSeo(
-    homepageSource,
-    eu
-  );
-
-
 await writeFile(
   resolve(
     csDir,
@@ -1292,7 +1207,7 @@ await writeFile(
   ),
 
   prepareHtml(
-    prerenderedHomepage
+    homepageSource
   ),
 
   "utf8"

@@ -19,32 +19,59 @@ const text = {
     noData:
       "Data nejsou k dispozici.",
 
-    debtChartUnit:
-      "mld. Kč",
+    billion:
+      currency =>
+        `mld. ${currency}`,
 
-    debtChartAxis:
-      "Dluh (mld. Kč)",
+    perSecond:
+      currency =>
+        `${currency} / sekundu`,
 
-    debtGdpUnit:
+    rising:
+      "Dluh meziročně roste.",
+
+    falling:
+      "Dluh meziročně klesá.",
+
+    unchanged:
+      "Dluh je meziročně beze změny.",
+
+    clockMethod:
+      (
+        from,
+        to
+      ) =>
+        `Orientační průměr podle meziroční změny veřejného dluhu mezi ${from} a ${to}.`,
+
+    title:
+      country =>
+        `Veřejný dluh – ${country} | PublicDebt.eu`,
+
+    intro:
+      country =>
+        `Aktuální veřejný dluh země ${country}, jeho podíl na HDP a historický vývoj.`,
+
+    chartDescription:
+      country =>
+        `Historický vývoj veřejného dluhu země ${country} vůči HDP.`,
+
+    chartUnit:
       "% HDP",
 
-    debtGdpAxis:
+    chartAxis:
       "Dluh / HDP (%)",
 
-    yearPrefix:
-      "rok",
+    populationDate:
+      value =>
+        `k ${value}`,
 
-    populationPrefix:
-      "k",
+    populationSource:
+      year =>
+        `k 1. 1. ${year}`,
 
-    sourceLatestPrefix:
-      "poslední údaj",
-
-    processedPrefix:
-      "Data zpracována",
-
-    processedSourcesPrefix:
-      "Výsledná data byla zpracována",
+    updated:
+      value =>
+        `Data zpracována ${value}`,
 
     copied:
       "Zkopírováno",
@@ -53,20 +80,16 @@ const text = {
       "Kopírovat kód",
 
     iframeTitle:
-      "Veřejný dluh Česka – PublicDebt.eu",
+      "Veřejný dluh – PublicDebt.eu",
+
+    embedPath:
+      "/embed/cs/debt-clock/",
 
     errorEyebrow:
       "CHYBA",
 
     errorTitle:
-      "Data se nepodařilo načíst.",
-
-    euPosition:
-      (
-        above,
-        below
-      ) =>
-        `Vyšší dluh vůči HDP má ${above} zemí EU, nižší ${below}.`
+      "Data se nepodařilo načíst."
   },
 
 
@@ -77,32 +100,59 @@ const text = {
     noData:
       "Data are not available.",
 
-    debtChartUnit:
-      "CZK bn",
+    billion:
+      currency =>
+        `${currency} bn`,
 
-    debtChartAxis:
-      "Debt (CZK bn)",
+    perSecond:
+      currency =>
+        `${currency} / second`,
 
-    debtGdpUnit:
+    rising:
+      "Public debt is rising year on year.",
+
+    falling:
+      "Public debt is falling year on year.",
+
+    unchanged:
+      "Public debt is unchanged year on year.",
+
+    clockMethod:
+      (
+        from,
+        to
+      ) =>
+        `Approximate average based on the year-on-year change in public debt between ${from} and ${to}.`,
+
+    title:
+      country =>
+        `Public debt – ${country} | PublicDebt.eu`,
+
+    intro:
+      country =>
+        `Current public debt of ${country}, its debt-to-GDP ratio and historical development.`,
+
+    chartDescription:
+      country =>
+        `Historical development of public debt in ${country} relative to GDP.`,
+
+    chartUnit:
       "% of GDP",
 
-    debtGdpAxis:
+    chartAxis:
       "Debt / GDP (%)",
 
-    yearPrefix:
-      "year",
+    populationDate:
+      value =>
+        `as of ${value}`,
 
-    populationPrefix:
-      "as of",
+    populationSource:
+      year =>
+        `1 January ${year}`,
 
-    sourceLatestPrefix:
-      "latest observation",
-
-    processedPrefix:
-      "Data processed",
-
-    processedSourcesPrefix:
-      "Final data processed",
+    updated:
+      value =>
+        `Data processed ${value}`,
 
     copied:
       "Copied",
@@ -111,20 +161,16 @@ const text = {
       "Copy code",
 
     iframeTitle:
-      "Public debt of Czechia – PublicDebt.eu",
+      "Public debt – PublicDebt.eu",
+
+    embedPath:
+      "/embed/en/debt-clock/",
 
     errorEyebrow:
       "ERROR",
 
     errorTitle:
-      "Data could not be loaded.",
-
-    euPosition:
-      (
-        above,
-        below
-      ) =>
-        `${above} EU countries have a higher debt-to-GDP ratio and ${below} have a lower one.`
+      "Data could not be loaded."
   }
 };
 
@@ -210,6 +256,63 @@ const formatPopulationDate = value =>
   );
 
 
+function formatSignedInteger(
+  value
+) {
+  const rounded =
+    Math.round(
+      value
+    );
+
+
+  if (
+    rounded > 0
+  ) {
+    return formatInteger(
+      rounded
+    );
+  }
+
+
+  if (
+    rounded < 0
+  ) {
+    return `−${formatInteger(
+      Math.abs(
+        rounded
+      )
+    )}`;
+  }
+
+
+  return "0";
+}
+
+
+
+/* ---------------------------------------------------------
+   COUNTRY
+--------------------------------------------------------- */
+
+const countryCode =
+  document.body.dataset
+    .countryCode;
+
+
+if (
+  !countryCode
+) {
+  throw new Error(
+    "Missing country code."
+  );
+}
+
+
+const fileCode =
+  countryCode
+    .toLowerCase();
+
+
 
 /* ---------------------------------------------------------
    DATA
@@ -277,169 +380,57 @@ async function loadJSON(
 }
 
 
-function loadOverview() {
-  return loadJSON(
-    "/data/overview.json"
-  );
-}
-
-
-function loadEU() {
-  return loadJSON(
-    "/data/eu.json"
-  );
-}
-
-
 
 /* ---------------------------------------------------------
-   DEBT CLOCK
+   EMBED BUILDER
 --------------------------------------------------------- */
 
-function startDebtClock(
-  data
-) {
-  const rateElement =
-    document.querySelector(
-      "#debt-clock-rate"
-    );
-
-
-  const valueElement =
-    document.querySelector(
-      "#debt-clock-value"
-    );
-
-
-  const rate =
-    Number(
-      data?.debt_clock
-        ?.czk_per_second
-    );
-
-
-  if (
-    !rateElement ||
-    !valueElement
-  ) {
-    return;
-  }
-
-
-  if (
-    !Number.isFinite(
-      rate
-    )
-  ) {
-    rateElement.textContent =
-      "—";
-
-    valueElement.textContent =
-      "0";
-
-    return;
-  }
-
-
-  rateElement.textContent =
-    formatInteger(
-      rate
-    );
-
-
-  valueElement.textContent =
-    "0";
-
-
-  const startedAt =
-    performance.now();
-
-
-  function frame(
-    now
-  ) {
-    const elapsedSeconds =
-      (
-        now -
-        startedAt
-      ) /
-      1000;
-
-
-    const accumulated =
-      rate *
-      elapsedSeconds;
-
-
-    valueElement.textContent =
-      formatInteger(
-        accumulated
-      );
-
-
-    requestAnimationFrame(
-      frame
-    );
-  }
-
-
-  requestAnimationFrame(
-    frame
-  );
-}
-
-
-
-/* ---------------------------------------------------------
-   HOMEPAGE EMBED BUILDER
---------------------------------------------------------- */
-
-function setupHomepageEmbedBuilder() {
+function setupEmbedBuilder() {
   const toggle =
     document.querySelector(
-      "#homepage-embed-toggle"
+      "#country-embed-toggle"
     );
 
 
   const panel =
     document.querySelector(
-      "#homepage-embed-panel"
+      "#country-embed-panel"
     );
 
 
   const themeSelect =
     document.querySelector(
-      "#homepage-embed-theme"
+      "#country-embed-theme"
     );
 
 
   const widthSelect =
     document.querySelector(
-      "#homepage-embed-width"
+      "#country-embed-width"
     );
 
 
   const previewWrapper =
     document.querySelector(
-      "#homepage-embed-preview-wrapper"
+      "#country-embed-preview-wrapper"
     );
 
 
   const preview =
     document.querySelector(
-      "#homepage-embed-preview"
+      "#country-embed-preview"
     );
 
 
   const codeElement =
     document.querySelector(
-      "#homepage-embed-code"
+      "#country-embed-code"
     );
 
 
   const copyButton =
     document.querySelector(
-      "#homepage-embed-copy"
+      "#country-embed-copy"
     );
 
 
@@ -457,13 +448,6 @@ function setupHomepageEmbedBuilder() {
   }
 
 
-  function getEmbedLanguage() {
-    return language === "en"
-      ? "en"
-      : "cs";
-  }
-
-
   function getPublicEmbedUrl() {
     const theme =
       themeSelect.value;
@@ -471,8 +455,9 @@ function setupHomepageEmbedBuilder() {
 
     return (
       "https://publicdebt.eu" +
-      `/embed/${getEmbedLanguage()}/debt-clock/` +
-      `?country=CZ&theme=${theme}`
+      t.embedPath +
+      `?country=${countryCode}` +
+      `&theme=${theme}`
     );
   }
 
@@ -484,8 +469,9 @@ function setupHomepageEmbedBuilder() {
 
     return (
       window.location.origin +
-      `/embed/${getEmbedLanguage()}/debt-clock/` +
-      `?country=CZ&theme=${theme}`
+      t.embedPath +
+      `?country=${countryCode}` +
+      `&theme=${theme}`
     );
   }
 
@@ -597,7 +583,9 @@ function setupHomepageEmbedBuilder() {
         );
 
 
-      if (icon) {
+      if (
+        icon
+      ) {
         icon.textContent =
           willOpen
             ? "−"
@@ -611,8 +599,8 @@ function setupHomepageEmbedBuilder() {
         trackEvent(
           "embed_open",
           {
-            country: "CZ",
-            location: "homepage",
+            country: countryCode,
+            location: "country",
             language
           }
         );
@@ -662,8 +650,8 @@ function setupHomepageEmbedBuilder() {
       trackEvent(
         "embed_copy",
         {
-          country: "CZ",
-          location: "homepage",
+          country: countryCode,
+          location: "country",
           theme: themeSelect.value,
           width: widthSelect.value,
           language
@@ -704,27 +692,21 @@ function periodToNumber(
     );
 
 
-  if (!match) {
+  if (
+    !match
+  ) {
     return NaN;
   }
 
 
-  const year =
+  return (
     Number(
       match[1]
-    );
-
-
-  const quarter =
-    Number(
-      match[2]
-    );
-
-
-  return (
-    year +
+    ) +
     (
-      quarter -
+      Number(
+        match[2]
+      ) -
       1
     ) /
     4
@@ -867,11 +849,6 @@ function createChart({
   xAxisLabel = t.year,
   yAxisLabel = ""
 }) {
-  if (!container) {
-    return;
-  }
-
-
   const data =
     cleanSeries(
       series
@@ -1055,7 +1032,7 @@ function createChart({
 
 
   const gradientId =
-    `chart-area-${Math.random()
+    `country-area-${Math.random()
       .toString(36)
       .slice(2)}`;
 
@@ -1261,8 +1238,6 @@ function createChart({
   }
 
 
-  /* X AXIS */
-
   const axisY =
     height -
     margin.bottom;
@@ -1322,48 +1297,6 @@ function createChart({
       xForTime(
         year
       );
-
-
-    const tick =
-      document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "line"
-      );
-
-
-    tick.setAttribute(
-      "x1",
-      xx
-    );
-
-
-    tick.setAttribute(
-      "x2",
-      xx
-    );
-
-
-    tick.setAttribute(
-      "y1",
-      axisY
-    );
-
-
-    tick.setAttribute(
-      "y2",
-      axisY +
-      6
-    );
-
-
-    tick.classList.add(
-      "chart-axis"
-    );
-
-
-    svg.appendChild(
-      tick
-    );
 
 
     const label =
@@ -1535,14 +1468,14 @@ function createChart({
     ];
 
 
-  const areaPath =
+  const area =
     document.createElementNS(
       "http://www.w3.org/2000/svg",
       "path"
     );
 
 
-  const areaCommands = [
+  const commands = [
     `M ${firstPoint.x} ${axisY}`,
 
     `L ${firstPoint.x} ${firstPoint.y}`,
@@ -1562,31 +1495,31 @@ function createChart({
   ];
 
 
-  areaPath.setAttribute(
+  area.setAttribute(
     "d",
-    areaCommands.join(
+    commands.join(
       " "
     )
   );
 
 
-  areaPath.setAttribute(
+  area.setAttribute(
     "fill",
     `url(#${gradientId})`
   );
 
 
-  areaPath.classList.add(
+  area.classList.add(
     "chart-area"
   );
 
 
   svg.appendChild(
-    areaPath
+    area
   );
 
 
-  /* MAIN LINE */
+  /* LINE */
 
   const polyline =
     document.createElementNS(
@@ -1618,7 +1551,7 @@ function createChart({
   );
 
 
-  /* TOOLTIP */
+  /* HOVER */
 
   const tooltip =
     document.createElement(
@@ -1634,7 +1567,7 @@ function createChart({
     true;
 
 
-  let hideTooltipTimer =
+  let hideTimer =
     null;
 
 
@@ -1648,14 +1581,14 @@ function createChart({
 
   function cancelHide() {
     if (
-      hideTooltipTimer
+      hideTimer
     ) {
       clearTimeout(
-        hideTooltipTimer
+        hideTimer
       );
 
 
-      hideTooltipTimer =
+      hideTimer =
         null;
     }
   }
@@ -1697,7 +1630,7 @@ function createChart({
     cancelHide();
 
 
-    hideTooltipTimer =
+    hideTimer =
       setTimeout(
         hideTooltip,
         250
@@ -1935,22 +1868,6 @@ function createChart({
           svg.getBoundingClientRect();
 
 
-        const left =
-          (
-            pointX /
-            width
-          ) *
-          rect.width;
-
-
-        const top =
-          (
-            pointY /
-            height
-          ) *
-          rect.height;
-
-
         tooltip.innerHTML = `
           <strong>
             ${item.period}
@@ -1965,11 +1882,23 @@ function createChart({
 
 
         tooltip.style.left =
-          `${left}px`;
+          `${
+            (
+              pointX /
+              width
+            ) *
+            rect.width
+          }px`;
 
 
         tooltip.style.top =
-          `${top}px`;
+          `${
+            (
+              pointY /
+              height
+            ) *
+            rect.height
+          }px`;
 
 
         tooltip.hidden =
@@ -2027,346 +1956,178 @@ function createChart({
 
 
 /* ---------------------------------------------------------
-   CZECHIA IN THE EU
+   DEBT CLOCK
 --------------------------------------------------------- */
 
-function renderEUPosition(
-  data
-) {
-  const czechia =
-    data.countries?.find(
-      country =>
-        country.code ===
-        "CZ"
-    );
-
-
-  if (!czechia) {
-    return;
-  }
-
-
-  const rankElement =
-    document.querySelector(
-      "#eu-rank"
-    );
-
-
-  const debtElement =
-    document.querySelector(
-      "#eu-debt-gdp"
-    );
-
-
-  const textElement =
-    document.querySelector(
-      "#eu-position-text"
-    );
-
-
-  const rank =
-    Number(
-      czechia.rank
-        ?.debt_percent_gdp
-    );
-
-
-  const debt =
-    Number(
-      czechia.debt
-        ?.percent_gdp
-    );
-
-
-  if (
-    rankElement &&
-    Number.isFinite(
-      rank
-    )
-  ) {
-    rankElement.textContent =
-      `${rank}.`;
-  }
-
-
-  if (
-    debtElement &&
-    Number.isFinite(
-      debt
-    )
-  ) {
-    debtElement.textContent =
-      formatNumber(
-        debt
-      );
-  }
-
-
-  if (
-    textElement &&
-    Number.isFinite(
-      rank
-    )
-  ) {
-    const above =
-      rank -
-      1;
-
-
-    const below =
-      data.count -
-      rank;
-
-
-    textElement.textContent =
-      t.euPosition(
-        above,
-        below
-      );
-  }
-}
-
-
-
-/* ---------------------------------------------------------
-   METHODOLOGY + SOURCES
---------------------------------------------------------- */
-
-function renderMethodology(
-  data
+function startDebtClock(
+  debtHistory
 ) {
   const clock =
-    data.debt_clock;
-
-
-  const clockPeriodFrom =
-    document.querySelector(
-      "#clock-period-from"
-    );
-
-
-  const clockPeriodTo =
-    document.querySelector(
-      "#clock-period-to"
-    );
+    debtHistory?.debt_clock;
 
 
   if (
-    clockPeriodFrom &&
-    clock?.period_from
-  ) {
-    clockPeriodFrom.textContent =
-      clock.period_from;
-  }
-
-
-  if (
-    clockPeriodTo &&
-    clock?.period_to
-  ) {
-    clockPeriodTo.textContent =
-      clock.period_to;
-  }
-
-
-  const mfcrPeriod =
-    document.querySelector(
-      "#source-mfcr-period"
-    );
-
-
-  const eurostatPeriod =
-    document.querySelector(
-      "#source-eurostat-period"
-    );
-
-
-  const ecbPeriod =
-    document.querySelector(
-      "#source-ecb-period"
-    );
-
-
-  const populationYear =
-    document.querySelector(
-      "#source-population-year"
-    );
-
-
-  const forecastYear =
-    document.querySelector(
-      "#source-forecast-year"
-    );
-
-
-  const sourcesUpdated =
-    document.querySelector(
-      "#sources-updated"
-    );
-
-
-  if (
-    mfcrPeriod
-  ) {
-    mfcrPeriod.textContent =
-      `${t.sourceLatestPrefix} ${data.latest.period}`;
-  }
-
-
-  if (
-    eurostatPeriod
-  ) {
-    eurostatPeriod.textContent =
-      `${t.sourceLatestPrefix} ${data.latest.period}`;
-  }
-
-
-  if (
-    populationYear &&
-    data.population?.year
-  ) {
-    populationYear.textContent =
-      language === "en"
-        ? `1 January ${data.population.year}`
-        : `k 1. 1. ${data.population.year}`;
-  }
-
-
-  if (
-    forecastYear
-  ) {
-    forecastYear.textContent =
-      `${t.yearPrefix} ${data.forecast.year}`;
-  }
-
-
-  if (
-    sourcesUpdated
-  ) {
-    sourcesUpdated.textContent =
-      `${t.processedSourcesPrefix} ${formatDate(
-        data.generated_at
-      )}.`;
-  }
-}
-
-
-
-function renderHomepageInterestRate(
-  eu
-) {
-  const valueElement =
-    document.querySelector(
-      "#home-interest-rate"
-    );
-
-  const periodElement =
-    document.querySelector(
-      "#home-interest-rate-period"
-    );
-
-
-  if (
-    !valueElement ||
-    !periodElement
+    !clock
   ) {
     return;
   }
 
 
-  const czechia =
-    eu.countries?.find(
-      country =>
-        country.code === "CZ"
+  const rate =
+    Number(
+      clock.amount_per_second
     );
 
 
-  const interestRate =
-    czechia?.interest_rate;
-
-
   if (
-    !interestRate ||
     !Number.isFinite(
-      Number(
-        interestRate.percent
-      )
-    ) ||
-    !/^\d{4}-(0[1-9]|1[0-2])$/.test(
-      interestRate.period ?? ""
+      rate
     )
   ) {
-    valueElement.textContent =
-      "—";
-
-    periodElement.textContent =
-      "—";
-
     return;
   }
 
 
-  const formattedRate =
-    new Intl.NumberFormat(
-      "cs-CZ",
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    ).format(
-      interestRate.percent
+  const currency =
+    language === "en"
+      ? (
+          clock.currency ??
+          clock.currency_label
+        )
+      : (
+          clock.currency_label ??
+          clock.currency
+        );
+
+
+  const rateElement =
+    document.querySelector(
+      "#country-debt-clock-rate"
     );
 
 
-  const [
-    year,
-    month
-  ] =
-    interestRate.period
-      .split("-")
-      .map(Number);
+  const rateUnitElement =
+    document.querySelector(
+      "#country-debt-clock-rate-unit"
+    );
 
 
-  const formattedPeriod =
-    new Intl.DateTimeFormat(
-      "cs-CZ",
-      {
-        month: "long",
-        year: "numeric",
-        timeZone: "UTC"
-      }
-    ).format(
-      new Date(
-        Date.UTC(
-          year,
-          month - 1,
-          1
-        )
-      )
+  const valueElement =
+    document.querySelector(
+      "#country-debt-clock-value"
+    );
+
+
+  const valueUnitElement =
+    document.querySelector(
+      "#country-debt-clock-value-unit"
+    );
+
+
+  const trendElement =
+    document.querySelector(
+      "#country-debt-clock-trend"
+    );
+
+
+  const methodElement =
+    document.querySelector(
+      "#country-debt-clock-method"
+    );
+
+
+  if (
+    !rateElement ||
+    !rateUnitElement ||
+    !valueElement ||
+    !valueUnitElement ||
+    !trendElement ||
+    !methodElement
+  ) {
+    return;
+  }
+
+
+  rateElement.textContent =
+    formatSignedInteger(
+      rate
+    );
+
+
+  rateUnitElement.textContent =
+    t.perSecond(
+      currency
     );
 
 
   valueElement.textContent =
-    `${formattedRate} %`;
+    "0";
 
 
-  periodElement.textContent =
-    `${formattedPeriod} · ECB`;
-
-
-  const sourceEcbPeriod =
-    document.querySelector(
-      "#source-ecb-period"
-    );
+  valueUnitElement.textContent =
+    currency;
 
 
   if (
-    sourceEcbPeriod
+    rate > 0
   ) {
-    sourceEcbPeriod.textContent =
-      formattedPeriod;
+    trendElement.textContent =
+      t.rising;
+  } else if (
+    rate < 0
+  ) {
+    trendElement.textContent =
+      t.falling;
+  } else {
+    trendElement.textContent =
+      t.unchanged;
   }
+
+
+  methodElement.textContent =
+    t.clockMethod(
+      clock.period_from,
+      clock.period_to
+    );
+
+
+  const startedAt =
+    performance.now();
+
+
+  function frame(
+    now
+  ) {
+    const elapsedSeconds =
+      (
+        now -
+        startedAt
+      ) /
+      1000;
+
+
+    const accumulated =
+      rate *
+      elapsedSeconds;
+
+
+    valueElement.textContent =
+      formatSignedInteger(
+        accumulated
+      );
+
+
+    requestAnimationFrame(
+      frame
+    );
+  }
+
+
+  requestAnimationFrame(
+    frame
+  );
 }
+
 
 
 /* ---------------------------------------------------------
@@ -2374,261 +2135,277 @@ function renderHomepageInterestRate(
 --------------------------------------------------------- */
 
 function render(
-  data
+  eu,
+  debtHistory,
+  populationHistory
 ) {
-  const latest =
-    data.latest;
+  const country =
+    eu.countries.find(
+      item =>
+        item.code ===
+        countryCode
+    );
 
 
-  const forecast =
-    data.forecast;
+  if (
+    !country
+  ) {
+    throw new Error(
+      `Country ${countryCode} was not found.`
+    );
+  }
 
 
-  document.querySelector(
-    "#debt"
-  ).textContent =
-    formatNumber(
-      latest.debt
-        .czk_billion
+  const detailedCountry =
+    debtHistory?.country;
+
+
+  const latestDebt =
+    debtHistory?.latest
+      ?.debt;
+
+
+  const currency =
+    detailedCountry
+      ?.currency;
+
+
+  if (
+    !latestDebt ||
+    !currency
+  ) {
+    throw new Error(
+      `Detailed debt data are missing for ${countryCode}.`
+    );
+  }
+
+
+  const countryName =
+    language === "en"
+      ? country.name
+      : country.name_cs;
+
+
+  document.title =
+    t.title(
+      countryName
     );
 
 
   document.querySelector(
-    "#period"
+    "#country-title"
   ).textContent =
-    latest.period;
+    countryName;
 
 
   document.querySelector(
-    "#debt-gdp"
+    "#country-intro"
+  ).textContent =
+    t.intro(
+      countryName
+    );
+
+
+  /* TOTAL DEBT */
+
+  const nationalDebtMillion =
+    Number(
+      latestDebt
+        .national_currency
+    );
+
+
+  if (
+    !Number.isFinite(
+      nationalDebtMillion
+    )
+  ) {
+    throw new Error(
+      `Invalid national currency debt for ${countryCode}.`
+    );
+  }
+
+
+  const nationalDebtBillion =
+    nationalDebtMillion /
+    1000;
+
+
+  document.querySelector(
+    "#country-total-debt"
   ).textContent =
     formatNumber(
-      latest.debt
+      nationalDebtBillion
+    );
+
+
+  const currencyLabel =
+    language === "en"
+      ? (
+          currency.code ??
+          currency.label
+        )
+      : currency.label;
+
+
+  document.querySelector(
+    "#country-total-debt-unit"
+  ).textContent =
+    t.billion(
+      currencyLabel
+    );
+
+
+  /* DEBT / GDP */
+
+  document.querySelector(
+    "#country-debt-gdp"
+  ).textContent =
+    formatNumber(
+      country.debt
         .percent_gdp
     );
 
 
   document.querySelector(
-    "#period-gdp"
+    "#country-period"
   ).textContent =
-    latest.period;
+    country.debt
+      .period;
+
+
+  /* RANK */
+
+  document.querySelector(
+    "#country-rank"
+  ).textContent =
+    `${country.rank.debt_percent_gdp}.`;
+
+
+  /* POPULATION */
+
+  document.querySelector(
+    "#country-population"
+  ).textContent =
+    formatInteger(
+      country.population
+        .value
+    );
 
 
   document.querySelector(
-    "#forecast"
+    "#country-population-date"
   ).textContent =
-    formatNumber(
-      forecast
-        .debt_percent_gdp
-    );
-
-
-  document.querySelector(
-    "#forecast-year"
-  ).textContent =
-    `${t.yearPrefix} ${forecast.year}`;
-
-
-  const populationElement =
-    document.querySelector(
-      "#population"
-    );
-
-
-  const populationDateElement =
-    document.querySelector(
-      "#population-date"
-    );
-
-
-  const debtPerCapitaElement =
-    document.querySelector(
-      "#debt-per-capita"
-    );
-
-
-  if (
-    populationElement &&
-    Number.isFinite(
-      Number(
-        data.population
-          ?.value
+    t.populationDate(
+      formatPopulationDate(
+        country.population
+          .date
       )
-    )
-  ) {
-    populationElement.textContent =
-      formatInteger(
-        data.population
-          .value
-      );
-  }
+    );
 
 
-  if (
-    populationDateElement &&
-    data.population?.date
-  ) {
-    populationDateElement.textContent =
-      language === "en"
-        ? `as of ${formatPopulationDate(
-            data.population.date
-          )}`
-        : `k ${formatPopulationDate(
-            data.population.date
-          )}`;
-  }
+  /* DEBT PER CAPITA */
+
+  document.querySelector(
+    "#country-debt-per-capita"
+  ).textContent =
+    formatInteger(
+      country.debt_per_capita
+        .eur
+    );
 
 
-  if (
-    debtPerCapitaElement &&
-    Number.isFinite(
-      Number(
-        data.debt_per_capita
-          ?.czk
+  /* EU RANKINGS */
+
+  document.querySelector(
+    "#rank-gdp"
+  ).textContent =
+    `${country.rank.debt_percent_gdp}.`;
+
+
+  document.querySelector(
+    "#rank-total"
+  ).textContent =
+    `${country.rank.debt_euro}.`;
+
+
+  document.querySelector(
+    "#rank-per-capita"
+  ).textContent =
+    `${country.rank.debt_per_capita_eur}.`;
+
+
+  /* CHART */
+
+  document.querySelector(
+    "#country-chart-description"
+  ).textContent =
+    t.chartDescription(
+      countryName
+    );
+
+
+  /* SOURCES */
+
+  document.querySelector(
+    "#country-source-period"
+  ).textContent =
+    country.debt
+      .period;
+
+
+  document.querySelector(
+    "#country-source-population"
+  ).textContent =
+    t.populationSource(
+      country.population
+        .year
+    );
+
+
+  document.querySelector(
+    "#country-updated"
+  ).textContent =
+    t.updated(
+      formatDate(
+        eu.generated_at
       )
-    )
-  ) {
-    debtPerCapitaElement.textContent =
-      `${formatInteger(
-        data.debt_per_capita
-          .czk
-      )} ${
-        language === "en"
-          ? "CZK"
-          : "Kč"
-      }`;
-  }
-
-
-  document.querySelector(
-    "#forecast-debt"
-  ).textContent =
-    formatNumber(
-      forecast
-        .debt_percent_gdp
     );
 
 
-  document.querySelector(
-    "#forecast-balance"
-  ).textContent =
-    formatNumber(
-      forecast
-        .balance_percent_gdp
-    );
+  /* DEBT CLOCK */
+
+  startDebtClock(
+    debtHistory
+  );
 
 
-  const difference =
-    data.comparison
-      .forecast_debt_minus_latest_actual;
+  /* EMBED */
+
+  setupEmbedBuilder();
 
 
-  document.querySelector(
-    "#forecast-difference"
-  ).textContent =
-    `${
-      difference >
-      0
-        ? "+"
-        : ""
-    }${formatNumber(
-      difference
-    )}`;
-
-
-  document.querySelector(
-    "#updated"
-  ).textContent =
-    `${t.processedPrefix} ${formatDate(
-      data.generated_at
-    )}`;
-
+  /* HISTORY */
 
   createChart({
     container:
       document.querySelector(
-        "#debt-chart"
+        "#country-chart"
       ),
 
     series:
-      data.history
-        .debt_czk,
-
-    unit:
-      t.debtChartUnit,
-
-    xAxisLabel:
-      t.year,
-
-    yAxisLabel:
-      t.debtChartAxis
-  });
-
-
-  createChart({
-    container:
-      document.querySelector(
-        "#debt-gdp-chart"
-      ),
-
-    series:
-      data.history
+      debtHistory.history
         .debt_percent_gdp,
 
     unit:
-      t.debtGdpUnit,
+      t.chartUnit,
 
     xAxisLabel:
       t.year,
 
     yAxisLabel:
-      t.debtGdpAxis
+      t.chartAxis
   });
-
-
-  renderMethodology(
-    data
-  );
-
-
-  startDebtClock(
-    data
-  );
-}
-
-
-
-/* ---------------------------------------------------------
-   ERROR
---------------------------------------------------------- */
-
-function renderError(
-  error
-) {
-  console.error(
-    error
-  );
-
-
-  document.querySelector(
-    ".container"
-  ).innerHTML = `
-    <header class="header">
-
-      <p class="eyebrow">
-        ${t.errorEyebrow}
-      </p>
-
-      <h1>
-        ${t.errorTitle}
-      </h1>
-
-      <p class="intro">
-        ${error.message}
-      </p>
-
-    </header>
-  `;
 }
 
 
@@ -2638,32 +2415,56 @@ function renderError(
 --------------------------------------------------------- */
 
 Promise.all([
-  loadOverview(),
-  loadEU()
+  loadJSON(
+    "/data/eu.json"
+  ),
+
+  loadJSON(
+    `/data/countries/${fileCode}.json`
+  ),
+
+  loadJSON(
+    `/data/populations/${fileCode}.json`
+  )
 ])
   .then(
     ([
-      overview,
-      eu
+      eu,
+      debtHistory,
+      populationHistory
     ]) => {
       render(
-        overview
+        eu,
+        debtHistory,
+        populationHistory
       );
-
-
-      renderEUPosition(
-        eu
-      );
-
-
-      renderHomepageInterestRate(
-        eu
-      );
-
-
-      setupHomepageEmbedBuilder();
     }
   )
   .catch(
-    renderError
+    error => {
+      console.error(
+        error
+      );
+
+
+      document.querySelector(
+        ".container"
+      ).innerHTML = `
+        <header class="header">
+
+          <p class="eyebrow">
+            ${t.errorEyebrow}
+          </p>
+
+          <h1>
+            ${t.errorTitle}
+          </h1>
+
+          <p class="intro">
+            ${error.message}
+          </p>
+
+        </header>
+      `;
+    }
   );

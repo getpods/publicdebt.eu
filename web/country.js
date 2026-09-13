@@ -1562,8 +1562,7 @@ function createChart({
 
 
   tooltip.className =
-    "chart-tooltip";
-
+    "chart-tooltip compare-tooltip";
 
   tooltip.hidden =
     true;
@@ -1894,14 +1893,7 @@ function createChart({
 
 
         tooltip.style.top =
-          `${
-            (
-              pointY /
-              height
-            ) *
-            rect.height
-          }px`;
-
+          "40px";
 
         tooltip.hidden =
           false;
@@ -1930,18 +1922,6 @@ function createChart({
         hitArea
       );
     }
-  );
-
-
-  tooltip.addEventListener(
-    "mouseenter",
-    cancelHide
-  );
-
-
-  tooltip.addEventListener(
-    "mouseleave",
-    scheduleHide
   );
 
 
@@ -2308,15 +2288,45 @@ function render(
 
 
   /* DEBT PER CAPITA */
+  const population =
+    Number(
+      country.population
+        .value
+    );
+
+  if (
+    !Number.isFinite(
+      population
+    ) ||
+    population <= 0
+  ) {
+    throw new Error(
+      `Invalid population for ${countryCode}.`
+    );
+  }
+
+  const debtPerCapitaLocal =
+    nationalDebtMillion *
+    1_000_000 /
+    population;
+
+  if (
+    !Number.isFinite(
+      debtPerCapitaLocal
+    ) ||
+    debtPerCapitaLocal < 0
+  ) {
+    throw new Error(
+      `Invalid local-currency debt per capita for ${countryCode}.`
+    );
+  }
 
   document.querySelector(
     "#country-debt-per-capita"
   ).textContent =
-    formatInteger(
-      country.debt_per_capita
-        .eur
-    );
-
+    `${formatInteger(
+      debtPerCapitaLocal
+    )} ${currencyLabel}`;
 
   /* INTEREST RATE */
 
@@ -2476,9 +2486,20 @@ function render(
 
   /* HISTORY */
 
-  const localCurrency =
+  const localCurrencyData =
     debtHistory.country
       ?.currency;
+
+  const localCurrency =
+    language === "en"
+      ? (
+          localCurrencyData?.code ??
+          localCurrencyData?.label
+        )
+      : (
+          localCurrencyData?.label ??
+          localCurrencyData?.code
+        );
 
   if (!localCurrency) {
     throw new Error(

@@ -1010,16 +1010,48 @@ async function prerenderCountrySeo(
       )
     );
 
+  const population =
+    Number(
+      country.population
+        .value
+    );
+
+  if (
+    !Number.isFinite(
+      population
+    ) ||
+    population <= 0
+  ) {
+    throw new Error(
+      `Invalid population for ${country.code}`
+    );
+  }
+
+  const debtPerCapitaLocal =
+    nationalDebtMillion *
+    1_000_000 /
+    population;
+
+  if (
+    !Number.isFinite(
+      debtPerCapitaLocal
+    ) ||
+    debtPerCapitaLocal < 0
+  ) {
+    throw new Error(
+      `Invalid local-currency debt per capita for ${country.code}`
+    );
+  }
+
   result =
     replaceHtmlById(
       result,
       "country-debt-per-capita",
-      formatStaticNumber(
-        country.debt_per_capita
-          .eur,
+      `${formatStaticNumber(
+        debtPerCapitaLocal,
         language,
         0
-      )
+      )} ${currencyLabel}`
     );
 
   result =

@@ -11,6 +11,11 @@ const COUNTRIES_DATA_PATH =
     "data/processed/countries.json"
   );
 
+const INTEREST_RATES_DATA_PATH =
+  path.resolve(
+    "data/processed/interest-rates.json"
+  );
+
 const COUNTRY_CODE_ALIASES = {
   GR: "EL"
 };
@@ -47,6 +52,15 @@ export function loadCountriesData() {
   return JSON.parse(
     fs.readFileSync(
       COUNTRIES_DATA_PATH,
+      "utf8"
+    )
+  );
+}
+
+export function loadInterestRatesData() {
+  return JSON.parse(
+    fs.readFileSync(
+      INTEREST_RATES_DATA_PATH,
       "utf8"
     )
   );

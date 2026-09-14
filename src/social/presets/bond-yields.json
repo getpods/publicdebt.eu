@@ -1,0 +1,14 @@
+{
+  "layout": "bond-yields",
+  "platform": "linkedin",
+  "title": "10-year government bond yields",
+  "subtitle": "Latest available monthly averages",
+  "highlight": {
+    "country": "CZ"
+  },
+  "ranking": {
+    "limit": 5,
+    "order": "desc"
+  },
+  "source": "ECB"
+}

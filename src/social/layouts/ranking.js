@@ -14,15 +14,15 @@ import {
   renderBarChart
 } from "../components/bar-chart.js";
 
-import { renderHeader } from "../components/header.js";
-import { renderCta } from "../components/cta.js";
-
 function periodLabel(period) {
   if (!period) {
     return "";
   }
 
-  const match = period.match(/^(\d{4})-Q([1-4])$/);
+  const match =
+    period.match(
+      /^(\d{4})-Q([1-4])$/
+    );
 
   if (!match) {
     return period;
@@ -32,19 +32,28 @@ function periodLabel(period) {
 }
 
 function ordinalSuffix(number) {
-  const mod100 = number % 100;
+  const mod100 =
+    number % 100;
 
-  if (mod100 >= 11 && mod100 <= 13) {
+  if (
+    mod100 >= 11 &&
+    mod100 <= 13
+  ) {
     return "th";
   }
 
-  switch (number % 10) {
+  switch (
+    number % 10
+  ) {
     case 1:
       return "st";
+
     case 2:
       return "nd";
+
     case 3:
       return "rd";
+
     default:
       return "th";
   }
@@ -64,30 +73,53 @@ function getComparisonSummary({
   rows,
   order
 }) {
-  if (!highlight || !rows.length) {
+  if (
+    !highlight ||
+    !rows.length
+  ) {
     return null;
   }
 
-  const highlightInRanking = rows.some(
-    (row) => row.code === highlight.code
-  );
+  const highlightInRanking =
+    rows.some(
+      row =>
+        row.code ===
+        highlight.code
+    );
 
-  if (highlightInRanking) {
+  if (
+    highlightInRanking
+  ) {
     return null;
   }
 
-  const values = rows.map(
-    (row) => row.socialValue
-  );
+  const values =
+    rows.map(
+      row =>
+        row.socialValue
+    );
 
-  const minDisplayed = Math.min(...values);
-  const maxDisplayed = Math.max(...values);
+  const minDisplayed =
+    Math.min(
+      ...values
+    );
+
+  const maxDisplayed =
+    Math.max(
+      ...values
+    );
 
   let direction = null;
 
-  if (highlight.socialValue < minDisplayed) {
+  if (
+    highlight.socialValue <
+    minDisplayed
+  ) {
     direction = "Below";
-  } else if (highlight.socialValue > maxDisplayed) {
+  } else if (
+    highlight.socialValue >
+    maxDisplayed
+  ) {
     direction = "Above";
   }
 
@@ -103,42 +135,141 @@ function getComparisonSummary({
   return `${direction} the EU's ${rows.length} ${group} countries`;
 }
 
+function renderBrand({
+  theme
+}) {
+  return `
+    <text
+      x="74"
+      y="82"
+      font-family="${theme.font.family}"
+      font-size="38"
+      font-weight="800"
+    >
+      <tspan
+        fill="${theme.colors.text}"
+      >Public</tspan><tspan
+        fill="${theme.colors.blue}"
+      >Debt.eu</tspan>
+    </text>
+
+    ${text({
+      x: 76,
+      y: 112,
+      value:
+        "EUROPEAN PUBLIC FINANCE DATA",
+      size: 13,
+      weight: 700,
+      fill:
+        theme.colors.muted,
+      letterSpacing: 1.8
+    })}
+  `;
+}
+
+function renderFooter({
+  theme,
+  width,
+  height,
+  source
+}) {
+  return `
+    ${text({
+      x: 74,
+      y: height - 48,
+      value:
+        "FACTS / DATA / CONTEXT / EUROPE",
+      size: 14,
+      weight: 700,
+      fill:
+        theme.colors.muted,
+      letterSpacing: 1.5
+    })}
+
+    <text
+      x="${width - 74}"
+      y="${height - 48}"
+      text-anchor="end"
+      font-family="${theme.font.family}"
+      font-size="18"
+      font-weight="800"
+      letter-spacing="0.4"
+    >
+      <tspan
+        fill="${theme.colors.text}"
+      >PUBLIC</tspan><tspan
+        fill="${theme.colors.blue}"
+      >DEBT.EU</tspan>
+    </text>
+
+    ${text({
+      x: 74,
+      y: height - 80,
+      value:
+        `Source: ${source}`,
+      size: 14,
+      fill:
+        theme.colors.muted
+    })}
+  `;
+}
+
 export function renderRanking({
   theme,
   data,
   preset,
   period
 }) {
-  const { width, height } =
-    theme.sizes[preset.platform];
+  const {
+    width,
+    height
+  } =
+    theme.sizes[
+      preset.platform
+    ];
 
   const order =
-    preset.ranking?.order ?? "desc";
+    preset.ranking?.order ??
+    "desc";
 
-  const rows = getRanking({
-    data,
-    metric: preset.metric,
-    order,
-    limit: preset.ranking?.limit
-  });
+  const rows =
+    getRanking({
+      data,
+      metric:
+        preset.metric,
+      order,
+      limit:
+        preset.ranking?.limit
+    });
 
-  const allRows = getRanking({
-    data,
-    metric: preset.metric,
-    order
-  });
+  const allRows =
+    getRanking({
+      data,
+      metric:
+        preset.metric,
+      order
+    });
 
-  const scaleMax = Math.max(
-    ...allRows.map((row) => row.socialValue)
-  );
+  const scaleMax =
+    Math.max(
+      ...allRows.map(
+        row =>
+          row.socialValue
+      )
+    );
 
   let highlight = null;
 
-  if (preset.highlight?.country) {
-    const country = findCountry(
-      data,
-      preset.highlight.country
-    );
+  if (
+    preset.highlight
+      ?.country
+  ) {
+    const country =
+      findCountry(
+        data,
+        preset.highlight
+          .country
+      );
 
     if (!country) {
       throw new Error(
@@ -146,24 +277,34 @@ export function renderRanking({
       );
     }
 
-    const rankedCountry = allRows.find(
-      (row) => row.code === country.code
-    );
+    const rankedCountry =
+      allRows.find(
+        row =>
+          row.code ===
+          country.code
+      );
 
     highlight = {
       ...country,
-      socialRank: rankedCountry?.socialRank,
-      socialValue: getMetricValue(
-        country,
-        preset.metric
-      )
+
+      socialRank:
+        rankedCountry
+          ?.socialRank,
+
+      socialValue:
+        getMetricValue(
+          country,
+          preset.metric
+        )
     };
   }
 
   const highlightInRanking =
     highlight &&
     rows.some(
-      (row) => row.code === highlight.code
+      row =>
+        row.code ===
+        highlight.code
     );
 
   const comparisonSummary =
@@ -173,93 +314,146 @@ export function renderRanking({
       order
     });
 
-  const cardX = 70;
-  const cardY = 280;
-  const cardWidth = width - 140;
+  const cardX = 68;
+  const cardY = 330;
 
-  const innerX = cardX + 55;
-  const innerWidth = cardWidth - 110;
+  const cardWidth =
+    width - 136;
 
-  const chartY = cardY + 105;
-  const rowHeight = 62;
+  const innerX =
+    cardX + 52;
+
+  const innerWidth =
+    cardWidth - 104;
+
+  const chartY =
+    cardY + 112;
+
+  const rowHeight = 61;
 
   const rankingBottom =
-    chartY + rows.length * rowHeight;
+    chartY +
+    rows.length *
+      rowHeight;
 
-  /*
-   * If the highlighted country is outside the visible
-   * ranking, the card needs room for its additional row
-   * and comparison summary.
-   *
-   * Otherwise the card follows the actual ranking height
-   * instead of leaving a large empty area.
-   */
+  const hasExternalHighlight =
+    Boolean(
+      highlight &&
+      !highlightInRanking
+    );
+
   const cardHeight =
-    highlight && !highlightInRanking
-      ? rankingBottom - cardY + 285
-      : rankingBottom - cardY + 65;
-
-  const ctaY =
-    highlight && !highlightInRanking
-      ? height - 125
-      : Math.min(
-          cardY + cardHeight + 105,
-          height - 125
+    hasExternalHighlight
+      ? (
+          rankingBottom -
+          cardY +
+          270
+        )
+      : (
+          rankingBottom -
+          cardY +
+          78
         );
 
   let highlightSvg = "";
 
-  if (highlight && !highlightInRanking) {
+  if (
+    hasExternalHighlight
+  ) {
     const dividerY =
-      rankingBottom + 25;
+      rankingBottom + 18;
 
-    const highlightChartY =
-      dividerY + 35;
+    const highlightY =
+      dividerY + 30;
 
     const captionY =
-      highlightChartY + 105;
+      highlightY + 102;
 
     highlightSvg = `
       ${line({
         x1: innerX,
         y1: dividerY,
-        x2: innerX + innerWidth,
+        x2:
+          innerX +
+          innerWidth,
         y2: dividerY,
-        stroke: theme.colors.line
+        stroke:
+          theme.colors.line
+      })}
+
+      ${roundedRect({
+        x: innerX - 18,
+        y: highlightY - 16,
+        width:
+          innerWidth + 36,
+        height: 86,
+        radius: 16,
+        fill:
+          theme.colors.blueSoft,
+        stroke:
+          theme.colors.line,
+        strokeWidth: 1
       })}
 
       ${renderBarChart({
         theme,
-        rows: [highlight],
-        metric: preset.metric,
+        rows: [
+          highlight
+        ],
+        metric:
+          preset.metric,
         x: innerX,
-        y: highlightChartY,
-        width: innerWidth,
+        y: highlightY,
+        width:
+          innerWidth,
         rowHeight,
-        maxValue: scaleMax,
-        showDividers: false
+        maxValue:
+          scaleMax,
+        showDividers:
+          false
       })}
 
-      ${comparisonSummary
-        ? text({
-            x: innerX + 52,
-            y: captionY,
-            value: comparisonSummary,
-            size: 22,
-            weight: 600,
-            fill: theme.colors.text
-          })
-        : ""}
+      ${
+        comparisonSummary
+          ? text({
+              x:
+                innerX +
+                52,
+
+              y:
+                captionY,
+
+              value:
+                comparisonSummary,
+
+              size: 21,
+
+              weight: 700,
+
+              fill:
+                theme.colors.text
+            })
+          : ""
+      }
 
       ${text({
-        x: innerX + 52,
-        y: captionY + 38,
-        value: `${highlight.socialRank}${ordinalSuffix(
-          highlight.socialRank
-        )} of ${allRows.length} EU countries`,
-        size: 19,
-        weight: 400,
-        fill: theme.colors.muted
+        x:
+          innerX +
+          52,
+
+        y:
+          captionY +
+          36,
+
+        value:
+          `${highlight.socialRank}${ordinalSuffix(
+            highlight.socialRank
+          )} of ${allRows.length} EU countries`,
+
+        size: 18,
+
+        fill:
+          theme.colors.muted
       })}
     `;
   }
@@ -271,54 +465,149 @@ export function renderRanking({
       height="${height}"
       viewBox="0 0 ${width} ${height}"
     >
+
+      <defs>
+        <linearGradient
+          id="ranking-bg"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="1"
+        >
+          <stop
+            offset="0%"
+            stop-color="#ffffff"
+          />
+
+          <stop
+            offset="68%"
+            stop-color="#f8fbff"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#fffaf0"
+          />
+        </linearGradient>
+
+        <linearGradient
+          id="ranking-card"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="1"
+        >
+          <stop
+            offset="0%"
+            stop-color="#ffffff"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#f7faff"
+          />
+        </linearGradient>
+      </defs>
+
       <rect
         width="${width}"
         height="${height}"
-        fill="${theme.colors.background}"
+        fill="url(#ranking-bg)"
       />
 
-      <g font-family="${theme.font.family}">
-        ${renderHeader({
-          theme,
-          eyebrow: preset.eyebrow,
-          title: preset.title,
-          subtitle: preset.subtitle,
-          period: periodLabel(period)
+      <g
+        font-family="${theme.font.family}"
+      >
+        ${renderBrand({
+          theme
+        })}
+
+        ${text({
+          x: 74,
+          y: 190,
+          value:
+            preset.eyebrow,
+          size: 18,
+          weight: 800,
+          fill:
+            theme.colors.blueDark,
+          letterSpacing: 1.6
+        })}
+
+        ${text({
+          x: 74,
+          y: 250,
+          value:
+            preset.title,
+          size: 53,
+          weight: 800,
+          fill:
+            theme.colors.text
+        })}
+
+        ${text({
+          x: 74,
+          y: 294,
+          value:
+            `${preset.subtitle} · ${periodLabel(
+              period
+            )}`,
+          size: 22,
+          fill:
+            theme.colors.muted
         })}
 
         ${roundedRect({
           x: cardX,
           y: cardY,
-          width: cardWidth,
-          height: cardHeight,
-          radius: theme.radius,
-          fill: theme.colors.card,
-          stroke: theme.colors.line,
+          width:
+            cardWidth,
+          height:
+            cardHeight,
+          radius: 22,
+          fill:
+            "url(#ranking-card)",
+          stroke:
+            theme.colors.line,
           strokeWidth: 1
         })}
 
+        <rect
+          x="${cardX + 18}"
+          y="${cardY}"
+          width="${cardWidth - 36}"
+          height="4"
+          rx="2"
+          fill="${theme.colors.gold}"
+        />
+
         ${text({
           x: innerX,
-          y: cardY + 60,
-          value: getSectionTitle({
-            rows,
-            order
-          }),
-          size: 20,
-          weight: 700,
-          fill: theme.colors.muted,
-          letterSpacing: 1.3
+          y: cardY + 67,
+          value:
+            getSectionTitle({
+              rows,
+              order
+            }),
+          size: 19,
+          weight: 800,
+          fill:
+            theme.colors.muted,
+          letterSpacing: 1.25
         })}
 
         ${renderBarChart({
           theme,
           rows,
-          metric: preset.metric,
+          metric:
+            preset.metric,
           x: innerX,
           y: chartY,
-          width: innerWidth,
+          width:
+            innerWidth,
           rowHeight,
-          maxValue: scaleMax,
+          maxValue:
+            scaleMax,
           highlightCode:
             highlightInRanking
               ? highlight.code
@@ -327,28 +616,36 @@ export function renderRanking({
 
         ${highlightSvg}
 
-        ${renderCta({
-          theme,
-          width,
-          y: ctaY,
-          label:
-            preset.cta?.label ??
-            "Explore the data →",
-          url:
-            preset.cta?.url ??
-            "PUBLICDEBT.EU"
-        })}
-
         ${text({
           x: width / 2,
-          y: height - 28,
-          value: `Source: ${preset.source}`,
-          size: 16,
-          fill: theme.colors.muted,
-          anchor: "middle"
+          y:
+            Math.min(
+              cardY +
+                cardHeight +
+                76,
+              height - 170
+            ),
+          value:
+            preset.cta
+              ?.label ??
+            "Explore all 27 EU countries →",
+          size: 19,
+          weight: 600,
+          fill:
+            theme.colors.muted,
+          anchor:
+            "middle"
+        })}
+
+        ${renderFooter({
+          theme,
+          width,
+          height,
+          source:
+            preset.source
         })}
       </g>
-    
+
       <rect
         x="14"
         y="14"
@@ -359,7 +656,6 @@ export function renderRanking({
         stroke="${theme.colors.blue}"
         stroke-width="2"
       />
-
     </svg>
   `;
 }

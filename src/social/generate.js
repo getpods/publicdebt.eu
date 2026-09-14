@@ -9,7 +9,8 @@ import {
 import {
   getPeriod,
   loadEuData,
-  loadCountriesData
+  loadCountriesData,
+  loadInterestRatesData
 } from "./data.js";
 
 import {
@@ -31,6 +32,10 @@ import {
 import {
   renderCzBudget
 } from "./layouts/cz-budget.js";
+
+import {
+  renderBondYields
+} from "./layouts/bond-yields.js";
 
 const presetName =
   process.argv[2];
@@ -79,6 +84,9 @@ const data =
 
 const countriesData =
   loadCountriesData();
+
+const interestRatesData =
+  loadInterestRatesData();
 
 const period =
   preset.period ===
@@ -138,6 +146,16 @@ switch (
     svg =
       await renderCzBudget({
         theme,
+        preset
+      });
+    break;
+
+  case "bond-yields":
+    svg =
+      renderBondYields({
+        theme,
+        data,
+        interestRatesData,
         preset
       });
     break;

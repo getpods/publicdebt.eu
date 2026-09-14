@@ -10,9 +10,5 @@
     "limit": 10,
     "order": "desc"
   },
-  "cta": {
-    "label": "Explore all 27 EU countries →",
-    "url": "PUBLICDEBT.EU"
-  },
   "source": "Eurostat"
 }

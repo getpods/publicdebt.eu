@@ -2199,10 +2199,7 @@ function renderMethodology(
     );
 
 
-  const sourcesUpdated =
-    document.querySelector(
-      "#sources-updated"
-    );
+  
 
 
   if (
@@ -2266,16 +2263,6 @@ function renderMethodology(
   ) {
     methodologyForecastYear.textContent =
       data.forecast.year;
-  }
-
-
-  if (
-    sourcesUpdated
-  ) {
-    sourcesUpdated.textContent =
-      `${t.processedSourcesPrefix} ${formatDate(
-        data.generated_at
-      )}.`;
   }
 }
 

@@ -1,17 +1,16 @@
 import {
-  roundedRect,
-  text,
-  line
-} from "../components/svg.js";
-
-import {
   findCountry,
   findCountryDetails
 } from "../data.js";
 
-import {
-  renderCta
-} from "../components/cta.js";
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
 
 function periodLabel(period) {
   if (!period) {
@@ -30,23 +29,77 @@ function periodLabel(period) {
   return `Q${match[2]} ${match[1]}`;
 }
 
-function formatInteger(value) {
-  return Math.round(
-    value
-  ).toLocaleString(
-    "en-US"
-  );
+function formatNumber(
+  value,
+  maximumFractionDigits = 1
+) {
+  return new Intl.NumberFormat(
+    "en-US",
+    {
+      maximumFractionDigits,
+      minimumFractionDigits: 0
+    }
+  ).format(value);
 }
 
-function getSign(value) {
-  if (value < 0) {
-    return "−";
+function formatRate(
+  value,
+  currency
+) {
+  const absolute =
+    Math.abs(value);
+
+  const sign =
+    value < 0
+      ? "−"
+      : "";
+
+  if (
+    absolute >=
+    1_000_000_000
+  ) {
+    return {
+      value:
+        `${sign}${formatNumber(
+          absolute /
+            1_000_000_000,
+          2
+        )}`,
+      unit:
+        `bn ${currency}`
+    };
   }
 
-  return "";
+  if (
+    absolute >=
+    1_000_000
+  ) {
+    return {
+      value:
+        `${sign}${formatNumber(
+          absolute /
+            1_000_000,
+          1
+        )}`,
+      unit:
+        `m ${currency}`
+    };
+  }
+
+  return {
+    value:
+      `${sign}${formatNumber(
+        absolute,
+        0
+      )}`,
+    unit:
+      currency
+  };
 }
 
-function getDirectionWord(value) {
+function getDirectionWord(
+  value
+) {
   if (value > 0) {
     return "increase";
   }
@@ -56,6 +109,206 @@ function getDirectionWord(value) {
   }
 
   return "change";
+}
+
+function minuteIcon({
+  cx,
+  cy,
+  color
+}) {
+  return `
+    <circle
+      cx="${cx}"
+      cy="${cy}"
+      r="31"
+      fill="none"
+      stroke="${color}"
+      stroke-width="5"
+    />
+
+    <line
+      x1="${cx}"
+      y1="${cy}"
+      x2="${cx}"
+      y2="${cy - 19}"
+      stroke="${color}"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+
+    <line
+      x1="${cx}"
+      y1="${cy}"
+      x2="${cx + 15}"
+      y2="${cy + 10}"
+      stroke="${color}"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+  `;
+}
+
+function hourIcon({
+  cx,
+  cy,
+  color
+}) {
+  return `
+    <circle
+      cx="${cx}"
+      cy="${cy}"
+      r="31"
+      fill="none"
+      stroke="${color}"
+      stroke-width="5"
+    />
+
+    <line
+      x1="${cx}"
+      y1="${cy}"
+      x2="${cx}"
+      y2="${cy - 18}"
+      stroke="${color}"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+
+    <line
+      x1="${cx}"
+      y1="${cy}"
+      x2="${cx + 18}"
+      y2="${cy + 7}"
+      stroke="${color}"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+  `;
+}
+
+function dayIcon({
+  cx,
+  cy,
+  color
+}) {
+  return `
+    <rect
+      x="${cx - 27}"
+      y="${cy - 22}"
+      width="54"
+      height="48"
+      rx="8"
+      fill="none"
+      stroke="${color}"
+      stroke-width="5"
+    />
+
+    <line
+      x1="${cx - 27}"
+      y1="${cy - 8}"
+      x2="${cx + 27}"
+      y2="${cy - 8}"
+      stroke="${color}"
+      stroke-width="5"
+    />
+
+    <line
+      x1="${cx - 14}"
+      y1="${cy - 31}"
+      x2="${cx - 14}"
+      y2="${cy - 17}"
+      stroke="${color}"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+
+    <line
+      x1="${cx + 14}"
+      y1="${cy - 31}"
+      x2="${cx + 14}"
+      y2="${cy - 17}"
+      stroke="${color}"
+      stroke-width="5"
+      stroke-linecap="round"
+    />
+  `;
+}
+
+function rateCard({
+  x,
+  y,
+  width,
+  height,
+  value,
+  unit,
+  label,
+  icon,
+  accent,
+  theme
+}) {
+  const cx =
+    x + width / 2;
+
+  return `
+    <rect
+      x="${x}"
+      y="${y}"
+      width="${width}"
+      height="${height}"
+      rx="24"
+      fill="#ffffff"
+      stroke="${theme.colors.line}"
+      stroke-width="1.5"
+    />
+
+    <circle
+      cx="${cx}"
+      cy="${y + 75}"
+      r="48"
+      fill="${accent}"
+      fill-opacity="0.10"
+    />
+
+    ${icon({
+      cx,
+      cy: y + 75,
+      color: accent
+    })}
+
+    <text
+      x="${cx}"
+      y="${y + 178}"
+      text-anchor="middle"
+      fill="${theme.colors.text}"
+      font-size="52"
+      font-weight="800"
+      letter-spacing="-1.5"
+    >
+      ${escapeXml(value)}
+    </text>
+
+    <text
+      x="${cx}"
+      y="${y + 225}"
+      text-anchor="middle"
+      fill="${theme.colors.text}"
+      font-size="30"
+      font-weight="800"
+    >
+      ${escapeXml(unit)}
+    </text>
+
+    <text
+      x="${cx}"
+      y="${y + 275}"
+      text-anchor="middle"
+      fill="${theme.colors.muted}"
+      font-size="18"
+      font-weight="800"
+      letter-spacing="2"
+    >
+      ${escapeXml(label)}
+    </text>
+  `;
 }
 
 export function renderDebtClock({
@@ -118,10 +371,15 @@ export function renderDebtClock({
     );
   }
 
-  const currencyLabel =
+  const currency =
     clock.currency_label ??
     clock.currency ??
     "";
+
+  const direction =
+    getDirectionWord(
+      rate
+    );
 
   const from =
     periodLabel(
@@ -133,43 +391,42 @@ export function renderDebtClock({
       clock.period_to
     );
 
-  const sign =
-    getSign(rate);
+  const perMinute =
+    rate * 60;
 
-  const absoluteRate =
-    Math.abs(rate);
+  const perHour =
+    rate * 3600;
 
-  const amount60 =
-    absoluteRate * 60;
+  const perDay =
+    rate * 86400;
 
-  const rateLabel =
-    `${sign}${formatInteger(
-      absoluteRate
-    )} ${currencyLabel}`;
-
-  const minuteLabel =
-    `${sign}${formatInteger(
-      amount60
-    )} ${currencyLabel}`;
-
-  const direction =
-    getDirectionWord(
-      rate
+  const minute =
+    formatRate(
+      perMinute,
+      currency
     );
 
-  const cardX = 70;
-  const cardY = 365;
-  const cardWidth =
-    width - 140;
-  const cardHeight = 595;
+  const hour =
+    formatRate(
+      perHour,
+      currency
+    );
 
-  const innerX =
-    cardX + 60;
+  const day =
+    formatRate(
+      perDay,
+      currency
+    );
 
-  const innerWidth =
-    cardWidth - 120;
+  const heroRate =
+    formatRate(
+      rate,
+      currency
+    );
 
-  const ctaBlockY = 1065;
+  const source =
+    preset.source ||
+    "Eurostat";
 
   return `
     <svg
@@ -178,217 +435,414 @@ export function renderDebtClock({
       height="${height}"
       viewBox="0 0 ${width} ${height}"
     >
+
+      <defs>
+
+        <linearGradient
+          id="clock-bg"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="1"
+        >
+          <stop
+            offset="0%"
+            stop-color="#ffffff"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#f7faff"
+          />
+        </linearGradient>
+
+        <linearGradient
+          id="clock-hero"
+          x1="0"
+          y1="0"
+          x2="1"
+          y2="1"
+        >
+          <stop
+            offset="0%"
+            stop-color="#eef4ff"
+          />
+
+          <stop
+            offset="58%"
+            stop-color="#ffffff"
+          />
+
+          <stop
+            offset="100%"
+            stop-color="#fff9e8"
+          />
+        </linearGradient>
+
+        <filter
+          id="clock-shadow"
+          x="-20%"
+          y="-20%"
+          width="140%"
+          height="150%"
+        >
+          <feDropShadow
+            dx="0"
+            dy="12"
+            stdDeviation="20"
+            flood-color="#155eef"
+            flood-opacity="0.08"
+          />
+        </filter>
+
+      </defs>
+
       <rect
         width="${width}"
         height="${height}"
-        fill="${theme.colors.background}"
+        fill="url(#clock-bg)"
       />
 
       <g
         font-family="${theme.font.family}"
       >
-        ${text({
-          x: 90,
-          y: 110,
+
+        <!-- Brand -->
+
+        <text
+          x="72"
+          y="90"
+          fill="${theme.colors.text}"
+          font-size="44"
+          font-weight="800"
+        >Public<tspan fill="${theme.colors.blue}">Debt.eu</tspan></text>
+
+        <text
+          x="74"
+          y="122"
+          fill="${theme.colors.muted}"
+          font-size="14"
+          font-weight="700"
+          letter-spacing="2.2"
+        >
+          EUROPEAN PUBLIC FINANCE DATA
+        </text>
+
+        <!-- Country identity -->
+
+        <rect
+          x="${width - 240}"
+          y="54"
+          width="166"
+          height="76"
+          rx="18"
+          fill="${theme.colors.blueSoft}"
+          stroke="${theme.colors.line}"
+          stroke-width="1"
+        />
+
+        <text
+          x="${width - 218}"
+          y="84"
+          fill="${theme.colors.blue}"
+          font-size="15"
+          font-weight="800"
+          letter-spacing="2"
+        >
+          ${escapeXml(country.code)}
+        </text>
+
+        <text
+          x="${width - 218}"
+          y="111"
+          fill="${theme.colors.text}"
+          font-size="18"
+          font-weight="800"
+          letter-spacing="1.2"
+        >
+          ${escapeXml(
+            country.name.toUpperCase()
+          )}
+        </text>
+
+        <!-- Headline -->
+
+        <text
+          x="72"
+          y="230"
+          fill="${theme.colors.text}"
+          font-size="58"
+          font-weight="800"
+          letter-spacing="-1.5"
+        >
+          HOW MUCH PUBLIC DEBT
+        </text>
+
+        <text
+          x="72"
+          y="296"
+          fill="${theme.colors.text}"
+          font-size="58"
+          font-weight="800"
+          letter-spacing="-1.5"
+        >
+          CAN ADD UP IN 60 SECONDS?
+        </text>
+
+        <text
+          x="74"
+          y="352"
+          fill="${theme.colors.muted}"
+          font-size="24"
+          font-weight="400"
+        >
+          Estimated ${escapeXml(direction)} in public debt
+        </text>
+
+        <text
+          x="74"
+          y="388"
+          fill="${theme.colors.muted}"
+          font-size="24"
+          font-weight="400"
+        >
+          between ${escapeXml(from)} and ${escapeXml(to)}.
+        </text>
+
+        <!-- Hero card -->
+
+        <g
+          filter="url(#clock-shadow)"
+        >
+          <rect
+            x="60"
+            y="455"
+            width="${width - 120}"
+            height="315"
+            rx="28"
+            fill="url(#clock-hero)"
+            stroke="${theme.colors.line}"
+            stroke-width="1.5"
+          />
+
+          <path
+            d="
+              M 88 485
+              H ${width - 88}
+            "
+            fill="none"
+            stroke="${theme.colors.gold}"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+
+          <text
+            x="100"
+            y="530"
+            fill="${theme.colors.blue}"
+            font-size="18"
+            font-weight="800"
+            letter-spacing="4"
+          >
+            ${escapeXml(country.name.toUpperCase())} · ESTIMATED ${direction.toUpperCase()} RATE
+          </text>
+
+          <text
+            x="100"
+            y="680"
+            fill="${theme.colors.text}"
+            font-size="118"
+            font-weight="800"
+            letter-spacing="-4"
+          >
+            ${escapeXml(
+              heroRate.value
+            )}
+            <tspan
+              font-size="58"
+              letter-spacing="-1"
+            >
+              ${escapeXml(
+                heroRate.unit
+              )}
+            </tspan>
+          </text>
+
+          <text
+            x="104"
+            y="725"
+            fill="${theme.colors.muted}"
+            font-size="21"
+            font-weight="800"
+            letter-spacing="2.2"
+          >
+            PER SECOND
+          </text>
+
+          <!-- Clock icon -->
+
+          <circle
+            cx="${width - 175}"
+            cy="608"
+            r="82"
+            fill="${theme.colors.gold}"
+            fill-opacity="0.13"
+          />
+
+          <circle
+            cx="${width - 175}"
+            cy="608"
+            r="50"
+            fill="none"
+            stroke="${theme.colors.goldDark}"
+            stroke-width="7"
+          />
+
+          <line
+            x1="${width - 175}"
+            y1="608"
+            x2="${width - 175}"
+            y2="572"
+            stroke="${theme.colors.goldDark}"
+            stroke-width="7"
+            stroke-linecap="round"
+          />
+
+          <line
+            x1="${width - 175}"
+            y1="608"
+            x2="${width - 142}"
+            y2="631"
+            stroke="${theme.colors.goldDark}"
+            stroke-width="7"
+            stroke-linecap="round"
+          />
+
+        </g>
+
+        <!-- Rate cards -->
+
+        ${rateCard({
+          x: 60,
+          y: 840,
+          width: 340,
+          height: 335,
           value:
-            country.name.toUpperCase(),
-          size: 38,
-          weight: 700,
-          fill:
-            theme.colors.text,
-          letterSpacing: 1.2
-        })}
-
-        ${text({
-          x: 90,
-          y: 190,
-          value:
-            "HOW MUCH PUBLIC DEBT",
-          size: 50,
-          weight: 700,
-          fill:
-            theme.colors.text
-        })}
-
-        ${text({
-          x: 90,
-          y: 255,
-          value:
-            "CAN ADD UP IN 60 SECONDS?",
-          size: 50,
-          weight: 700,
-          fill:
-            theme.colors.text
-        })}
-
-        ${roundedRect({
-          x: cardX,
-          y: cardY,
-          width:
-            cardWidth,
-          height:
-            cardHeight,
-          radius:
-            theme.radius,
-          fill:
-            "#f7faff",
-          stroke:
-            theme.colors.blue,
-          strokeWidth: 1
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 62,
-          value:
-            `ESTIMATED ${direction.toUpperCase()} RATE`,
-          size: 18,
-          weight: 700,
-          fill:
-            theme.colors.muted,
-          letterSpacing: 1.4
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 170,
-          value:
-            rateLabel,
-          size: 76,
-          weight: 700,
-          fill:
-            theme.colors.blueDark
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 215,
-          value:
-            "PER SECOND",
-          size: 23,
-          weight: 700,
-          fill:
-            theme.colors.muted,
-          letterSpacing: 1.6
-        })}
-
-        ${line({
-          x1: innerX,
-          y1:
-            cardY + 275,
-          x2:
-            innerX +
-            innerWidth,
-          y2:
-            cardY + 275,
-          stroke:
-            theme.colors.line
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 330,
-          value:
-            "IN 60 SECONDS",
-          size: 18,
-          weight: 700,
-          fill:
-            theme.colors.muted,
-          letterSpacing: 1.4
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 420,
-          value:
-            `≈ ${minuteLabel}`,
-          size: 58,
-          weight: 700,
-          fill:
-            theme.colors.goldDark
-        })}
-
-        ${line({
-          x1: innerX,
-          y1:
-            cardY + 470,
-          x2:
-            innerX +
-            innerWidth,
-          y2:
-            cardY + 470,
-          stroke:
-            theme.colors.line
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 520,
-          value:
-            `Estimated from the ${direction} in public debt`,
-          size: 19,
-          weight: 400,
-          fill:
-            theme.colors.muted
-        })}
-
-        ${text({
-          x: innerX,
-          y: cardY + 553,
-          value:
-            `between ${from} and ${to}.`,
-          size: 19,
-          weight: 400,
-          fill:
-            theme.colors.muted
-        })}
-
-        ${text({
-          x:
-            width / 2,
-          y:
-            ctaBlockY,
-          value:
-            "DEBT CLOCKS FOR ALL 27 EU COUNTRIES",
-          size: 23,
-          weight: 700,
-          fill:
-            theme.colors.muted,
-          anchor:
-            "middle",
-          letterSpacing: 1.2
-        })}
-
-        ${renderCta({
-          theme,
-          width,
-          y:
-            ctaBlockY + 82,
+            minute.value,
+          unit:
+            minute.unit,
           label:
-            preset.cta
-              ?.label ??
-            "Start the debt clock →",
-          url:
-            preset.cta
-              ?.url ??
-            "PUBLICDEBT.EU"
+            "IN 60 SECONDS",
+          icon:
+            minuteIcon,
+          accent:
+            theme.colors.blue,
+          theme
         })}
 
-        ${text({
-          x:
-            width / 2,
-          y:
-            ctaBlockY + 210,
+        ${rateCard({
+          x: 430,
+          y: 840,
+          width: 340,
+          height: 335,
           value:
-            `Source: ${preset.source}`,
-          size: 16,
-          fill:
-            theme.colors.muted,
-          anchor:
-            "middle"
+            hour.value,
+          unit:
+            hour.unit,
+          label:
+            "IN ONE HOUR",
+          icon:
+            hourIcon,
+          accent:
+            theme.colors.tealDark,
+          theme
         })}
+
+        ${rateCard({
+          x: 800,
+          y: 840,
+          width: 340,
+          height: 335,
+          value:
+            day.value,
+          unit:
+            day.unit,
+          label:
+            "IN ONE DAY",
+          icon:
+            dayIcon,
+          accent:
+            theme.colors.goldDark,
+          theme
+        })}
+
+        <!-- Methodology -->
+
+        <text
+          x="72"
+          y="1255"
+          fill="${theme.colors.muted}"
+          font-size="17"
+          font-weight="500"
+        >
+          Constant-rate illustration based on the change in public debt
+        </text>
+
+        <text
+          x="72"
+          y="1284"
+          fill="${theme.colors.muted}"
+          font-size="17"
+          font-weight="500"
+        >
+          between ${escapeXml(from)} and ${escapeXml(to)}.
+          It is not a literal real-time borrowing flow.
+        </text>
+
+        <text
+          x="72"
+          y="1330"
+          fill="${theme.colors.text}"
+          font-size="16"
+          font-weight="700"
+        >
+          Source:
+          <tspan
+            fill="${theme.colors.muted}"
+            font-weight="500"
+          > ${escapeXml(source)}</tspan>
+        </text>
+
+        <!-- Footer -->
+
+        <text
+          x="72"
+          y="${height - 52}"
+          fill="${theme.colors.muted}"
+          font-size="14"
+          font-weight="700"
+          letter-spacing="2"
+        >
+          FACTS / DATA / CONTEXT / EUROPE
+        </text>
+
+        <text
+          x="${width - 70}"
+          y="${height - 52}"
+          text-anchor="end"
+          font-size="19"
+          font-weight="800"
+          letter-spacing="1.1"
+        >
+          <tspan
+            fill="${theme.colors.text}"
+          >PUBLIC</tspan><tspan
+            fill="${theme.colors.blue}"
+          >DEBT.EU</tspan>
+        </text>
+
       </g>
-    
+
       <rect
         x="14"
         y="14"

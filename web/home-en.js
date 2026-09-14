@@ -1494,6 +1494,12 @@ function renderStatus(
     [];
 
 
+  const interestRatePeriods =
+    data.periods
+      ?.interest_rate ??
+    [];
+
+
   const periodElement =
     document.querySelector(
       "#eu-home-source-period"
@@ -1506,10 +1512,13 @@ function renderStatus(
     );
 
 
-  const updatedElement =
+  const interestRateElement =
     document.querySelector(
-      "#eu-home-updated"
+      "#eu-home-interest-rate-period"
     );
+
+
+  
 
 
   const footerUpdated =
@@ -1542,18 +1551,23 @@ function renderStatus(
   }
 
 
+  if (
+    interestRateElement
+  ) {
+    interestRateElement.textContent =
+      interestRatePeriods.length === 1
+        ? interestRatePeriods[0]
+        : interestRatePeriods.join(
+            ", "
+          ) ||
+          "—";
+  }
+
+
   const updated =
     `Data processed ${formatDate(
       data.generated_at
     )}`;
-
-
-  if (
-    updatedElement
-  ) {
-    updatedElement.textContent =
-      `${updated}.`;
-  }
 
 
   if (

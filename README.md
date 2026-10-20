@@ -20,7 +20,6 @@ The project combines official public data, a Node.js data pipeline and a statica
 - public debt per capita
 - public debt in national currency
 - detailed Czech public debt overview
-- Czech public debt and fiscal forecast
 - estimated debt clocks for all 27 EU countries
 - embeddable debt clock
 - 10-year government bond yields for all 27 EU countries
@@ -42,7 +41,7 @@ PublicDebt.eu uses official public data.
 The main sources are:
 
 - **Eurostat** — harmonised public debt and population data for EU countries
-- **Ministry of Finance of the Czech Republic** — Czech public debt data and fiscal forecasts
+- **Ministry of Finance of the Czech Republic** — Czech public debt data
 - **European Central Bank (ECB)** — harmonised long-term interest rates based on government bonds with a residual maturity close to 10 years
 
 Raw source data are downloaded by the project's import scripts and transformed into compact JSON files used by the website.
@@ -72,7 +71,6 @@ The fetch layer includes data imports for:
 - Eurostat public debt data
 - Eurostat population data
 - Czech Ministry of Finance data
-- Czech Ministry of Finance forecasts
 - ECB long-term interest rates
 
 For example:
@@ -82,7 +80,6 @@ src/fetch/
 ├── ecb-interest-rates.js
 ├── eurostat.js
 ├── mfcr.js
-├── mfcr-forecast.js
 └── population.js
 ```
 
@@ -96,7 +93,7 @@ data/raw/
 
 Scripts in `src/transform/` convert downloaded source data into the structures used by the website.
 
-The transformation layer includes public debt, population, Czech forecast and ECB interest-rate processing.
+The transformation layer includes public debt, population and ECB interest-rate processing.
 
 For example:
 
@@ -106,7 +103,6 @@ src/transform/
 ├── eu.js
 ├── interest-rates.js
 ├── mfcr.js
-├── mfcr-forecast.js
 ├── overview.js
 └── population.js
 ```
@@ -672,7 +668,7 @@ PublicDebt.eu is built around a few principles:
 - use official and traceable data sources
 - keep the presentation understandable for non-specialists
 - make all EU countries directly comparable
-- clearly distinguish observed data from forecasts and estimates
+- clearly distinguish observed data from estimates
 - clearly identify statistical reporting periods
 - keep the production architecture simple
 - minimise runtime dependencies

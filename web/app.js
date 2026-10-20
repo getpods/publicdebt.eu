@@ -2193,15 +2193,6 @@ function renderMethodology(
     );
 
 
-  const forecastYear =
-    document.querySelector(
-      "#source-forecast-year"
-    );
-
-
-  
-
-
   if (
     mfcrPeriod
   ) {
@@ -2229,41 +2220,6 @@ function renderMethodology(
   }
 
 
-  if (
-    forecastYear
-  ) {
-    forecastYear.textContent =
-      `${t.yearPrefix} ${data.forecast.year}`;
-  }
-
-
-  const homepageForecastYear =
-    document.querySelector(
-      "#homepage-forecast-year"
-    );
-
-  const methodologyForecastYear =
-    document.querySelector(
-      "#methodology-forecast-year"
-    );
-
-
-  if (
-    homepageForecastYear &&
-    data.forecast?.year
-  ) {
-    homepageForecastYear.textContent =
-      data.forecast.year;
-  }
-
-
-  if (
-    methodologyForecastYear &&
-    data.forecast?.year
-  ) {
-    methodologyForecastYear.textContent =
-      data.forecast.year;
-  }
 }
 
 
@@ -2396,10 +2352,6 @@ function render(
     data.latest;
 
 
-  const forecast =
-    data.forecast;
-
-
   document.querySelector(
     "#debt"
   ).textContent =
@@ -2428,34 +2380,6 @@ function render(
     "#period-gdp"
   ).textContent =
     latest.period;
-
-
-  const forecastElement =
-    document.querySelector(
-      "#forecast"
-    );
-
-  const forecastYearElement =
-    document.querySelector(
-      "#forecast-year"
-    );
-
-  if (
-    forecastElement
-  ) {
-    forecastElement.textContent =
-      formatNumber(
-        forecast
-          .debt_percent_gdp
-      );
-  }
-
-  if (
-    forecastYearElement
-  ) {
-    forecastYearElement.textContent =
-      `${t.yearPrefix} ${forecast.year}`;
-  }
 
 
   const populationElement =
@@ -2527,42 +2451,6 @@ function render(
           : "Kč"
       }`;
   }
-
-
-  document.querySelector(
-    "#forecast-debt"
-  ).textContent =
-    formatNumber(
-      forecast
-        .debt_percent_gdp
-    );
-
-
-  document.querySelector(
-    "#forecast-balance"
-  ).textContent =
-    formatNumber(
-      forecast
-        .balance_percent_gdp
-    );
-
-
-  const difference =
-    data.comparison
-      .forecast_debt_minus_latest_actual;
-
-
-  document.querySelector(
-    "#forecast-difference"
-  ).textContent =
-    `${
-      difference >
-      0
-        ? "+"
-        : ""
-    }${formatNumber(
-      difference
-    )}`;
 
 
   document.querySelector(

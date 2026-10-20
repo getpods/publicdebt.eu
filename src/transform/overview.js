@@ -22,11 +22,6 @@ const mfcrFile = resolve(
   "mfcr-ggd.json"
 );
 
-const forecastFile = resolve(
-  processedDir,
-  "mfcr-forecast.json"
-);
-
 const populationFile = resolve(
   processedDir,
   "population.json"
@@ -52,13 +47,6 @@ const eurostat = JSON.parse(
 const mfcr = JSON.parse(
   await readFile(
     mfcrFile,
-    "utf8"
-  )
-);
-
-const forecast = JSON.parse(
-  await readFile(
-    forecastFile,
     "utf8"
   )
 );
@@ -290,33 +278,6 @@ const overview = {
   },
 
 
-  forecast: {
-    year:
-      forecast.forecast.year,
-
-    balance_percent_gdp:
-      forecast.forecast
-        .balance_percent_gdp,
-
-    debt_percent_gdp:
-      forecast.forecast
-        .debt_percent_gdp
-  },
-
-
-  comparison: {
-    forecast_debt_minus_latest_actual:
-      Number(
-        (
-          forecast.forecast
-            .debt_percent_gdp -
-          latestEurostat.debt
-            .percent_gdp
-        ).toFixed(1)
-      )
-  },
-
-
   history: {
     debt_czk:
       mfcr.history
@@ -368,9 +329,6 @@ const overview = {
 
     mfcr:
       mfcr.dataset,
-
-    forecast:
-      forecast.dataset,
 
     population:
       population.dataset
@@ -450,10 +408,6 @@ console.log(
 
 console.log(
   `Clock to:    ${latestPeriod}`
-);
-
-console.log(
-  `Forecast:    ${forecast.forecast.debt_percent_gdp}% HDP`
 );
 
 console.log(

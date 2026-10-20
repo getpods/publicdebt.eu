@@ -73,11 +73,6 @@ assert(
 );
 
 assert(
-  overview.forecast,
-  "forecast is missing"
-);
-
-assert(
   overview.history,
   "history is missing"
 );
@@ -153,33 +148,6 @@ assert(
 assert(
   periodToNumber(clock.period_to) !== null,
   `Invalid debt_clock.period_to: ${clock.period_to}`
-);
-
-
-/* ---------------------------------------------------------
-   FORECAST
---------------------------------------------------------- */
-
-const forecast =
-  overview.forecast ?? {};
-
-assert(
-  Number.isInteger(forecast.year),
-  "forecast.year must be an integer"
-);
-
-assert(
-  isFiniteNumber(
-    forecast.debt_percent_gdp
-  ),
-  "forecast.debt_percent_gdp must be a number"
-);
-
-assert(
-  isFiniteNumber(
-    forecast.balance_percent_gdp
-  ),
-  "forecast.balance_percent_gdp must be a number"
 );
 
 

@@ -303,11 +303,6 @@ body {
   box-shadow: 0 10px 28px rgba(11, 23, 57, 0.035);
 }
 
-.hero-card.forecast {
-  background: #ffffff;
-  border-color: #e9d38c;
-}
-
 .label {
   margin: 0;
 
@@ -935,7 +930,6 @@ body {
    FORECAST
 --------------------------------------------------------- */
 
-.forecast-grid,
 .country-rank-grid {
   display: grid;
 
@@ -1359,7 +1353,7 @@ body {
 
 .ranking-note {
   max-width:
-    680px;
+    900px;
 
   margin-top: 16px;
 
@@ -3640,7 +3634,6 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
 }
 
 
-.hero-card.forecast::before{background:#ffbd12;}
 
 
 .hero-value{color:#0b1739;}
@@ -3649,7 +3642,6 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
 .country-hero-rank .country-hero-value{color:#9a6700;}
 
 
-.hero-card.forecast .hero-value{color:#9a6700;}
 
 
 .hero-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:#155eef;}
@@ -4086,7 +4078,6 @@ textarea:focus-visible{outline:3px solid rgba(21, 94, 239, 0.28);outline-offset:
   }
 
 
-  .forecast-grid,
   .country-rank-grid {
     grid-template-columns:
       1fr;

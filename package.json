@@ -7,11 +7,9 @@
   "scripts": {
     "fetch:eurostat": "node src/fetch/eurostat.js",
     "fetch:mfcr": "node src/fetch/mfcr.js",
-    "fetch:forecast": "node src/fetch/mfcr-forecast.js",
     "fetch:population": "node src/fetch/population.js",
     "transform:eurostat": "node src/transform/debt.js",
     "transform:mfcr": "node src/transform/mfcr.js",
-    "transform:forecast": "node src/transform/mfcr-forecast.js",
     "transform:population": "node src/transform/population.js",
     "transform:eu": "node src/transform/eu.js",
     "transform:overview": "node src/transform/overview.js",
@@ -22,8 +20,8 @@
     "validate:build": "SITE_ENV=production node src/validate/build.js",
     "validate:build:stage": "SITE_ENV=stage node src/validate/build.js",
     "validate:links": "node src/validate/links.js",
-    "fetch": "npm run fetch:eurostat && npm run fetch:mfcr && npm run fetch:forecast && npm run fetch:population && npm run fetch:interest-rates",
-    "transform": "npm run transform:eurostat && npm run transform:mfcr && npm run transform:forecast && npm run transform:population && npm run transform:interest-rates && npm run transform:eu && npm run transform:overview",
+    "fetch": "npm run fetch:eurostat && npm run fetch:mfcr && npm run fetch:population && npm run fetch:interest-rates",
+    "transform": "npm run transform:eurostat && npm run transform:mfcr && npm run transform:population && npm run transform:interest-rates && npm run transform:eu && npm run transform:overview",
     "start": "node src/server/index.js",
     "update": "npm run fetch && npm run transform && npm run validate:all",
     "build": "SITE_ENV=production node src/build.js",
@@ -47,6 +45,6 @@
     "read-excel-file": "^9.3.10"
   },
   "devDependencies": {
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.5"
   }
 }

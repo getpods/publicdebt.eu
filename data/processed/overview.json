@@ -27,14 +27,6 @@
     "period_to": "2026-Q1",
     "change_czk": 292635000000
   },
-  "forecast": {
-    "year": 2026,
-    "balance_percent_gdp": -2.6,
-    "debt_percent_gdp": 45.6
-  },
-  "comparison": {
-    "forecast_debt_minus_latest_actual": 1.5
-  },
   "history": {
     "debt_czk": [
       {
@@ -1346,15 +1338,6 @@
       "unit": "mld. Kč",
       "source_file": "SDDS-Plus_GGD.xlsx",
       "retrieved_at": "2026-09-12T11:31:51.568Z"
-    },
-    "forecast": {
-      "id": "MFCR-Makroekonomicka-predikce-duben-2026",
-      "title": "Makroekonomická predikce České republiky — duben 2026",
-      "source": "Ministerstvo financí České republiky",
-      "source_file": "MFCR-Makroekonomicka-predikce-duben-2026.xlsx",
-      "table": "T 1.3.1",
-      "unit": "% HDP",
-      "retrieved_at": "2026-09-12T11:31:51.938Z"
     },
     "population": {
       "id": "demo_gind",

@@ -7,7 +7,10 @@ import {
 import {
   resolve,
   dirname,
-  extname
+  extname,
+  relative,
+  isAbsolute,
+  sep
 } from "node:path";
 
 import {
@@ -1077,11 +1080,17 @@ const server =
             relativePath
           );
 
+        const pathFromWebRoot =
+          relative(
+            webDir,
+            filePath
+          );
+
 
         if (
-          !filePath.startsWith(
-            webDir
-          )
+          pathFromWebRoot === ".." ||
+          pathFromWebRoot.startsWith(`..${sep}`) ||
+          isAbsolute(pathFromWebRoot)
         ) {
           send404(
             res
@@ -1182,6 +1191,7 @@ const server =
 
 server.listen(
   PORT,
+  "127.0.0.1",
   () => {
     console.log(
       `Server running at http://localhost:${PORT}`

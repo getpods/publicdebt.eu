@@ -206,7 +206,7 @@ Raw downloaded datasets and local verification files can also be excluded from G
 
 ## Requirements
 
-- Node.js 20+
+- Node.js 20.12+
 - npm
 
 ## Installation

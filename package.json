@@ -41,7 +41,7 @@
     "url": "https://github.com/getpods/publicdebt.eu.git"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=20.12.0"
   },
   "dependencies": {
     "read-excel-file": "^9.3.10"

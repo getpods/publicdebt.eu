@@ -1082,7 +1082,7 @@ body {
 }
 
 .methodology-note {
-  padding-top: 18px;
+  padding-block: 18px;
   border-top: 1px solid var(--line);
   background: #f7faff;
   border-color: #dbe5f3;

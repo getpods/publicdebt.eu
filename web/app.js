@@ -2116,7 +2116,7 @@ function renderMap(
       selectedValue.textContent =
         `${formatNumber(
           value
-        )} % HDP · No. ${country.rank.debt_percent_gdp} in the EU`;
+        )} % HDP · ${country.rank.debt_percent_gdp}. místo v EU`;
     }
 
 

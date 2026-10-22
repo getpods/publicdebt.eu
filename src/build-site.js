@@ -353,6 +353,10 @@ function prepareHtml(
         `href="/embed.css?v=${buildVersion}"`
       )
       .replaceAll(
+        'src="/chart-interaction.js"',
+        `src="/chart-interaction.js?v=${buildVersion}"`
+      )
+      .replaceAll(
         'src="/app.js"',
         `src="/app.js?v=${buildVersion}"`
       )
@@ -1732,6 +1736,12 @@ await writeFile(
   ),
 
   "utf8"
+);
+
+
+await copyFile(
+  resolve(webDir, "chart-interaction.js"),
+  resolve(distDir, "chart-interaction.js")
 );
 
 

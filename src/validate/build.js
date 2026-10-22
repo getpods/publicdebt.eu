@@ -138,6 +138,7 @@ const requiredFiles = [
   "app.js",
   "ranking.js",
   "compare.js",
+  "chart-interaction.js",
   "country.js",
   "embed-debt-clock.js",
   "home-en.js",

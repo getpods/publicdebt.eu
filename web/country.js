@@ -102,7 +102,7 @@ const text = {
 
     billion:
       currency =>
-        `${currency} bn`,
+        `bn ${currency}`,
 
     perSecond:
       currency =>
@@ -857,6 +857,8 @@ function createChart({
         );
 
 
+  window.watchChartResize(container, () => createChart({ container, series, unit, xAxisLabel, yAxisLabel, prepared }));
+
   container.innerHTML =
     "";
 
@@ -874,20 +876,12 @@ function createChart({
   }
 
 
-  const width =
-    1000;
-
-
-  const height =
-    420;
-
-
-  const margin = {
-    top: 25,
-    right: 30,
-    bottom: 72,
-    left: 88
-  };
+  const mobile = window.matchMedia("(max-width: 800px)").matches;
+  const width = mobile ? container.clientWidth : 1000;
+  const height = mobile ? 320 : 420;
+  const margin = mobile
+    ? { top: 22, right: 18, bottom: 58, left: 80 }
+    : { top: 25, right: 30, bottom: 72, left: 88 };
 
 
   const chartWidth =
@@ -1629,6 +1623,7 @@ function createChart({
 
   function scheduleHide() {
     cancelHide();
+    if (interaction.isFocused()) return;
 
 
     hideTimer =
@@ -1638,6 +1633,10 @@ function createChart({
       );
   }
 
+
+  const interaction = window.createChartInteraction({
+    container, svg, tooltip, language, hide: hideTooltip, cancelHide
+  });
 
   data.forEach(
     (
@@ -1865,10 +1864,6 @@ function createChart({
         );
 
 
-        const rect =
-          svg.getBoundingClientRect();
-
-
         tooltip.innerHTML = `
           <strong>
             ${item.period}
@@ -1882,33 +1877,16 @@ function createChart({
         `;
 
 
-        tooltip.style.left =
-          `${
-            (
-              pointX /
-              width
-            ) *
-            rect.width
-          }px`;
-
-
-        tooltip.style.top =
-          "40px";
-
         tooltip.hidden =
           false;
       }
 
 
-      hitArea.addEventListener(
-        "mouseenter",
-        showTooltip
-      );
-
-
-      hitArea.addEventListener(
-        "mousemove",
-        showTooltip
+      interaction.register(
+        hitArea,
+        showTooltip,
+        () => `${item.period}: ${formatNumber(item.value)} ${unit}`,
+        () => ({ x: pointX / width, y: pointY / height })
       );
 
 
@@ -1926,13 +1904,14 @@ function createChart({
 
 
   container.appendChild(
-    svg
+    interaction.control
   );
 
 
   container.appendChild(
-    tooltip
+    interaction.details
   );
+  interaction.finish();
 }
 
 
@@ -2555,7 +2534,7 @@ function render(
       isTotal
         ? (
             language === "en"
-              ? `${localCurrency} bn`
+              ? `bn ${localCurrency}`
               : `mld. ${localCurrency}`
           )
         : t.chartUnit;
@@ -2564,7 +2543,7 @@ function render(
       isTotal
         ? (
             language === "en"
-              ? `Total public debt (${localCurrency} bn)`
+              ? `Total public debt (bn ${localCurrency})`
               : `Celkový veřejný dluh (mld. ${localCurrency})`
           )
         : t.chartAxis;

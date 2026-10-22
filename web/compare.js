@@ -1160,6 +1160,8 @@ function createComparisonChart(
   }
 
 
+  window.watchChartResize(container, () => createComparisonChart(seriesList));
+
   container.innerHTML =
     "";
 
@@ -1217,20 +1219,12 @@ function createComparisonChart(
     );
 
 
-  const width =
-    1000;
-
-
-  const height =
-    455;
-
-
-  const margin = {
-    top: 30,
-    right: 30,
-    bottom: 75,
-    left: 90
-  };
+  const mobile = window.matchMedia("(max-width: 800px)").matches;
+  const width = mobile ? container.clientWidth : 1000;
+  const height = mobile ? 320 : 455;
+  const margin = mobile
+    ? { top: 22, right: 18, bottom: 58, left: 80 }
+    : { top: 30, right: 30, bottom: 75, left: 90 };
 
 
   const chartWidth =
@@ -1746,7 +1740,7 @@ function createComparisonChart(
 
 
   tooltip.className =
-    "chart-tooltip compare-tooltip";
+    "chart-tooltip compare-tooltip chart-comparison-details";
 
 
   tooltip.hidden =
@@ -1805,10 +1799,17 @@ function createComparisonChart(
   }
 
 
+  function hideTooltip() {
+    tooltip.hidden = true;
+    svg.querySelectorAll(".chart-hover-guide.is-active")
+      .forEach(guide => guide.classList.remove("is-active"));
+  }
+
   function scheduleHide(
     guide
   ) {
     cancelHide();
+    if (interaction.isFocused()) return;
 
 
     hideTimer =
@@ -1826,6 +1827,11 @@ function createComparisonChart(
       );
   }
 
+
+  const interaction = window.createChartInteraction({
+    container, svg, tooltip, language, hide: hideTooltip, cancelHide,
+    detailRows: Math.ceil(normalized.length / 2)
+  });
 
   periods.forEach(
     (
@@ -2039,12 +2045,10 @@ function createComparisonChart(
 
                     <i
                       style="background:${item.color}"
+                      aria-hidden="true"
                     ></i>
 
-                    ${item.name}:
-                    ${formatNumber(
-                      item.value
-                    )} %
+                    <span class="compare-tooltip-label">${item.name}: ${formatNumber(item.value)} %</span>
 
                   </span>
                 `
@@ -2055,39 +2059,18 @@ function createComparisonChart(
           `;
 
 
-          const rect =
-            svg.getBoundingClientRect();
-
-
-          tooltip.style.left =
-            `${
-              (
-                pointX /
-                width
-              ) *
-              rect.width
-            }px`;
-
-
-          tooltip.style.top =
-            "20px";
-
-
           tooltip.hidden =
             false;
         };
 
 
-      hitArea.addEventListener(
-        "mouseenter",
-        show
-      );
-
-
-      hitArea.addEventListener(
-        "mousemove",
-        show
-      );
+      interaction.register(hitArea, show, () => {
+        const values = normalized.flatMap(series => {
+          const observation = series.data.find(item => item.period === periodItem.period);
+          return observation ? [`${series.name}: ${formatNumber(observation.value)} %`] : [];
+        });
+        return `${periodItem.period}: ${values.join(", ")}`;
+      }, () => ({ x: pointX / width, y: margin.top / height }));
 
 
       hitArea.addEventListener(
@@ -2107,36 +2090,21 @@ function createComparisonChart(
   );
 
 
-  svg.addEventListener(
-    "mouseleave",
-    () => {
-      cancelHide();
+  svg.addEventListener("mouseleave", () => {
+    cancelHide();
+    if (!interaction.isFocused()) hideTooltip();
+  });
 
-      tooltip.hidden =
-        true;
 
-      svg
-        .querySelectorAll(
-          ".chart-hover-guide.is-active"
-        )
-        .forEach(
-          item =>
-            item.classList.remove(
-              "is-active"
-            )
-        );
-    }
+  container.appendChild(
+    interaction.control
   );
 
 
   container.appendChild(
-    svg
+    interaction.details
   );
-
-
-  container.appendChild(
-    tooltip
-  );
+  interaction.finish();
 }
 
 

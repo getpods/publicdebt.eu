@@ -701,3 +701,18 @@ An abrupt process termination may leave a lock behind. Before removing a stale
 lock, confirm that no operation is running. If termination happens during the
 final directory replacement, the previous output is retained in that operation's
 `previous` directory for recovery.
+
+### Chart navigation
+
+On country detail and comparison pages, Tab focuses each chart once. Arrow keys
+select the previous or next period, Home/End select the first or last period,
+and Escape hides the details. Tapping a chart also selects a period. On touchscreens, dragging horizontally
+updates the selection continuously in both mobile and desktop layouts; vertical
+scrolling and pinch zoom remain available. Details
+remain visible while the chart has focus. On mobile, selected values are displayed
+in a permanently reserved panel below the plot, so selecting a period neither
+obscures the lines nor moves the page. Desktop uses compact, translucent tooltips with fixed widths and immediate
+position updates, bounded by the chart edges. Mobile axes use readable
+text at the actual display size. Screen-reader labels include the
+selected period, value and unit; comparison charts include all available
+selected-country values. These controls are available in Czech and English.

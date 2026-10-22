@@ -1,3 +1,4 @@
+import { calculateDebtClock } from "../lib/debt-clock.js";
 import {
   readFile,
   mkdir,
@@ -29,14 +30,14 @@ const DATASET =
 
 const rawDir =
   resolve(
-    ROOT,
-    "data/raw"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "raw"
   );
 
 const outDir =
   resolve(
-    ROOT,
-    "data/processed"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "processed"
   );
 
 const countriesDir =
@@ -61,19 +62,6 @@ const czFile =
 /* ---------------------------------------------------------
    CONSTANTS
 --------------------------------------------------------- */
-
-/*
- * Průměrný gregoriánský rok.
- *
- * Debt clock je orientační přepočet meziroční
- * změny stejného kvartálu na jednu sekundu.
- */
-const SECONDS_PER_YEAR =
-  365.2425 *
-  24 *
-  60 *
-  60;
-
 
 /*
  * Země eurozóny k roku 2026.
@@ -851,15 +839,8 @@ function createDebtClock({
     1_000_000;
 
 
-  const change =
-    valueTo -
-    valueFrom;
-
-
-  const amountPerSecond =
-    change /
-    SECONDS_PER_YEAR;
-
+  const { change, amount_per_second } =
+    calculateDebtClock(valueFrom, valueTo);
 
   return {
     period_from:
@@ -883,15 +864,9 @@ function createDebtClock({
     value_to_million:
       valueToMillion,
 
-    change:
-      Math.round(
-        change
-      ),
+    change,
 
-    amount_per_second:
-      Math.round(
-        amountPerSecond
-      )
+    amount_per_second
   };
 }
 

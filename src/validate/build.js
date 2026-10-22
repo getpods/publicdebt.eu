@@ -1,3 +1,4 @@
+import { validateDataConsistency } from "../lib/data-consistency.js";
 import {
   access,
   readFile,
@@ -37,8 +38,7 @@ const ROOT =
 
 const distDir =
   resolve(
-    ROOT,
-    "dist"
+    process.env.PUBLICDEBT_DIST_DIR ?? resolve(ROOT, "dist")
   );
 
 
@@ -777,34 +777,8 @@ assert(
 );
 
 
-const euGeneratedDay =
-  euGeneratedAt
-    .toISOString()
-    .slice(
-      0,
-      10
-    );
-
-
-const overviewGeneratedDay =
-  overviewGeneratedAt
-    .toISOString()
-    .slice(
-      0,
-      10
-    );
-
-
-assert(
-  euGeneratedDay ===
-    overviewGeneratedDay,
-  `Data freshness mismatch: eu.json=${euGeneratedDay}, overview.json=${overviewGeneratedDay}`
-);
-
-
-console.log(
-  `OK  data freshness ${euGeneratedDay}`
-);
+await validateDataConsistency(resolve(distDir, "data"));
+console.log("OK  source periods and dataset values are consistent");
 
 
 /* ---------------------------------------------------------

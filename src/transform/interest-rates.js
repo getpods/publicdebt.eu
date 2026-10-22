@@ -17,13 +17,13 @@ const ROOT = resolve(
 );
 
 const rawDir = resolve(
-  ROOT,
-  "data/raw"
+  process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+  "raw"
 );
 
 const processedDir = resolve(
-  ROOT,
-  "data/processed"
+  process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+  "processed"
 );
 
 const outputFile = resolve(

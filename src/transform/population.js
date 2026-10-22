@@ -26,15 +26,15 @@ const DATASET =
 
 const rawDir =
   resolve(
-    ROOT,
-    "data/raw"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "raw"
   );
 
 
 const outDir =
   resolve(
-    ROOT,
-    "data/processed"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "processed"
   );
 
 

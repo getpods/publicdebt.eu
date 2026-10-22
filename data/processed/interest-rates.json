@@ -13,8 +13,8 @@
       "series": "IRS.M.AT.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.4125
+        "period": "2026-09",
+        "percent": 3.6867
       },
       "first_period": "1993-01",
       "history": [
@@ -1633,6 +1633,10 @@
         {
           "period": "2026-08",
           "value": 3.4125
+        },
+        {
+          "period": "2026-09",
+          "value": 3.6867
         }
       ]
     },
@@ -1642,8 +1646,8 @@
       "series": "IRS.M.BE.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.76
+        "period": "2026-09",
+        "percent": 4.12
       },
       "first_period": "1989-06",
       "history": [
@@ -3434,6 +3438,10 @@
         {
           "period": "2026-08",
           "value": 3.76
+        },
+        {
+          "period": "2026-09",
+          "value": 4.12
         }
       ]
     },
@@ -3443,7 +3451,7 @@
       "series": "IRS.M.BG.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
+        "period": "2026-09",
         "percent": 4.09
       },
       "first_period": "2003-01",
@@ -4583,6 +4591,10 @@
         {
           "period": "2026-08",
           "value": 4.09
+        },
+        {
+          "period": "2026-09",
+          "value": 4.09
         }
       ]
     },
@@ -4592,8 +4604,8 @@
       "series": "IRS.M.HR.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.58
+        "period": "2026-09",
+        "percent": 3.59
       },
       "first_period": "2005-12",
       "history": [
@@ -5592,6 +5604,10 @@
         {
           "period": "2026-08",
           "value": 3.58
+        },
+        {
+          "period": "2026-09",
+          "value": 3.59
         }
       ]
     },
@@ -5601,8 +5617,8 @@
       "series": "IRS.M.CY.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.62
+        "period": "2026-09",
+        "percent": 3.92
       },
       "first_period": "2001-01",
       "history": [
@@ -6837,6 +6853,10 @@
         {
           "period": "2026-08",
           "value": 3.62
+        },
+        {
+          "period": "2026-09",
+          "value": 3.92
         }
       ]
     },
@@ -6846,8 +6866,8 @@
       "series": "IRS.M.CZ.L.L40.CI.0000.CZK.N.Z",
       "currency": "CZK",
       "latest": {
-        "period": "2026-08",
-        "percent": 4.91
+        "period": "2026-09",
+        "percent": 5.24
       },
       "first_period": "2001-01",
       "history": [
@@ -8082,6 +8102,10 @@
         {
           "period": "2026-08",
           "value": 4.91
+        },
+        {
+          "period": "2026-09",
+          "value": 5.24
         }
       ]
     },
@@ -8091,8 +8115,8 @@
       "series": "IRS.M.DK.L.L40.CI.0000.DKK.N.Z",
       "currency": "DKK",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.01
+        "period": "2026-09",
+        "percent": 3.287
       },
       "first_period": "1983-05",
       "history": [
@@ -10174,7 +10198,11 @@
         },
         {
           "period": "2026-08",
-          "value": 3.01
+          "value": 3.011
+        },
+        {
+          "period": "2026-09",
+          "value": 3.287
         }
       ]
     },
@@ -10184,8 +10212,8 @@
       "series": "IRS.M.EE.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.83
+        "period": "2026-09",
+        "percent": 4.09
       },
       "first_period": "2020-06",
       "history": [
@@ -10488,6 +10516,10 @@
         {
           "period": "2026-08",
           "value": 3.83
+        },
+        {
+          "period": "2026-09",
+          "value": 4.09
         }
       ]
     },
@@ -10497,8 +10529,8 @@
       "series": "IRS.M.FI.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.522
+        "period": "2026-09",
+        "percent": 3.8
       },
       "first_period": "1991-08",
       "history": [
@@ -12185,6 +12217,10 @@
         {
           "period": "2026-08",
           "value": 3.522
+        },
+        {
+          "period": "2026-09",
+          "value": 3.8
         }
       ]
     },
@@ -12194,8 +12230,8 @@
       "series": "IRS.M.FR.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 4
+        "period": "2026-09",
+        "percent": 4.44
       },
       "first_period": "1986-01",
       "history": [
@@ -14150,6 +14186,10 @@
         {
           "period": "2026-08",
           "value": 4
+        },
+        {
+          "period": "2026-09",
+          "value": 4.44
         }
       ]
     },
@@ -14159,8 +14199,8 @@
       "series": "IRS.M.DE.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.185
+        "period": "2026-09",
+        "percent": 3.473
       },
       "first_period": "1990-01",
       "history": [
@@ -15923,6 +15963,10 @@
         {
           "period": "2026-08",
           "value": 3.185
+        },
+        {
+          "period": "2026-09",
+          "value": 3.473
         }
       ]
     },
@@ -15932,8 +15976,8 @@
       "series": "IRS.M.GR.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.87
+        "period": "2026-09",
+        "percent": 4.22
       },
       "first_period": "1992-10",
       "history": [
@@ -17564,6 +17608,10 @@
         {
           "period": "2026-08",
           "value": 3.87
+        },
+        {
+          "period": "2026-09",
+          "value": 4.22
         }
       ]
     },
@@ -17573,8 +17621,8 @@
       "series": "IRS.M.HU.L.L40.CI.0000.HUF.N.Z",
       "currency": "HUF",
       "latest": {
-        "period": "2026-08",
-        "percent": 5.458
+        "period": "2026-09",
+        "percent": 5.685
       },
       "first_period": "2001-01",
       "history": [
@@ -18809,6 +18857,10 @@
         {
           "period": "2026-08",
           "value": 5.458
+        },
+        {
+          "period": "2026-09",
+          "value": 5.685
         }
       ]
     },
@@ -18818,8 +18870,8 @@
       "series": "IRS.M.IE.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.35
+        "period": "2026-09",
+        "percent": 3.5911
       },
       "first_period": "1993-01",
       "history": [
@@ -20438,6 +20490,10 @@
         {
           "period": "2026-08",
           "value": 3.35
+        },
+        {
+          "period": "2026-09",
+          "value": 3.5911
         }
       ]
     },
@@ -20447,8 +20503,8 @@
       "series": "IRS.M.IT.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.986
+        "period": "2026-09",
+        "percent": 4.362
       },
       "first_period": "1991-03",
       "history": [
@@ -22155,6 +22211,10 @@
         {
           "period": "2026-08",
           "value": 3.986
+        },
+        {
+          "period": "2026-09",
+          "value": 4.362
         }
       ]
     },
@@ -22164,8 +22224,8 @@
       "series": "IRS.M.LV.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.82
+        "period": "2026-09",
+        "percent": 4.15
       },
       "first_period": "2001-01",
       "history": [
@@ -23400,6 +23460,10 @@
         {
           "period": "2026-08",
           "value": 3.82
+        },
+        {
+          "period": "2026-09",
+          "value": 4.15
         }
       ]
     },
@@ -23409,7 +23473,7 @@
       "series": "IRS.M.LT.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
+        "period": "2026-09",
         "percent": 2.88
       },
       "first_period": "2001-01",
@@ -24645,6 +24709,10 @@
         {
           "period": "2026-08",
           "value": 2.88
+        },
+        {
+          "period": "2026-09",
+          "value": 2.88
         }
       ]
     },
@@ -24654,8 +24722,8 @@
       "series": "IRS.M.LU.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.401
+        "period": "2026-09",
+        "percent": 3.697
       },
       "first_period": "1993-10",
       "history": [
@@ -26238,6 +26306,10 @@
         {
           "period": "2026-08",
           "value": 3.401
+        },
+        {
+          "period": "2026-09",
+          "value": 3.697
         }
       ]
     },
@@ -26247,8 +26319,8 @@
       "series": "IRS.M.MT.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.9
+        "period": "2026-09",
+        "percent": 4.19
       },
       "first_period": "2001-01",
       "history": [
@@ -27483,6 +27555,10 @@
         {
           "period": "2026-08",
           "value": 3.9
+        },
+        {
+          "period": "2026-09",
+          "value": 4.19
         }
       ]
     },
@@ -27492,8 +27568,8 @@
       "series": "IRS.M.NL.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.285
+        "period": "2026-09",
+        "percent": 3.564
       },
       "first_period": "1986-04",
       "history": [
@@ -29436,6 +29512,10 @@
         {
           "period": "2026-08",
           "value": 3.285
+        },
+        {
+          "period": "2026-09",
+          "value": 3.564
         }
       ]
     },
@@ -29445,8 +29525,8 @@
       "series": "IRS.M.PL.L.L40.CI.0000.PLN.N.Z",
       "currency": "PLN",
       "latest": {
-        "period": "2026-08",
-        "percent": 5.81
+        "period": "2026-09",
+        "percent": 6.23
       },
       "first_period": "2001-01",
       "history": [
@@ -30681,6 +30761,10 @@
         {
           "period": "2026-08",
           "value": 5.81
+        },
+        {
+          "period": "2026-09",
+          "value": 6.23
         }
       ]
     },
@@ -30690,8 +30774,8 @@
       "series": "IRS.M.PT.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.537
+        "period": "2026-09",
+        "percent": 3.846
       },
       "first_period": "1993-07",
       "history": [
@@ -32286,6 +32370,10 @@
         {
           "period": "2026-08",
           "value": 3.537
+        },
+        {
+          "period": "2026-09",
+          "value": 3.846
         }
       ]
     },
@@ -32295,8 +32383,8 @@
       "series": "IRS.M.RO.L.L40.CI.0000.RON.N.Z",
       "currency": "RON",
       "latest": {
-        "period": "2026-08",
-        "percent": 6.43
+        "period": "2026-09",
+        "percent": 6.71
       },
       "first_period": "2005-04",
       "history": [
@@ -33327,6 +33415,10 @@
         {
           "period": "2026-08",
           "value": 6.43
+        },
+        {
+          "period": "2026-09",
+          "value": 6.71
         }
       ]
     },
@@ -33336,8 +33428,8 @@
       "series": "IRS.M.SK.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.849571
+        "period": "2026-09",
+        "percent": 4.163714
       },
       "first_period": "2001-01",
       "history": [
@@ -34572,6 +34664,10 @@
         {
           "period": "2026-08",
           "value": 3.849571
+        },
+        {
+          "period": "2026-09",
+          "value": 4.163714
         }
       ]
     },
@@ -34581,8 +34677,8 @@
       "series": "IRS.M.SI.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.54
+        "period": "2026-09",
+        "percent": 3.86
       },
       "first_period": "2002-03",
       "history": [
@@ -35761,6 +35857,10 @@
         {
           "period": "2026-08",
           "value": 3.54
+        },
+        {
+          "period": "2026-09",
+          "value": 3.86
         }
       ]
     },
@@ -35770,8 +35870,8 @@
       "series": "IRS.M.ES.L.L40.CI.0000.EUR.N.Z",
       "currency": "EUR",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.63
+        "period": "2026-09",
+        "percent": 3.927
       },
       "first_period": "1991-11",
       "history": [
@@ -37441,11 +37541,15 @@
         },
         {
           "period": "2026-07",
-          "value": 3.53
+          "value": 3.534
         },
         {
           "period": "2026-08",
-          "value": 3.63
+          "value": 3.635
+        },
+        {
+          "period": "2026-09",
+          "value": 3.927
         }
       ]
     },
@@ -37455,8 +37559,8 @@
       "series": "IRS.M.SE.L.L40.CI.0000.SEK.N.Z",
       "currency": "SEK",
       "latest": {
-        "period": "2026-08",
-        "percent": 3.02
+        "period": "2026-09",
+        "percent": 3.19
       },
       "first_period": "1987-01",
       "history": [
@@ -39363,6 +39467,10 @@
         {
           "period": "2026-08",
           "value": 3.02
+        },
+        {
+          "period": "2026-09",
+          "value": 3.19
         }
       ]
     }

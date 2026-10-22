@@ -8,13 +8,13 @@
     "debt": {
       "id": "gov_10q_ggdebt",
       "source": "Eurostat",
-      "retrieved_at": "2026-09-12T11:31:51.203Z"
+      "retrieved_at": "2026-10-22T13:04:40.051Z"
     },
     "population": {
       "id": "demo_gind",
       "source": "Eurostat",
       "indicator": "JAN",
-      "retrieved_at": "2026-09-12T11:31:52.283Z"
+      "retrieved_at": "2026-10-22T13:04:40.147Z"
     },
     "interest_rate": {
       "id": "IRS",
@@ -26,13 +26,13 @@
   "count": 27,
   "periods": {
     "debt": [
-      "2026-Q1"
+      "2026-Q2"
     ],
     "population": [
       2026
     ],
     "interest_rate": [
-      "2026-08"
+      "2026-09"
     ]
   },
   "countries": [
@@ -43,10 +43,10 @@
       "slug": "recko",
       "slug_en": "greece",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 143.5,
-        "euro_million": 360106,
-        "euro": 360106000000
+        "period": "2026-Q2",
+        "percent_gdp": 140.8,
+        "euro_million": 358647,
+        "euro": 358647000000
       },
       "population": {
         "year": 2026,
@@ -54,11 +54,11 @@
         "value": 10366586
       },
       "debt_per_capita": {
-        "eur": 34737
+        "eur": 34596
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.87,
+        "period": "2026-09",
+        "percent": 4.22,
         "currency": "EUR"
       },
       "rank": {
@@ -66,7 +66,7 @@
         "debt_euro": 9,
         "debt_per_capita_eur": 10,
         "population": 12,
-        "interest_rate": 9
+        "interest_rate": 7
       }
     },
     {
@@ -76,10 +76,10 @@
       "slug": "italie",
       "slug_en": "italy",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 138.9,
-        "euro_million": 3158190.6,
-        "euro": 3158190600000
+        "period": "2026-Q2",
+        "percent_gdp": 139.9,
+        "euro_million": 3208523.8,
+        "euro": 3208523800000
       },
       "population": {
         "year": 2026,
@@ -87,11 +87,11 @@
         "value": 58942828
       },
       "debt_per_capita": {
-        "eur": 53581
+        "eur": 54435
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.986,
+        "period": "2026-09",
+        "percent": 4.362,
         "currency": "EUR"
       },
       "rank": {
@@ -99,7 +99,7 @@
         "debt_euro": 2,
         "debt_per_capita_eur": 2,
         "population": 3,
-        "interest_rate": 7
+        "interest_rate": 6
       }
     },
     {
@@ -109,10 +109,10 @@
       "slug": "francie",
       "slug_en": "france",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 117.6,
-        "euro_million": 3536067.7,
-        "euro": 3536067700000
+        "period": "2026-Q2",
+        "percent_gdp": 119.1,
+        "euro_million": 3595524.9,
+        "euro": 3595524900000
       },
       "population": {
         "year": 2026,
@@ -120,11 +120,11 @@
         "value": 69112309
       },
       "debt_per_capita": {
-        "eur": 51164
+        "eur": 52024
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 4,
+        "period": "2026-09",
+        "percent": 4.44,
         "currency": "EUR"
       },
       "rank": {
@@ -132,7 +132,7 @@
         "debt_euro": 1,
         "debt_per_capita_eur": 3,
         "population": 2,
-        "interest_rate": 6
+        "interest_rate": 5
       }
     },
     {
@@ -142,10 +142,10 @@
       "slug": "belgie",
       "slug_en": "belgium",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 109.1,
-        "euro_million": 706581,
-        "euro": 706581000000
+        "period": "2026-Q2",
+        "percent_gdp": 110.2,
+        "euro_million": 719077,
+        "euro": 719077000000
       },
       "population": {
         "year": 2026,
@@ -153,11 +153,11 @@
         "value": 11955308
       },
       "debt_per_capita": {
-        "eur": 59102
+        "eur": 60147
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.76,
+        "period": "2026-09",
+        "percent": 4.12,
         "currency": "EUR"
       },
       "rank": {
@@ -165,7 +165,7 @@
         "debt_euro": 5,
         "debt_per_capita_eur": 1,
         "population": 8,
-        "interest_rate": 13
+        "interest_rate": 11
       }
     },
     {
@@ -175,10 +175,10 @@
       "slug": "spanelsko",
       "slug_en": "spain",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 101.6,
-        "euro_million": 1739501,
-        "euro": 1739501000000
+        "period": "2026-Q2",
+        "percent_gdp": 101.4,
+        "euro_million": 1762936,
+        "euro": 1762936000000
       },
       "population": {
         "year": 2026,
@@ -186,11 +186,11 @@
         "value": 49590099
       },
       "debt_per_capita": {
-        "eur": 35078
+        "eur": 35550
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.63,
+        "period": "2026-09",
+        "percent": 3.927,
         "currency": "EUR"
       },
       "rank": {
@@ -208,10 +208,10 @@
       "slug": "portugalsko",
       "slug_en": "portugal",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 91,
-        "euro_million": 283106.5,
-        "euro": 283106500000
+        "period": "2026-Q2",
+        "percent_gdp": 92.5,
+        "euro_million": 293726.2,
+        "euro": 293726200000
       },
       "population": {
         "year": 2026,
@@ -219,11 +219,11 @@
         "value": 11424031
       },
       "debt_per_capita": {
-        "eur": 24782
+        "eur": 25711
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.537,
+        "period": "2026-09",
+        "percent": 3.846,
         "currency": "EUR"
       },
       "rank": {
@@ -231,7 +231,7 @@
         "debt_euro": 10,
         "debt_per_capita_eur": 12,
         "population": 9,
-        "interest_rate": 18
+        "interest_rate": 17
       }
     },
     {
@@ -241,10 +241,10 @@
       "slug": "finsko",
       "slug_en": "finland",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 89.7,
-        "euro_million": 255139,
-        "euro": 255139000000
+        "period": "2026-Q2",
+        "percent_gdp": 90.2,
+        "euro_million": 259585,
+        "euro": 259585000000
       },
       "population": {
         "year": 2026,
@@ -252,11 +252,11 @@
         "value": 5652881
       },
       "debt_per_capita": {
-        "eur": 45134
+        "eur": 45921
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.522,
+        "period": "2026-09",
+        "percent": 3.8,
         "currency": "EUR"
       },
       "rank": {
@@ -264,7 +264,7 @@
         "debt_euro": 11,
         "debt_per_capita_eur": 5,
         "population": 17,
-        "interest_rate": 19
+        "interest_rate": 18
       }
     },
     {
@@ -274,10 +274,10 @@
       "slug": "rakousko",
       "slug_en": "austria",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 83.3,
-        "euro_million": 431411.3,
-        "euro": 431411300000
+        "period": "2026-Q2",
+        "percent_gdp": 83.6,
+        "euro_million": 438856.2,
+        "euro": 438856200000
       },
       "population": {
         "year": 2026,
@@ -285,11 +285,11 @@
         "value": 9215956
       },
       "debt_per_capita": {
-        "eur": 46811
+        "eur": 47619
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.4125,
+        "period": "2026-09",
+        "percent": 3.6867,
         "currency": "EUR"
       },
       "rank": {
@@ -307,10 +307,10 @@
       "slug": "madarsko",
       "slug_en": "hungary",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 77.7,
-        "euro_million": 179198.7,
-        "euro": 179198700000
+        "period": "2026-Q2",
+        "percent_gdp": 75.6,
+        "euro_million": 190468,
+        "euro": 190468000000
       },
       "population": {
         "year": 2026,
@@ -318,17 +318,17 @@
         "value": 9488428
       },
       "debt_per_capita": {
-        "eur": 18886
+        "eur": 20074
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 5.458,
+        "period": "2026-09",
+        "percent": 5.685,
         "currency": "HUF"
       },
       "rank": {
         "debt_percent_gdp": 9,
         "debt_euro": 15,
-        "debt_per_capita_eur": 17,
+        "debt_per_capita_eur": 16,
         "population": 13,
         "interest_rate": 3
       }
@@ -340,10 +340,10 @@
       "slug": "slovinsko",
       "slug_en": "slovenia",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 64.8,
-        "euro_million": 46314.9,
-        "euro": 46314900000
+        "period": "2026-Q2",
+        "percent_gdp": 64.7,
+        "euro_million": 47706.8,
+        "euro": 47706800000
       },
       "population": {
         "year": 2026,
@@ -351,11 +351,11 @@
         "value": 2135107
       },
       "debt_per_capita": {
-        "eur": 21692
+        "eur": 22344
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.54,
+        "period": "2026-09",
+        "percent": 3.86,
         "currency": "EUR"
       },
       "rank": {
@@ -363,7 +363,40 @@
         "debt_euro": 20,
         "debt_per_capita_eur": 13,
         "population": 22,
-        "interest_rate": 17
+        "interest_rate": 16
+      }
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "name_cs": "Polsko",
+      "slug": "polsko",
+      "slug_en": "poland",
+      "debt": {
+        "period": "2026-Q2",
+        "percent_gdp": 64.5,
+        "euro_million": 604895.8,
+        "euro": 604895800000
+      },
+      "population": {
+        "year": 2026,
+        "date": "2026-01-01",
+        "value": 36332765
+      },
+      "debt_per_capita": {
+        "eur": 16649
+      },
+      "interest_rate": {
+        "period": "2026-09",
+        "percent": 6.23,
+        "currency": "PLN"
+      },
+      "rank": {
+        "debt_percent_gdp": 11,
+        "debt_euro": 6,
+        "debt_per_capita_eur": 19,
+        "population": 5,
+        "interest_rate": 2
       }
     },
     {
@@ -373,10 +406,10 @@
       "slug": "nemecko",
       "slug_en": "germany",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 64.4,
-        "euro_million": 2902035.3,
-        "euro": 2902035300000
+        "period": "2026-Q2",
+        "percent_gdp": 63.4,
+        "euro_million": 2924674.2,
+        "euro": 2924674200000
       },
       "population": {
         "year": 2026,
@@ -384,15 +417,15 @@
         "value": 83467117
       },
       "debt_per_capita": {
-        "eur": 34769
+        "eur": 35040
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.185,
+        "period": "2026-09",
+        "percent": 3.473,
         "currency": "EUR"
       },
       "rank": {
-        "debt_percent_gdp": 11,
+        "debt_percent_gdp": 12,
         "debt_euro": 3,
         "debt_per_capita_eur": 9,
         "population": 1,
@@ -406,10 +439,10 @@
       "slug": "slovensko",
       "slug_en": "slovakia",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 62.5,
-        "euro_million": 86802.6,
-        "euro": 86802600000
+        "period": "2026-Q2",
+        "percent_gdp": 60.6,
+        "euro_million": 86423.1,
+        "euro": 86423100000
       },
       "population": {
         "year": 2026,
@@ -417,52 +450,19 @@
         "value": 5409407
       },
       "debt_per_capita": {
-        "eur": 16047
+        "eur": 15976
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.849571,
+        "period": "2026-09",
+        "percent": 4.163714,
         "currency": "EUR"
       },
       "rank": {
-        "debt_percent_gdp": 12,
-        "debt_euro": 18,
-        "debt_per_capita_eur": 19,
-        "population": 19,
-        "interest_rate": 10
-      }
-    },
-    {
-      "code": "PL",
-      "name": "Poland",
-      "name_cs": "Polsko",
-      "slug": "polsko",
-      "slug_en": "poland",
-      "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 61.6,
-        "euro_million": 569889.5,
-        "euro": 569889500000
-      },
-      "population": {
-        "year": 2026,
-        "date": "2026-01-01",
-        "value": 36332765
-      },
-      "debt_per_capita": {
-        "eur": 15685
-      },
-      "interest_rate": {
-        "period": "2026-08",
-        "percent": 5.81,
-        "currency": "PLN"
-      },
-      "rank": {
         "debt_percent_gdp": 13,
-        "debt_euro": 6,
+        "debt_euro": 18,
         "debt_per_capita_eur": 20,
-        "population": 5,
-        "interest_rate": 2
+        "population": 19,
+        "interest_rate": 9
       }
     },
     {
@@ -472,10 +472,10 @@
       "slug": "rumunsko",
       "slug_en": "romania",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 60.1,
-        "euro_million": 229426.7,
-        "euro": 229426700000
+        "period": "2026-Q2",
+        "percent_gdp": 59.4,
+        "euro_million": 228158,
+        "euro": 228158000000
       },
       "population": {
         "year": 2026,
@@ -483,11 +483,11 @@
         "value": 19041322
       },
       "debt_per_capita": {
-        "eur": 12049
+        "eur": 11982
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 6.43,
+        "period": "2026-09",
+        "percent": 6.71,
         "currency": "RON"
       },
       "rank": {
@@ -505,10 +505,10 @@
       "slug": "chorvatsko",
       "slug_en": "croatia",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 58.4,
-        "euro_million": 55216.1,
-        "euro": 55216100000
+        "period": "2026-Q2",
+        "percent_gdp": 56.2,
+        "euro_million": 54729.4,
+        "euro": 54729400000
       },
       "population": {
         "year": 2026,
@@ -516,11 +516,11 @@
         "value": 3876002
       },
       "debt_per_capita": {
-        "eur": 14246
+        "eur": 14120
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.58,
+        "period": "2026-09",
+        "percent": 3.59,
         "currency": "EUR"
       },
       "rank": {
@@ -528,7 +528,7 @@
         "debt_euro": 19,
         "debt_per_capita_eur": 22,
         "population": 20,
-        "interest_rate": 16
+        "interest_rate": 22
       }
     },
     {
@@ -538,10 +538,10 @@
       "slug": "kypr",
       "slug_en": "cyprus",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 54.6,
-        "euro_million": 20088.7,
-        "euro": 20088700000
+        "period": "2026-Q2",
+        "percent_gdp": 48.5,
+        "euro_million": 19203.1,
+        "euro": 19203100000
       },
       "population": {
         "year": 2026,
@@ -549,17 +549,17 @@
         "value": 996571
       },
       "debt_per_capita": {
-        "eur": 20158
+        "eur": 19269
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.62,
+        "period": "2026-09",
+        "percent": 3.92,
         "currency": "EUR"
       },
       "rank": {
         "debt_percent_gdp": 16,
         "debt_euro": 25,
-        "debt_per_capita_eur": 15,
+        "debt_per_capita_eur": 17,
         "population": 25,
         "interest_rate": 15
       }
@@ -571,10 +571,10 @@
       "slug": "lotyssko",
       "slug_en": "latvia",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 46.9,
-        "euro_million": 20435.8,
-        "euro": 20435800000
+        "period": "2026-Q2",
+        "percent_gdp": 48,
+        "euro_million": 21633.5,
+        "euro": 21633500000
       },
       "population": {
         "year": 2026,
@@ -582,11 +582,11 @@
         "value": 1845096
       },
       "debt_per_capita": {
-        "eur": 11076
+        "eur": 11725
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.82,
+        "period": "2026-09",
+        "percent": 4.15,
         "currency": "EUR"
       },
       "rank": {
@@ -594,7 +594,7 @@
         "debt_euro": 24,
         "debt_per_capita_eur": 25,
         "population": 23,
-        "interest_rate": 12
+        "interest_rate": 10
       }
     },
     {
@@ -604,10 +604,10 @@
       "slug": "malta",
       "slug_en": "malta",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 45.9,
-        "euro_million": 11457.6,
-        "euro": 11457600000
+        "period": "2026-Q2",
+        "percent_gdp": 47,
+        "euro_million": 11977.2,
+        "euro": 11977200000
       },
       "population": {
         "year": 2026,
@@ -615,17 +615,17 @@
         "value": 588254
       },
       "debt_per_capita": {
-        "eur": 19477
+        "eur": 20361
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.9,
+        "period": "2026-09",
+        "percent": 4.19,
         "currency": "EUR"
       },
       "rank": {
         "debt_percent_gdp": 18,
         "debt_euro": 26,
-        "debt_per_capita_eur": 16,
+        "debt_per_capita_eur": 15,
         "population": 27,
         "interest_rate": 8
       }
@@ -637,10 +637,10 @@
       "slug": "cesko",
       "slug_en": "czechia",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 44.1,
-        "euro_million": 156151,
-        "euro": 156151000000
+        "period": "2026-Q2",
+        "percent_gdp": 43.8,
+        "euro_million": 158409.2,
+        "euro": 158409200000
       },
       "population": {
         "year": 2026,
@@ -648,11 +648,11 @@
         "value": 10915839
       },
       "debt_per_capita": {
-        "eur": 14305
+        "eur": 14512
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 4.91,
+        "period": "2026-09",
+        "percent": 5.24,
         "currency": "CZK"
       },
       "rank": {
@@ -664,49 +664,16 @@
       }
     },
     {
-      "code": "NL",
-      "name": "Netherlands",
-      "name_cs": "Nizozemsko",
-      "slug": "nizozemsko",
-      "slug_en": "netherlands",
-      "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 43.8,
-        "euro_million": 517377,
-        "euro": 517377000000
-      },
-      "population": {
-        "year": 2026,
-        "date": "2026-01-01",
-        "value": 18130208
-      },
-      "debt_per_capita": {
-        "eur": 28537
-      },
-      "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.285,
-        "currency": "EUR"
-      },
-      "rank": {
-        "debt_percent_gdp": 20,
-        "debt_euro": 7,
-        "debt_per_capita_eur": 11,
-        "population": 7,
-        "interest_rate": 23
-      }
-    },
-    {
       "code": "LT",
       "name": "Lithuania",
       "name_cs": "Litva",
       "slug": "litva",
       "slug_en": "lithuania",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 42.3,
-        "euro_million": 36259.5,
-        "euro": 36259500000
+        "period": "2026-Q2",
+        "percent_gdp": 43.8,
+        "euro_million": 38771.1,
+        "euro": 38771100000
       },
       "population": {
         "year": 2026,
@@ -714,19 +681,52 @@
         "value": 2887592
       },
       "debt_per_capita": {
-        "eur": 12557
+        "eur": 13427
       },
       "interest_rate": {
-        "period": "2026-08",
+        "period": "2026-09",
         "percent": 2.88,
         "currency": "EUR"
       },
       "rank": {
-        "debt_percent_gdp": 21,
+        "debt_percent_gdp": 20,
         "debt_euro": 21,
         "debt_per_capita_eur": 23,
         "population": 21,
         "interest_rate": 27
+      }
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "name_cs": "Nizozemsko",
+      "slug": "nizozemsko",
+      "slug_en": "netherlands",
+      "debt": {
+        "period": "2026-Q2",
+        "percent_gdp": 43.7,
+        "euro_million": 523795,
+        "euro": 523795000000
+      },
+      "population": {
+        "year": 2026,
+        "date": "2026-01-01",
+        "value": 18130208
+      },
+      "debt_per_capita": {
+        "eur": 28891
+      },
+      "interest_rate": {
+        "period": "2026-09",
+        "percent": 3.564,
+        "currency": "EUR"
+      },
+      "rank": {
+        "debt_percent_gdp": 21,
+        "debt_euro": 7,
+        "debt_per_capita_eur": 11,
+        "population": 7,
+        "interest_rate": 23
       }
     },
     {
@@ -736,10 +736,10 @@
       "slug": "irsko",
       "slug_en": "ireland",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 37,
-        "euro_million": 215411.2,
-        "euro": 215411200000
+        "period": "2026-Q2",
+        "percent_gdp": 35.3,
+        "euro_million": 205850.5,
+        "euro": 205850500000
       },
       "population": {
         "year": 2026,
@@ -747,19 +747,19 @@
         "value": 5510565
       },
       "debt_per_capita": {
-        "eur": 39091
+        "eur": 37356
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.35,
+        "period": "2026-09",
+        "percent": 3.5911,
         "currency": "EUR"
       },
       "rank": {
         "debt_percent_gdp": 22,
-        "debt_euro": 13,
-        "debt_per_capita_eur": 6,
+        "debt_euro": 14,
+        "debt_per_capita_eur": 7,
         "population": 18,
-        "interest_rate": 22
+        "interest_rate": 21
       }
     },
     {
@@ -769,10 +769,10 @@
       "slug": "svedsko",
       "slug_en": "sweden",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 34.9,
-        "euro_million": 213930.9,
-        "euro": 213930900000
+        "period": "2026-Q2",
+        "percent_gdp": 35.3,
+        "euro_million": 215980.6,
+        "euro": 215980600000
       },
       "population": {
         "year": 2026,
@@ -780,52 +780,19 @@
         "value": 10605529
       },
       "debt_per_capita": {
-        "eur": 20172
+        "eur": 20365
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.02,
+        "period": "2026-09",
+        "percent": 3.19,
         "currency": "SEK"
       },
       "rank": {
         "debt_percent_gdp": 23,
-        "debt_euro": 14,
+        "debt_euro": 13,
         "debt_per_capita_eur": 14,
         "population": 11,
-        "interest_rate": 25
-      }
-    },
-    {
-      "code": "LU",
-      "name": "Luxembourg",
-      "name_cs": "Lucembursko",
-      "slug": "lucembursko",
-      "slug_en": "luxembourg",
-      "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 29.2,
-        "euro_million": 26402.1,
-        "euro": 26402100000
-      },
-      "population": {
-        "year": 2026,
-        "date": "2026-01-01",
-        "value": 690959
-      },
-      "debt_per_capita": {
-        "eur": 38211
-      },
-      "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.401,
-        "currency": "EUR"
-      },
-      "rank": {
-        "debt_percent_gdp": 24,
-        "debt_euro": 23,
-        "debt_per_capita_eur": 7,
-        "population": 26,
-        "interest_rate": 21
+        "interest_rate": 26
       }
     },
     {
@@ -835,10 +802,10 @@
       "slug": "bulharsko",
       "slug_en": "bulgaria",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 28.5,
-        "euro_million": 34232.8,
-        "euro": 34232800000.000004
+        "period": "2026-Q2",
+        "percent_gdp": 28.7,
+        "euro_million": 35396.3,
+        "euro": 35396300000
       },
       "population": {
         "year": 2026,
@@ -846,19 +813,52 @@
         "value": 6423207
       },
       "debt_per_capita": {
-        "eur": 5330
+        "eur": 5511
       },
       "interest_rate": {
-        "period": "2026-08",
+        "period": "2026-09",
         "percent": 4.09,
         "currency": "EUR"
       },
       "rank": {
-        "debt_percent_gdp": 25,
+        "debt_percent_gdp": 24,
         "debt_euro": 22,
         "debt_per_capita_eur": 27,
         "population": 15,
-        "interest_rate": 5
+        "interest_rate": 12
+      }
+    },
+    {
+      "code": "LU",
+      "name": "Luxembourg",
+      "name_cs": "Lucembursko",
+      "slug": "lucembursko",
+      "slug_en": "luxembourg",
+      "debt": {
+        "period": "2026-Q2",
+        "percent_gdp": 28.2,
+        "euro_million": 26546.9,
+        "euro": 26546900000
+      },
+      "population": {
+        "year": 2026,
+        "date": "2026-01-01",
+        "value": 690959
+      },
+      "debt_per_capita": {
+        "eur": 38420
+      },
+      "interest_rate": {
+        "period": "2026-09",
+        "percent": 3.697,
+        "currency": "EUR"
+      },
+      "rank": {
+        "debt_percent_gdp": 25,
+        "debt_euro": 23,
+        "debt_per_capita_eur": 6,
+        "population": 26,
+        "interest_rate": 19
       }
     },
     {
@@ -868,10 +868,10 @@
       "slug": "dansko",
       "slug_en": "denmark",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 26.8,
-        "euro_million": 112460.6,
-        "euro": 112460600000
+        "period": "2026-Q2",
+        "percent_gdp": 27.1,
+        "euro_million": 114705.9,
+        "euro": 114705900000
       },
       "population": {
         "year": 2026,
@@ -879,11 +879,11 @@
         "value": 6025603
       },
       "debt_per_capita": {
-        "eur": 18664
+        "eur": 19036
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.01,
+        "period": "2026-09",
+        "percent": 3.287,
         "currency": "DKK"
       },
       "rank": {
@@ -891,7 +891,7 @@
         "debt_euro": 17,
         "debt_per_capita_eur": 18,
         "population": 16,
-        "interest_rate": 26
+        "interest_rate": 25
       }
     },
     {
@@ -901,10 +901,10 @@
       "slug": "estonsko",
       "slug_en": "estonia",
       "debt": {
-        "period": "2026-Q1",
-        "percent_gdp": 25.2,
-        "euro_million": 10645.8,
-        "euro": 10645800000
+        "period": "2026-Q2",
+        "percent_gdp": 26.1,
+        "euro_million": 11258.6,
+        "euro": 11258600000
       },
       "population": {
         "year": 2026,
@@ -912,11 +912,11 @@
         "value": 1360745
       },
       "debt_per_capita": {
-        "eur": 7824
+        "eur": 8274
       },
       "interest_rate": {
-        "period": "2026-08",
-        "percent": 3.83,
+        "period": "2026-09",
+        "percent": 4.09,
         "currency": "EUR"
       },
       "rank": {
@@ -924,9 +924,9 @@
         "debt_euro": 27,
         "debt_per_capita_eur": 26,
         "population": 24,
-        "interest_rate": 11
+        "interest_rate": 13
       }
     }
   ],
-  "generated_at": "2026-09-12T11:54:20.074Z"
+  "generated_at": "2026-10-22T13:04:40.301Z"
 }

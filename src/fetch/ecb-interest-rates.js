@@ -1,3 +1,4 @@
+import { fetchSource } from "../lib/fetch-source.js";
 import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,8 +9,8 @@ const ROOT = resolve(
 );
 
 const outDir = resolve(
-  ROOT,
-  "data/raw"
+  process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+  "raw"
 );
 
 const SERIES = {
@@ -61,25 +62,7 @@ async function fetchCountry(
     `Fetching ${countryCode}...`
   );
 
-  const response = await fetch(
-    url,
-    {
-      headers: {
-        "User-Agent":
-          "PublicDebt.eu/0.2 data importer",
-        Accept: "text/csv"
-      }
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(
-      `ECB API ${countryCode}: ${response.status} ${response.statusText}`
-    );
-  }
-
-  const csv =
-    await response.text();
+  const csv = await fetchSource(url, { headers: { Accept: "text/csv" } });
 
   if (
     !csv ||

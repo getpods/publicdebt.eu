@@ -41,7 +41,6 @@ PublicDebt.eu uses official public data.
 The main sources are:
 
 - **Eurostat** — harmonised public debt and population data for EU countries
-- **Ministry of Finance of the Czech Republic** — Czech public debt data
 - **European Central Bank (ECB)** — harmonised long-term interest rates based on government bonds with a residual maturity close to 10 years
 
 Raw source data are downloaded by the project's import scripts and transformed into compact JSON files used by the website.
@@ -70,7 +69,6 @@ The fetch layer includes data imports for:
 
 - Eurostat public debt data
 - Eurostat population data
-- Czech Ministry of Finance data
 - ECB long-term interest rates
 
 For example:
@@ -79,7 +77,6 @@ For example:
 src/fetch/
 ├── ecb-interest-rates.js
 ├── eurostat.js
-├── mfcr.js
 └── population.js
 ```
 
@@ -102,7 +99,6 @@ src/transform/
 ├── debt.js
 ├── eu.js
 ├── interest-rates.js
-├── mfcr.js
 ├── overview.js
 └── population.js
 ```
@@ -654,7 +650,6 @@ The project intentionally uses a small technology stack:
 - HTML
 - CSS
 - JSON
-- `read-excel-file` for processing Excel source data
 - `sharp` for rendering generated social graphics
 
 There is no frontend framework and no production application server is required.
@@ -683,3 +678,26 @@ PublicDebt.eu is built around a few principles:
 The source code of PublicDebt.eu is licensed under the MIT License. See `LICENSE`.
 
 Public-sector data used by the project is provided by its respective original sources and remains subject to their applicable terms and licences.
+
+### Safe data updates and builds
+
+`npm run update` downloads and transforms data in an ignored temporary directory,
+validates the complete result, then replaces `data/`. A failed download,
+transformation or validation leaves the previous data in place. `npm run fetch`
+and `npm run transform` also prepare their output before replacing it.
+Individual `transform:*` commands remain direct tools for development; use
+`npm run transform` to publish a complete validated set.
+
+Source requests have a 30-second timeout, including body download, and up to
+three attempts for network errors, timeouts, HTTP 429 and 5xx responses.
+
+`npm run build` and `npm run build:stage` prepare the site separately and run
+build and link validation before replacing `dist/`. Consistency checks compare
+source periods and values across EU, overview and country datasets, rather than
+requiring their generation timestamps to fall on the same calendar day.
+
+Temporary output and operation locks live in `.publicdebt-tmp/`, which Git ignores.
+An abrupt process termination may leave a lock behind. Before removing a stale
+lock, confirm that no operation is running. If termination happens during the
+final directory replacement, the previous output is retained in that operation's
+`previous` directory for recovery.

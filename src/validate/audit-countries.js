@@ -27,8 +27,8 @@ const ROOT =
 
 const countriesDir =
   resolve(
-    ROOT,
-    "data/processed/countries"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "processed/countries"
   );
 
 

@@ -26,8 +26,8 @@ const ROOT =
 
 const countriesDir =
   resolve(
-    ROOT,
-    "data/processed/countries"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "processed/countries"
   );
 
 
@@ -622,10 +622,7 @@ function validateDebtClock(
 
 
   const expectedAmountPerSecond =
-    Math.round(
-      expectedChange /
-      SECONDS_PER_YEAR
-    );
+    expectedChange / SECONDS_PER_YEAR;
 
 
   assert(

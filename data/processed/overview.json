@@ -4,12 +4,12 @@
     "name": "Czechia"
   },
   "latest": {
-    "period": "2026-Q1",
+    "period": "2026-Q2",
     "debt": {
-      "czk_billion": 3827.885,
-      "czk": 3827885000000,
-      "percent_gdp": 44.1,
-      "euro_million": 156151,
+      "czk_billion": 3842.374,
+      "czk": 3842374000000,
+      "percent_gdp": 43.8,
+      "euro_million": 158409.2,
       "euro_unit": "MIO_EUR"
     }
   },
@@ -19,16 +19,112 @@
     "value": 10915839
   },
   "debt_per_capita": {
-    "czk": 350673
+    "czk": 352000
   },
   "debt_clock": {
-    "czk_per_second": 9273.04,
-    "period_from": "2025-Q1",
-    "period_to": "2026-Q1",
-    "change_czk": 292635000000
+    "czk_per_second": 6816.94480506229,
+    "period_from": "2025-Q2",
+    "period_to": "2026-Q2",
+    "change_czk": 215122000000
   },
   "history": {
     "debt_czk": [
+      {
+        "period": "2000-Q1",
+        "year": 2000,
+        "quarter": 1,
+        "value": 348.787
+      },
+      {
+        "period": "2000-Q2",
+        "year": 2000,
+        "quarter": 2,
+        "value": 358.712
+      },
+      {
+        "period": "2000-Q3",
+        "year": 2000,
+        "quarter": 3,
+        "value": 374.294
+      },
+      {
+        "period": "2000-Q4",
+        "year": 2000,
+        "quarter": 4,
+        "value": 405.418
+      },
+      {
+        "period": "2001-Q1",
+        "year": 2001,
+        "quarter": 1,
+        "value": 436.652
+      },
+      {
+        "period": "2001-Q2",
+        "year": 2001,
+        "quarter": 2,
+        "value": 496.421
+      },
+      {
+        "period": "2001-Q3",
+        "year": 2001,
+        "quarter": 3,
+        "value": 560.334
+      },
+      {
+        "period": "2001-Q4",
+        "year": 2001,
+        "quarter": 4,
+        "value": 585.615
+      },
+      {
+        "period": "2002-Q1",
+        "year": 2002,
+        "quarter": 1,
+        "value": 623.366
+      },
+      {
+        "period": "2002-Q2",
+        "year": 2002,
+        "quarter": 2,
+        "value": 648.565
+      },
+      {
+        "period": "2002-Q3",
+        "year": 2002,
+        "quarter": 3,
+        "value": 705.005
+      },
+      {
+        "period": "2002-Q4",
+        "year": 2002,
+        "quarter": 4,
+        "value": 695.133
+      },
+      {
+        "period": "2003-Q1",
+        "year": 2003,
+        "quarter": 1,
+        "value": 778.346
+      },
+      {
+        "period": "2003-Q2",
+        "year": 2003,
+        "quarter": 2,
+        "value": 789.934
+      },
+      {
+        "period": "2003-Q3",
+        "year": 2003,
+        "quarter": 3,
+        "value": 799.73
+      },
+      {
+        "period": "2003-Q4",
+        "year": 2003,
+        "quarter": 4,
+        "value": 795.04
+      },
       {
         "period": "2004-Q1",
         "year": 2004,
@@ -549,19 +645,25 @@
         "period": "2025-Q3",
         "year": 2025,
         "quarter": 3,
-        "value": 3623.391
+        "value": 3623.365
       },
       {
         "period": "2025-Q4",
         "year": 2025,
         "quarter": 4,
-        "value": 3786.25
+        "value": 3787.253
       },
       {
         "period": "2026-Q1",
         "year": 2026,
         "quarter": 1,
-        "value": 3827.885
+        "value": 3827.516
+      },
+      {
+        "period": "2026-Q2",
+        "year": 2026,
+        "quarter": 2,
+        "value": 3842.374
       }
     ],
     "debt_percent_gdp": [
@@ -984,6 +1086,10 @@
       {
         "period": "2026-Q1",
         "value": 44.1
+      },
+      {
+        "period": "2026-Q2",
+        "value": 43.8
       }
     ],
     "population": [
@@ -1328,25 +1434,17 @@
     "eurostat": {
       "id": "gov_10q_ggdebt",
       "source": "Eurostat",
-      "retrieved_at": "2026-09-12T11:31:49.919Z",
+      "retrieved_at": "2026-10-22T13:04:38.841Z",
       "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10q_ggdebt?lang=en&geo=CZ"
-    },
-    "mfcr": {
-      "id": "SDDS-Plus_GGD",
-      "title": "Hrubý dluh sektoru vládních institucí - čtvrtletní",
-      "source": "Ministerstvo financí České republiky",
-      "unit": "mld. Kč",
-      "source_file": "SDDS-Plus_GGD.xlsx",
-      "retrieved_at": "2026-09-12T11:31:51.568Z"
     },
     "population": {
       "id": "demo_gind",
       "source": "Eurostat",
       "indicator": "JAN",
       "indicator_label": "Population on 1 January - total",
-      "retrieved_at": "2026-09-12T11:31:52.204Z",
+      "retrieved_at": "2026-10-22T13:04:40.113Z",
       "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/demo_gind?lang=en&geo=CZ"
     }
   },
-  "generated_at": "2026-09-12T11:31:53.108Z"
+  "generated_at": "2026-10-22T13:04:40.351Z"
 }

@@ -1,3 +1,4 @@
+import { calculateDebtClock } from "../lib/debt-clock.js";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,18 +9,13 @@ const ROOT = resolve(
 );
 
 const processedDir = resolve(
-  ROOT,
-  "data/processed"
+  process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+  "processed"
 );
 
 const eurostatFile = resolve(
   processedDir,
   "cz.json"
-);
-
-const mfcrFile = resolve(
-  processedDir,
-  "mfcr-ggd.json"
 );
 
 const populationFile = resolve(
@@ -44,13 +40,6 @@ const eurostat = JSON.parse(
   )
 );
 
-const mfcr = JSON.parse(
-  await readFile(
-    mfcrFile,
-    "utf8"
-  )
-);
-
 const population = JSON.parse(
   await readFile(
     populationFile,
@@ -66,25 +55,29 @@ const population = JSON.parse(
 const latestEurostat =
   eurostat.latest;
 
-const latestMfcr =
-  mfcr.latest;
-
 const latestPopulation =
   population.latest;
 
-
-if (
-  latestEurostat.period !==
-  latestMfcr.period
-) {
-  throw new Error(
-    `Latest periods do not match: Eurostat=${latestEurostat.period}, MFCR=${latestMfcr.period}`
-  );
-}
-
 const latestPeriod =
-  latestMfcr.period;
+  latestEurostat.period;
 
+// Eurostat MIO_NAC is expressed in millions of Czech crowns.
+const debtCzkHistory = eurostat.history
+  .filter(item => item.unit === "MIO_NAC")
+  .map(item => ({
+    period: item.period,
+    year: Number(item.period.slice(0, 4)),
+    quarter: Number(item.period.at(-1)),
+    debt_czk_billion: Number(item.value) / 1_000,
+    debt_czk: Number(item.value) * 1_000_000
+  }))
+  .sort((a, b) => a.period.localeCompare(b.period));
+
+const latestDebt = debtCzkHistory.find(item => item.period === latestPeriod);
+
+if (!latestDebt || !Number.isFinite(latestDebt.debt_czk) || latestDebt.debt_czk <= 0) {
+  throw new Error(`No valid Eurostat CZK debt observation found for ${latestPeriod}`);
+}
 
 if (
   !latestPopulation ||
@@ -165,37 +158,26 @@ const debtPercentGdpHistory =
 --------------------------------------------------------- */
 
 const previousYearItem =
-  mfcr.history.find(
+  debtCzkHistory.find(
     item =>
       item.year ===
-        latestMfcr.year - 1 &&
+        latestDebt.year - 1 &&
       item.quarter ===
-        latestMfcr.quarter
+        latestDebt.quarter
   );
 
 
 if (!previousYearItem) {
   throw new Error(
-    `No MFCR observation found for ${latestMfcr.year - 1}-Q${latestMfcr.quarter}`
+    `No Eurostat CZK observation found for ${latestDebt.year - 1}-Q${latestDebt.quarter}`
   );
 }
 
 
-const debtChangeCzk =
-  latestMfcr.debt_czk -
-  previousYearItem.debt_czk;
-
-
-const secondsPerYear =
-  365.25 *
-  24 *
-  60 *
-  60;
-
-
-const debtPerSecond =
-  debtChangeCzk /
-  secondsPerYear;
+const {
+  change: debtChangeCzk,
+  amount_per_second: debtPerSecond
+} = calculateDebtClock(previousYearItem.debt_czk, latestDebt.debt_czk);
 
 
 /* ---------------------------------------------------------
@@ -203,7 +185,7 @@ const debtPerSecond =
 --------------------------------------------------------- */
 
 const debtPerCapitaCzk =
-  latestMfcr.debt_czk /
+  latestDebt.debt_czk /
   latestPopulation.value;
 
 
@@ -224,10 +206,10 @@ const overview = {
 
     debt: {
       czk_billion:
-        latestMfcr.debt_czk_billion,
+        latestDebt.debt_czk_billion,
 
       czk:
-        latestMfcr.debt_czk,
+        latestDebt.debt_czk,
 
       percent_gdp:
         latestEurostat.debt.percent_gdp,
@@ -263,9 +245,7 @@ const overview = {
 
   debt_clock: {
     czk_per_second:
-      Number(
-        debtPerSecond.toFixed(2)
-      ),
+      debtPerSecond,
 
     period_from:
       previousYearItem.period,
@@ -280,7 +260,7 @@ const overview = {
 
   history: {
     debt_czk:
-      mfcr.history
+      debtCzkHistory
         .map(item => ({
           period:
             item.period,
@@ -326,9 +306,6 @@ const overview = {
   sources: {
     eurostat:
       eurostat.dataset,
-
-    mfcr:
-      mfcr.dataset,
 
     population:
       population.dataset
@@ -376,7 +353,7 @@ console.log(
 );
 
 console.log(
-  `Debt:        ${latestMfcr.debt_czk_billion.toLocaleString("cs-CZ")} mld. Kč`
+  `Debt:        ${latestDebt.debt_czk_billion.toLocaleString("cs-CZ")} mld. Kč`
 );
 
 console.log(

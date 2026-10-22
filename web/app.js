@@ -312,10 +312,7 @@ function startDebtClock(
 
 
   const rate =
-    Number(
-      data?.debt_clock
-        ?.czk_per_second
-    );
+    data?.debt_clock?.czk_per_second;
 
 
   if (
@@ -335,7 +332,7 @@ function startDebtClock(
       "—";
 
     valueElement.textContent =
-      "0";
+      "—";
 
     return;
   }
@@ -2169,12 +2166,6 @@ function renderMethodology(
   }
 
 
-  const mfcrPeriod =
-    document.querySelector(
-      "#source-mfcr-period"
-    );
-
-
   const eurostatPeriod =
     document.querySelector(
       "#source-eurostat-period"
@@ -2191,14 +2182,6 @@ function renderMethodology(
     document.querySelector(
       "#source-population-year"
     );
-
-
-  if (
-    mfcrPeriod
-  ) {
-    mfcrPeriod.textContent =
-      `${t.sourceLatestPrefix} ${data.latest.period}`;
-  }
 
 
   if (

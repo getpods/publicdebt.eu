@@ -13,30 +13,30 @@
   "dataset": {
     "id": "gov_10q_ggdebt",
     "source": "Eurostat",
-    "retrieved_at": "2026-09-12T11:31:49.851Z",
+    "retrieved_at": "2026-10-22T13:04:38.776Z",
     "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10q_ggdebt?lang=en&geo=CY"
   },
   "latest": {
-    "period": "2026-Q1",
+    "period": "2026-Q2",
     "debt": {
-      "national_currency": 20088.7,
+      "national_currency": 19203.1,
       "national_currency_unit": "MIO_NAC",
-      "euro": 20088.7,
+      "euro": 19203.1,
       "euro_unit": "MIO_EUR",
-      "percent_gdp": 54.6,
+      "percent_gdp": 48.5,
       "percent_gdp_unit": "PC_GDP"
     }
   },
   "debt_clock": {
-    "period_from": "2025-Q1",
-    "period_to": "2026-Q1",
+    "period_from": "2025-Q2",
+    "period_to": "2026-Q2",
     "currency": "EUR",
     "currency_label": "€",
     "source_unit": "MIO_EUR",
-    "value_from_million": 21789.7,
-    "value_to_million": 20088.7,
-    "change": -1701000000,
-    "amount_per_second": -54
+    "value_from_million": 21702.7,
+    "value_to_million": 19203.1,
+    "change": -2499600000,
+    "amount_per_second": -79.20917077162586
   },
   "history": {
     "debt_percent_gdp": [
@@ -58,7 +58,7 @@
       },
       {
         "period": "2001-Q1",
-        "value": 58
+        "value": 57.9
       },
       {
         "period": "2001-Q2",
@@ -202,7 +202,7 @@
       },
       {
         "period": "2010-Q1",
-        "value": 61.3
+        "value": 61.4
       },
       {
         "period": "2010-Q2",
@@ -254,7 +254,7 @@
       },
       {
         "period": "2013-Q2",
-        "value": 95.1
+        "value": 95.2
       },
       {
         "period": "2013-Q3",
@@ -270,7 +270,7 @@
       },
       {
         "period": "2014-Q2",
-        "value": 115.5
+        "value": 115.4
       },
       {
         "period": "2014-Q3",
@@ -318,7 +318,7 @@
       },
       {
         "period": "2017-Q2",
-        "value": 104.5
+        "value": 104.4
       },
       {
         "period": "2017-Q3",
@@ -338,7 +338,7 @@
       },
       {
         "period": "2018-Q3",
-        "value": 108.9
+        "value": 109
       },
       {
         "period": "2018-Q4",
@@ -378,11 +378,11 @@
       },
       {
         "period": "2021-Q1",
-        "value": 117.5
+        "value": 117.6
       },
       {
         "period": "2021-Q2",
-        "value": 107.1
+        "value": 107.3
       },
       {
         "period": "2021-Q3",
@@ -398,67 +398,71 @@
       },
       {
         "period": "2022-Q2",
-        "value": 88.9
+        "value": 88.8
       },
       {
         "period": "2022-Q3",
-        "value": 84.6
+        "value": 84.5
       },
       {
         "period": "2022-Q4",
-        "value": 80.1
+        "value": 80
       },
       {
         "period": "2023-Q1",
-        "value": 77.4
+        "value": 77
       },
       {
         "period": "2023-Q2",
-        "value": 78.6
+        "value": 77.9
       },
       {
         "period": "2023-Q3",
-        "value": 73
+        "value": 71.9
       },
       {
         "period": "2023-Q4",
-        "value": 71.1
+        "value": 69.6
       },
       {
         "period": "2024-Q1",
-        "value": 69.8
+        "value": 67.9
       },
       {
         "period": "2024-Q2",
-        "value": 67.6
+        "value": 65.5
       },
       {
         "period": "2024-Q3",
-        "value": 66.6
+        "value": 64.2
       },
       {
         "period": "2024-Q4",
-        "value": 62.7
+        "value": 60.1
       },
       {
         "period": "2025-Q1",
-        "value": 61.9
+        "value": 59
       },
       {
         "period": "2025-Q2",
-        "value": 61.1
+        "value": 58.1
       },
       {
         "period": "2025-Q3",
-        "value": 60.3
+        "value": 57.2
       },
       {
         "period": "2025-Q4",
-        "value": 55
+        "value": 52.3
       },
       {
         "period": "2026-Q1",
-        "value": 54.6
+        "value": 51.5
+      },
+      {
+        "period": "2026-Q2",
+        "value": 48.5
       }
     ],
     "debt_euro_million": [
@@ -864,23 +868,27 @@
       },
       {
         "period": "2025-Q1",
-        "value": 21789.7
+        "value": 21764.7
       },
       {
         "period": "2025-Q2",
-        "value": 21727.7
+        "value": 21702.7
       },
       {
         "period": "2025-Q3",
-        "value": 21695.6
+        "value": 21670.6
       },
       {
         "period": "2025-Q4",
-        "value": 20078.2
+        "value": 20053.2
       },
       {
         "period": "2026-Q1",
-        "value": 20088.7
+        "value": 20034.4
+      },
+      {
+        "period": "2026-Q2",
+        "value": 19203.1
       }
     ],
     "debt_national_currency_million": [
@@ -1286,23 +1294,27 @@
       },
       {
         "period": "2025-Q1",
-        "value": 21789.7
+        "value": 21764.7
       },
       {
         "period": "2025-Q2",
-        "value": 21727.7
+        "value": 21702.7
       },
       {
         "period": "2025-Q3",
-        "value": 21695.6
+        "value": 21670.6
       },
       {
         "period": "2025-Q4",
-        "value": 20078.2
+        "value": 20053.2
       },
       {
         "period": "2026-Q1",
-        "value": 20088.7
+        "value": 20034.4
+      },
+      {
+        "period": "2026-Q2",
+        "value": 19203.1
       }
     ]
   }

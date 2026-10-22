@@ -24,14 +24,14 @@ const ROOT =
 
 const interestRatesFile =
   resolve(
-    ROOT,
-    "data/processed/interest-rates.json"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "processed/interest-rates.json"
   );
 
 const euFile =
   resolve(
-    ROOT,
-    "data/processed/eu.json"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "processed/eu.json"
   );
 
 

@@ -35,3 +35,6 @@ npm-debug.log*
 
 # Seznam Webmaster verification
 web/seznam-*
+
+# Temporary pipeline output and locks
+.publicdebt-tmp/

@@ -387,7 +387,7 @@ export async function renderCzBudget({
 
   const source =
     preset.source ||
-    "Ministerstvo financí ČR";
+    "Uživatelsky zadané údaje";
 
   return `
     <svg
@@ -564,7 +564,7 @@ export async function renderCzBudget({
           font-size="26"
           font-weight="400"
         >
-          Ministerstvo financí navrhuje schodek ve výši
+          Zadaný schodek rozpočtu činí
         </text>
 
         <text

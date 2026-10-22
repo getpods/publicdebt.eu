@@ -13,30 +13,30 @@
   "dataset": {
     "id": "gov_10q_ggdebt",
     "source": "Eurostat",
-    "retrieved_at": "2026-09-12T11:31:50.123Z",
+    "retrieved_at": "2026-10-22T13:04:39.085Z",
     "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10q_ggdebt?lang=en&geo=FR"
   },
   "latest": {
-    "period": "2026-Q1",
+    "period": "2026-Q2",
     "debt": {
-      "national_currency": 3536067.7,
+      "national_currency": 3595524.9,
       "national_currency_unit": "MIO_NAC",
-      "euro": 3536067.7,
+      "euro": 3595524.9,
       "euro_unit": "MIO_EUR",
-      "percent_gdp": 117.6,
+      "percent_gdp": 119.1,
       "percent_gdp_unit": "PC_GDP"
     }
   },
   "debt_clock": {
-    "period_from": "2025-Q1",
-    "period_to": "2026-Q1",
+    "period_from": "2025-Q2",
+    "period_to": "2026-Q2",
     "currency": "EUR",
     "currency_label": "€",
     "source_unit": "MIO_EUR",
-    "value_from_million": 3346280.8,
-    "value_to_million": 3536067.7,
-    "change": 189786900000,
-    "amount_per_second": 6014
+    "value_from_million": 3417162.2,
+    "value_to_million": 3595524.9,
+    "change": 178362700000,
+    "amount_per_second": 5652.088959668856
   },
   "history": {
     "debt_percent_gdp": [
@@ -286,7 +286,7 @@
       },
       {
         "period": "2015-Q2",
-        "value": 98.4
+        "value": 98.3
       },
       {
         "period": "2015-Q3",
@@ -458,7 +458,11 @@
       },
       {
         "period": "2026-Q1",
-        "value": 117.6
+        "value": 117.7
+      },
+      {
+        "period": "2026-Q2",
+        "value": 119.1
       }
     ],
     "debt_euro_million": [
@@ -868,19 +872,23 @@
       },
       {
         "period": "2025-Q2",
-        "value": 3417154.3
+        "value": 3417162.2
       },
       {
         "period": "2025-Q3",
-        "value": 3484061.6
+        "value": 3484125.6
       },
       {
         "period": "2025-Q4",
-        "value": 3460465.1
+        "value": 3460111
       },
       {
         "period": "2026-Q1",
-        "value": 3536067.7
+        "value": 3535928.6
+      },
+      {
+        "period": "2026-Q2",
+        "value": 3595524.9
       }
     ],
     "debt_national_currency_million": [
@@ -1290,19 +1298,23 @@
       },
       {
         "period": "2025-Q2",
-        "value": 3417154.3
+        "value": 3417162.2
       },
       {
         "period": "2025-Q3",
-        "value": 3484061.6
+        "value": 3484125.6
       },
       {
         "period": "2025-Q4",
-        "value": 3460465.1
+        "value": 3460111
       },
       {
         "period": "2026-Q1",
-        "value": 3536067.7
+        "value": 3535928.6
+      },
+      {
+        "period": "2026-Q2",
+        "value": 3595524.9
       }
     ]
   }

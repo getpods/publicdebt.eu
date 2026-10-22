@@ -20,8 +20,8 @@ const ROOT = resolve(
 );
 
 const processedDir = resolve(
-  ROOT,
-  "data/processed"
+  process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+  "processed"
 );
 
 const countriesFile = resolve(

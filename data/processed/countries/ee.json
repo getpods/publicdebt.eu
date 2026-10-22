@@ -13,30 +13,30 @@
   "dataset": {
     "id": "gov_10q_ggdebt",
     "source": "Eurostat",
-    "retrieved_at": "2026-09-12T11:31:50.032Z",
+    "retrieved_at": "2026-10-22T13:04:38.968Z",
     "api_url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10q_ggdebt?lang=en&geo=EE"
   },
   "latest": {
-    "period": "2026-Q1",
+    "period": "2026-Q2",
     "debt": {
-      "national_currency": 10645.8,
+      "national_currency": 11258.6,
       "national_currency_unit": "MIO_NAC",
-      "euro": 10645.8,
+      "euro": 11258.6,
       "euro_unit": "MIO_EUR",
-      "percent_gdp": 25.2,
+      "percent_gdp": 26.1,
       "percent_gdp_unit": "PC_GDP"
     }
   },
   "debt_clock": {
-    "period_from": "2025-Q1",
-    "period_to": "2026-Q1",
+    "period_from": "2025-Q2",
+    "period_to": "2026-Q2",
     "currency": "EUR",
     "currency_label": "€",
     "source_unit": "MIO_EUR",
-    "value_from_million": 9629.8,
-    "value_to_million": 10645.8,
-    "change": 1016000000,
-    "amount_per_second": 32
+    "value_from_million": 9468,
+    "value_to_million": 11258.6,
+    "change": 1790600000,
+    "amount_per_second": 56.74185517029655
   },
   "history": {
     "debt_percent_gdp": [
@@ -402,11 +402,11 @@
       },
       {
         "period": "2022-Q3",
-        "value": 16.7
+        "value": 16.6
       },
       {
         "period": "2022-Q4",
-        "value": 19.2
+        "value": 19.1
       },
       {
         "period": "2023-Q1",
@@ -422,15 +422,15 @@
       },
       {
         "period": "2023-Q4",
-        "value": 20.2
+        "value": 20.3
       },
       {
         "period": "2024-Q1",
-        "value": 24
+        "value": 24.1
       },
       {
         "period": "2024-Q2",
-        "value": 23.6
+        "value": 23.7
       },
       {
         "period": "2024-Q3",
@@ -446,7 +446,7 @@
       },
       {
         "period": "2025-Q2",
-        "value": 23.2
+        "value": 23.1
       },
       {
         "period": "2025-Q3",
@@ -454,11 +454,15 @@
       },
       {
         "period": "2025-Q4",
-        "value": 24.1
+        "value": 24
       },
       {
         "period": "2026-Q1",
-        "value": 25.2
+        "value": 25
+      },
+      {
+        "period": "2026-Q2",
+        "value": 26.1
       }
     ],
     "debt_euro_million": [
@@ -836,7 +840,7 @@
       },
       {
         "period": "2023-Q2",
-        "value": 7177.8
+        "value": 7177.7
       },
       {
         "period": "2023-Q3",
@@ -848,39 +852,43 @@
       },
       {
         "period": "2024-Q1",
-        "value": 9265.1
+        "value": 9266.2
       },
       {
         "period": "2024-Q2",
-        "value": 9199
+        "value": 9200
       },
       {
         "period": "2024-Q3",
-        "value": 9385.6
+        "value": 9385.1
       },
       {
         "period": "2024-Q4",
-        "value": 9353.1
+        "value": 9358.8
       },
       {
         "period": "2025-Q1",
-        "value": 9629.8
+        "value": 9632.2
       },
       {
         "period": "2025-Q2",
-        "value": 9465.6
+        "value": 9468
       },
       {
         "period": "2025-Q3",
-        "value": 9414.2
+        "value": 9416.5
       },
       {
         "period": "2025-Q4",
-        "value": 10035.2
+        "value": 10046.5
       },
       {
         "period": "2026-Q1",
-        "value": 10645.8
+        "value": 10636.4
+      },
+      {
+        "period": "2026-Q2",
+        "value": 11258.6
       }
     ],
     "debt_national_currency_million": [
@@ -1258,7 +1266,7 @@
       },
       {
         "period": "2023-Q2",
-        "value": 7177.8
+        "value": 7177.7
       },
       {
         "period": "2023-Q3",
@@ -1270,39 +1278,43 @@
       },
       {
         "period": "2024-Q1",
-        "value": 9265.1
+        "value": 9266.2
       },
       {
         "period": "2024-Q2",
-        "value": 9199
+        "value": 9200
       },
       {
         "period": "2024-Q3",
-        "value": 9385.6
+        "value": 9385.1
       },
       {
         "period": "2024-Q4",
-        "value": 9353.1
+        "value": 9358.8
       },
       {
         "period": "2025-Q1",
-        "value": 9629.8
+        "value": 9632.2
       },
       {
         "period": "2025-Q2",
-        "value": 9465.6
+        "value": 9468
       },
       {
         "period": "2025-Q3",
-        "value": 9414.2
+        "value": 9416.5
       },
       {
         "period": "2025-Q4",
-        "value": 10035.2
+        "value": 10046.5
       },
       {
         "period": "2026-Q1",
-        "value": 10645.8
+        "value": 10636.4
+      },
+      {
+        "period": "2026-Q2",
+        "value": 11258.6
       }
     ]
   }

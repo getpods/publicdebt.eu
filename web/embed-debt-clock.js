@@ -357,9 +357,7 @@ function startDebtClock(
 
 
   const rate =
-    Number(
-      clock.amount_per_second
-    );
+    clock.amount_per_second;
 
 
   if (

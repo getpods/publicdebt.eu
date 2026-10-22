@@ -1,3 +1,4 @@
+import { fetchSource } from "../lib/fetch-source.js";
 import {
   mkdir,
   writeFile
@@ -55,8 +56,8 @@ const EU27 = [
 
 const outDir =
   resolve(
-    ROOT,
-    "data/raw"
+    process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+    "raw"
   );
 
 
@@ -83,28 +84,7 @@ async function fetchCountry(
     `Fetching ${countryCode}...`
   );
 
-  const response =
-    await fetch(
-      url,
-      {
-        headers: {
-          "User-Agent":
-            "PublicDebt.eu/0.2 data importer"
-        }
-      }
-    );
-
-
-  if (!response.ok) {
-    throw new Error(
-      `Eurostat population API ${countryCode}: ${response.status} ${response.statusText}`
-    );
-  }
-
-
-  const json =
-    await response.json();
-
+  const json = JSON.parse(await fetchSource(url));
 
   if (
     !Array.isArray(json.id) ||

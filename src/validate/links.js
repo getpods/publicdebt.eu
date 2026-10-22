@@ -28,8 +28,7 @@ const ROOT =
 
 const distDir =
   resolve(
-    ROOT,
-    "dist"
+    process.env.PUBLICDEBT_DIST_DIR ?? resolve(ROOT, "dist")
   );
 
 

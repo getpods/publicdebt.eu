@@ -8,12 +8,16 @@ const ROOT = resolve(
 );
 
 const overviewFile = resolve(
-  ROOT,
-  "data/processed/overview.json"
+  process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"),
+  "processed/overview.json"
 );
 
 const overview = JSON.parse(
   await readFile(overviewFile, "utf8")
+);
+
+const cz = JSON.parse(
+  await readFile(resolve(process.env.PUBLICDEBT_DATA_DIR ?? resolve(ROOT, "data"), "processed/countries/cz.json"), "utf8")
 );
 
 const errors = [];
@@ -251,7 +255,7 @@ const latestDebtGdp =
 
 assert(
   latestDebtCzk?.period === latest.period,
-  `Latest MFCR history period (${latestDebtCzk?.period}) does not match overview.latest (${latest.period})`
+  `Latest Eurostat CZK history period (${latestDebtCzk?.period}) does not match overview.latest (${latest.period})`
 );
 
 assert(
@@ -271,6 +275,62 @@ if (
     `Latest debt/GDP mismatch: history=${latestDebtGdp.value}, latest=${debt.percent_gdp}`
   );
 }
+
+/* ---------------------------------------------------------
+   CLOCK RECOMPUTATION AND COUNTRY CONSISTENCY
+--------------------------------------------------------- */
+
+function assertClose(actual, expected, tolerance, message) {
+  assert(
+    isFiniteNumber(actual) && isFiniteNumber(expected) &&
+      Math.abs(actual - expected) <= tolerance,
+    message
+  );
+}
+
+assertClose(debt.czk, latestDebtCzk?.value * 1_000_000_000, 1,
+  "Latest CZK debt does not match history");
+assertClose(debt.czk_billion, latestDebtCzk?.value, 1e-9,
+  "Latest CZK billion debt does not match history");
+
+const expectedPeriodFrom = periodToNumber(latest.period) === null
+  ? null
+  : `${Number(latest.period.slice(0, 4)) - 1}-${latest.period.slice(5)}`;
+
+assert(clock.period_to === latest.period,
+  "debt_clock.period_to does not match latest.period");
+assert(clock.period_from === expectedPeriodFrom,
+  `debt_clock.period_from should be ${expectedPeriodFrom}`);
+
+const clockFrom = debtCzk.find(item => item.period === expectedPeriodFrom);
+const clockTo = debtCzk.find(item => item.period === latest.period);
+assert(Boolean(clockFrom && clockTo), "Debt clock observations are missing from CZK history");
+
+if (clockFrom && clockTo) {
+  const expectedChange = (clockTo.value - clockFrom.value) * 1_000_000_000;
+  // Independent recomputation, including the Gregorian-year conversion.
+  const expectedRate = expectedChange / (365.2425 * 24 * 60 * 60);
+  assertClose(clock.change_czk, expectedChange, 1,
+    "debt_clock.change_czk does not match history");
+  assertClose(clock.czk_per_second, expectedRate, 1e-8,
+    "debt_clock.czk_per_second does not match history");
+}
+
+assert(cz.country?.code === "CZ", "Country comparison dataset must be CZ");
+assert(latest.period === cz.latest?.period, "Overview and CZ latest periods differ");
+assertClose(debt.czk, cz.latest?.debt?.national_currency * 1_000_000, 1,
+  "Overview and CZ debt differ");
+assertClose(debt.percent_gdp, cz.latest?.debt?.percent_gdp, 1e-9,
+  "Overview and CZ debt/GDP differ");
+assertClose(debt.euro_million, cz.latest?.debt?.euro, 1e-9,
+  "Overview and CZ euro debt differ");
+assert(clock.period_from === cz.debt_clock?.period_from &&
+  clock.period_to === cz.debt_clock?.period_to,
+  "Overview and CZ debt clock periods differ");
+assertClose(clock.change_czk, cz.debt_clock?.change, 1,
+  "Overview and CZ debt clock changes differ");
+assertClose(clock.czk_per_second, cz.debt_clock?.amount_per_second, 1e-8,
+  "Overview and CZ debt clock rates differ");
 
 /* ---------------------------------------------------------
    POPULATION

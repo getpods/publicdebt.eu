@@ -1,4 +1,3 @@
-import { buildSitemap } from "./lib/sitemap.js";
 import {
   mkdir,
   rm,
@@ -2246,6 +2245,15 @@ await writeFile(
 if (
   !isStage
 ) {
+  const now =
+    new Date()
+      .toISOString()
+      .slice(
+        0,
+        10
+      );
+
+
   const urls = [
     /* CZECH */
 
@@ -2274,40 +2282,39 @@ if (
   ];
 
 
-  let previous = {};
-  const stateFile = process.env.PUBLICDEBT_SITEMAP_STATE;
-  if (stateFile) {
-    try { previous = JSON.parse(await readFile(stateFile, "utf8")); }
-    catch (error) { if (error.code !== "ENOENT") throw error; }
-  }
-  const jsonCache = new Map();
-  async function readProcessed(file) {
-    if (!jsonCache.has(file)) jsonCache.set(file, JSON.parse(await readFile(resolve(processedDir, file), "utf8")));
-    return jsonCache.get(file);
-  }
-  const pages = [];
-  for (const url of urls) {
-    const pathname = new URL(url).pathname;
-    const country = eu.countries.find(item => pathname === `/cs/zeme/${item.slug}/` || pathname === `/en/countries/${item.slug_en}/`);
-    let data = null;
-    if (country) {
-      const code = country.code.toLowerCase();
-      data = [country, await readProcessed(`countries/${code}.json`), await readProcessed(`populations/${code}.json`)];
-    } else if (pathname === "/cs/") {
-      data = [overview, eu];
-    } else if (!pathname.endsWith("/o-projektu/") && !pathname.endsWith("/about/")) {
-      data = [eu];
-      if (pathname.endsWith("/porovnani/") || pathname.endsWith("/compare/")) {
-        data.push(...await Promise.all(eu.countries.map(item => readProcessed(`countries/${item.code.toLowerCase()}.json`))));
-      }
-    }
-    pages.push({ url, html: await readFile(resolve(distDir, pathname.slice(1), "index.html"), "utf8"), data });
-  }
-  const sitemap = buildSitemap(pages, previous);
-  await writeFile(resolve(distDir, "sitemap.xml"), sitemap.xml, "utf8");
-  if (process.env.PUBLICDEBT_SITEMAP_NEXT_STATE) {
-    await writeFile(process.env.PUBLICDEBT_SITEMAP_NEXT_STATE, JSON.stringify(sitemap.state), "utf8");
-  }
+  const sitemapUrls =
+    urls
+      .map(
+        url => `
+  <url>
+    <loc>${url}</loc>
+    <lastmod>${now}</lastmod>
+  </url>`
+      )
+      .join(
+        ""
+      );
+
+
+  const sitemap =
+    `<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+>${sitemapUrls}
+</urlset>
+`;
+
+
+  await writeFile(
+    resolve(
+      distDir,
+      "sitemap.xml"
+    ),
+
+    sitemap,
+
+    "utf8"
+  );
 }
 
 

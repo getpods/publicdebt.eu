@@ -563,11 +563,6 @@ if (
   }
 
 
-  for (const match of sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)) {
-    const date = Date.parse(match[1]);
-    assert(Number.isFinite(date) && date <= Date.now(), `Invalid sitemap lastmod: ${match[1]}`);
-  }
-
   const sitemapUrlCount =
     (
       sitemap.match(

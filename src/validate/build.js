@@ -563,6 +563,11 @@ if (
   }
 
 
+  for (const match of sitemap.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)) {
+    const date = Date.parse(match[1]);
+    assert(Number.isFinite(date) && date <= Date.now(), `Invalid sitemap lastmod: ${match[1]}`);
+  }
+
   const sitemapUrlCount =
     (
       sitemap.match(
@@ -777,6 +782,36 @@ assert(
   `Invalid generated_at in overview.json: ${overview.generated_at}`
 );
 
+
+const csHomepage = await readDist("cs/index.html");
+const enHomepage = await readDist("en/index.html");
+function homepageValue(html, id) {
+  const match = html.match(new RegExp(`<([a-z][a-z0-9]*)[^>]*\\bid=["']${id}["'][^>]*>([\\s\\S]*?)<\\/\\1>`, "i"));
+  assert(Boolean(match), `Missing homepage element #${id}`);
+  return match[2].replace(/<[^>]+>/g, "").trim();
+}
+const csNumber = (value, digits = 1) => new Intl.NumberFormat("cs-CZ", { maximumFractionDigits: digits }).format(value);
+const enNumber = value => new Intl.NumberFormat("en-GB", { maximumFractionDigits: 1 }).format(value);
+for (const [id, expected] of Object.entries({
+  debt: csNumber(overview.latest.debt.czk_billion),
+  "debt-gdp": csNumber(overview.latest.debt.percent_gdp),
+  period: overview.latest.period,
+  "period-gdp": overview.latest.period,
+  "debt-per-capita": `${csNumber(overview.debt_per_capita.czk, 0)} Kč`,
+  "debt-clock-rate": csNumber(overview.debt_clock.czk_per_second, 0),
+  "clock-period-from": overview.debt_clock.period_from,
+  "clock-period-to": overview.debt_clock.period_to
+})) assert(homepageValue(csHomepage, id) === expected, `Czech homepage #${id} differs from source data`);
+const ranked = [...eu.countries].sort((a, b) => a.rank.debt_percent_gdp - b.rank.debt_percent_gdp);
+const cz = eu.countries.find(country => country.code === "CZ");
+assert(homepageValue(csHomepage, "eu-rank") === `${cz.rank.debt_percent_gdp}.`, "Czech homepage rank is missing or incorrect");
+assert(homepageValue(enHomepage, "eu-home-highest-value") === `${enNumber(ranked[0].debt.percent_gdp)}%`, "English homepage highest value is missing or incorrect");
+assert(homepageValue(enHomepage, "eu-home-lowest-value") === `${enNumber(ranked.at(-1).debt.percent_gdp)}%`, "English homepage lowest value is missing or incorrect");
+assert(homepageValue(enHomepage, "eu-home-period") === eu.periods.debt[0], "English homepage period is missing or incorrect");
+for (const country of ranked.slice(0, 6)) {
+  assert(enHomepage.includes(`href="/en/countries/${country.slug_en}/"`), `English homepage is missing a crawlable ranking link to ${country.code}`);
+}
+console.log("OK  homepage statistics and English ranking are present without JavaScript");
 
 await validateDataConsistency(resolve(distDir, "data"));
 console.log("OK  source periods and dataset values are consistent");

@@ -1,3 +1,4 @@
+import { buildSitemap } from "./lib/sitemap.js";
 import {
   mkdir,
   rm,
@@ -541,6 +542,10 @@ const eu =
   );
 
 
+const overview = JSON.parse(
+  await readFile(resolve(processedDir, "overview.json"), "utf8")
+);
+
 if (
   !Array.isArray(
     eu.countries
@@ -829,9 +834,63 @@ function prerenderCzechHomepageSeo(
       formattedPeriod
     );
 
+  const number = value => formatStaticNumber(value, "cs");
+  const integer = value => formatStaticNumber(value, "cs", 0);
+  const rank = czechia.rank.debt_percent_gdp;
+  const values = {
+    debt: number(overview.latest.debt.czk_billion),
+    period: overview.latest.period,
+    "debt-gdp": number(overview.latest.debt.percent_gdp),
+    "period-gdp": overview.latest.period,
+    "debt-per-capita": `${integer(overview.debt_per_capita.czk)} Kč`,
+    "debt-clock-rate": integer(overview.debt_clock.czk_per_second),
+    "clock-period-from": overview.debt_clock.period_from,
+    "clock-period-to": overview.debt_clock.period_to,
+    "eu-rank": `${rank}.`,
+    "eu-debt-gdp": number(czechia.debt.percent_gdp),
+    "eu-position-text": `Vyšší dluh vůči HDP má ${rank - 1} zemí EU, nižší ${eu.count - rank}.`,
+    "source-eurostat-period": `poslední údaj ${overview.latest.period}`,
+    "source-population-year": `k 1. 1. ${overview.population.year}`,
+    updated: `Data zpracována ${formatStaticDate(overview.generated_at, "cs")}`
+  };
+  for (const [id, value] of Object.entries(values)) result = replaceHtmlById(result, id, value);
+
   return result;
 }
 
+
+function formatStaticDate(date, language) {
+  return new Intl.DateTimeFormat(language === "en" ? "en-GB" : "cs-CZ", {
+    dateStyle: "medium", timeZone: "UTC"
+  }).format(new Date(date));
+}
+
+function prerenderEnglishHomepageSeo(html, eu) {
+  const countries = [...eu.countries].sort((a, b) => a.rank.debt_percent_gdp - b.rank.debt_percent_gdp);
+  const highest = countries[0];
+  const lowest = countries.at(-1);
+  const values = {
+    "eu-home-highest-value": `${formatStaticNumber(highest.debt.percent_gdp, "en")}%`,
+    "eu-home-highest-country": highest.name,
+    "eu-home-lowest-value": `${formatStaticNumber(lowest.debt.percent_gdp, "en")}%`,
+    "eu-home-lowest-country": lowest.name,
+    "eu-home-country-count": eu.count,
+    "eu-home-period": eu.periods.debt[0],
+    "eu-home-source-period": eu.periods.debt.join(", "),
+    "eu-home-population-period": eu.periods.population.join(", "),
+    "eu-home-interest-rate-period": eu.periods.interest_rate.join(", "),
+    "eu-home-footer-updated": `Data processed ${formatStaticDate(eu.generated_at, "en")}`
+  };
+  let result = html;
+  for (const [id, value] of Object.entries(values)) result = replaceHtmlById(result, id, value);
+  const ranking = countries.slice(0, 6).map(country => `
+    <a class="eu-home-ranking-row" href="/en/countries/${escapeHtml(country.slug_en)}/">
+      <span class="eu-home-ranking-position">${country.rank.debt_percent_gdp}.</span>
+      <span class="eu-home-ranking-country"><strong>${escapeHtml(country.name)}</strong><small>${escapeHtml(country.code)}</small></span>
+      <span class="eu-home-ranking-value">${formatStaticNumber(country.debt.percent_gdp, "en")}%</span>
+    </a>`).join("\n");
+  return replaceHtmlRawById(result, "eu-home-ranking", ranking);
+}
 
 async function prerenderCountrySeo(
   html,
@@ -1356,7 +1415,7 @@ await writeFile(
   ),
 
   prepareHtml(
-    englishHomepageSource
+    prerenderEnglishHomepageSeo(englishHomepageSource, eu)
   ),
 
   "utf8"
@@ -2187,15 +2246,6 @@ await writeFile(
 if (
   !isStage
 ) {
-  const now =
-    new Date()
-      .toISOString()
-      .slice(
-        0,
-        10
-      );
-
-
   const urls = [
     /* CZECH */
 
@@ -2224,39 +2274,40 @@ if (
   ];
 
 
-  const sitemapUrls =
-    urls
-      .map(
-        url => `
-  <url>
-    <loc>${url}</loc>
-    <lastmod>${now}</lastmod>
-  </url>`
-      )
-      .join(
-        ""
-      );
-
-
-  const sitemap =
-    `<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->${sitemapUrls}
-</urlset>
-`;
-
-
-  await writeFile(
-    resolve(
-      distDir,
-      "sitemap.xml"
-    ),
-
-    sitemap,
-
-    "utf8"
-  );
+  let previous = {};
+  const stateFile = process.env.PUBLICDEBT_SITEMAP_STATE;
+  if (stateFile) {
+    try { previous = JSON.parse(await readFile(stateFile, "utf8")); }
+    catch (error) { if (error.code !== "ENOENT") throw error; }
+  }
+  const jsonCache = new Map();
+  async function readProcessed(file) {
+    if (!jsonCache.has(file)) jsonCache.set(file, JSON.parse(await readFile(resolve(processedDir, file), "utf8")));
+    return jsonCache.get(file);
+  }
+  const pages = [];
+  for (const url of urls) {
+    const pathname = new URL(url).pathname;
+    const country = eu.countries.find(item => pathname === `/cs/zeme/${item.slug}/` || pathname === `/en/countries/${item.slug_en}/`);
+    let data = null;
+    if (country) {
+      const code = country.code.toLowerCase();
+      data = [country, await readProcessed(`countries/${code}.json`), await readProcessed(`populations/${code}.json`)];
+    } else if (pathname === "/cs/") {
+      data = [overview, eu];
+    } else if (!pathname.endsWith("/o-projektu/") && !pathname.endsWith("/about/")) {
+      data = [eu];
+      if (pathname.endsWith("/porovnani/") || pathname.endsWith("/compare/")) {
+        data.push(...await Promise.all(eu.countries.map(item => readProcessed(`countries/${item.code.toLowerCase()}.json`))));
+      }
+    }
+    pages.push({ url, html: await readFile(resolve(distDir, pathname.slice(1), "index.html"), "utf8"), data });
+  }
+  const sitemap = buildSitemap(pages, previous);
+  await writeFile(resolve(distDir, "sitemap.xml"), sitemap.xml, "utf8");
+  if (process.env.PUBLICDEBT_SITEMAP_NEXT_STATE) {
+    await writeFile(process.env.PUBLICDEBT_SITEMAP_NEXT_STATE, JSON.stringify(sitemap.state), "utf8");
+  }
 }
 
 

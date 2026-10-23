@@ -716,3 +716,22 @@ position updates, bounded by the chart edges. Mobile axes use readable
 text at the actual display size. Screen-reader labels include the
 selected period, value and unit; comparison charts include all available
 selected-country values. These controls are available in Czech and English.
+
+### Homepage HTML and sitemap modification dates
+
+Both homepages include their primary statistics, source periods and processing
+labels directly in the built HTML. The English homepage also includes the top
+six country links and values before JavaScript loads.
+
+Production builds compare each page's HTML and relevant datasets with the last
+successful build. Sitemap `lastmod` changes only when that content changes;
+asset cache-busting versions and data retrieval/processing timestamps are ignored.
+The comparison includes historical country data, so revisions can update the
+sitemap even when the latest headline value stays the same.
+
+The local history is stored in `.publicdebt-tmp/sitemap-state.json`, outside the
+published site and ignored by Git. It is updated after a validated production
+build succeeds. Stage and failed builds leave it unchanged. Keep this file
+between production builds (including in CI caches) to preserve history. On the
+first build, or after clearing history, unknown `lastmod` dates are omitted
+instead of being guessed. Subsequent detected content changes receive a date.

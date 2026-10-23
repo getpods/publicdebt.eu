@@ -18,7 +18,7 @@ export function runScript(root, script, env = {}) {
 }
 
 // Keep the previous output until preparation and all checks have succeeded.
-export async function replaceDirectory(root, target, name, prepare) {
+export async function replaceDirectory(root, target, name, prepare, afterPublish) {
   const tempRoot = join(root, ".publicdebt-tmp");
   await mkdir(tempRoot, { recursive: true });
   const lock = join(tempRoot, `${name}.lock`);
@@ -59,6 +59,7 @@ export async function replaceDirectory(root, target, name, prepare) {
       }
       throw error;
     }
+    if (afterPublish) await afterPublish(work);
   } finally {
     if (work) await rm(work, { recursive: true, force: true });
     await rm(lock, { recursive: true, force: true });
